@@ -1,10 +1,18 @@
 .navig {
     background-color: rgba(107, 106, 106, 0.205);
-    
+    height: 100px;
 }
-.navtxt {
+b {
     color: rgb(2, 63, 2);
 }
 .butt{
     margin-right: 150px; 
+}
+
+.boxes {
+    background-color: yellow;
+
+}
+.cont {
+    margin-top: 150px;
 }

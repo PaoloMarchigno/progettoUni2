@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Esercitazione 1</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type = "text/css" href="../Bootstrap/css/bootstrap.min.css"/>
+    <link rel = "stylesheet" href="style.css"/>
+    <script src = "../Bootstrap/js/bootstrap.min.js"></script>
+    <script src="validazione.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Login</title>
+</head>
+<body class="text-center">
+    <form name="Myform" action="login.php" method="POST" class="form-signin" onsubmit="validazione()">
+        <img class = "mb-4" src="../Bootstrap/assets/brand/bootstrap-logo.svg"  width="72"/>
+        <h1 class="h3 mb-3">Please sign in</h1>
+            <input type="email" name ="MyEmail" class="form-control"
+                placeholder="inserisci la tua mail"  required autofocus>
+            <input type="nome" name = "MyName" class="form-control" 
+            placeholder="Name"/>
+            <input type="cognome" name="MyLname" class="form-control" 
+            placeholder="Last name"/>
+            <input type="password" name ="MyPassword" class="form-control" 
+                placeholder="inserisci la tua password"  required/>
+            <label for="cap">CAP (5 digits)</label>
+            <input type="text" name="MyCap" id="cap"
+             size="5" maxlength="5"/>
+        <div class="mb-2">
+            <input type="checkbox" name="remember" id="rmb"/>
+            <label for="rmb">Remember me!</label>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary" name="RegistrationButton">Sign in</button>
+    </form>
+</body>
+</html>
