@@ -1,0 +1,14 @@
+------------------------------------------COSE DA IMPLEMENTARE---------------------------------------
+
+-home page;
+-challenges page;
+-scoreboard page +> aggiornamento punteggio
+
+
+
+
+
+------------EVENTUALI COSE CHE DOVREMMO SAPER IMPLEMENTARE/A CUI DOVREMMO SAPER RISPONDERE------------
+
+- aggiunta di una nuova challenge al sito/rimozione, lato front-end e lato back-end
+  (cioè con conseguente sottrazione del punteggio relativo alla challenge rimossa)
