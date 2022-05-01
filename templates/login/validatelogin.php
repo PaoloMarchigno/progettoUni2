@@ -28,7 +28,7 @@
                 if ($tuple = pg_fetch_array($result,null,PGSQL_ASSOC)){
                     $name = $tuple["nome"];
                     echo "Login went well!<br>";
-                    echo "Click <a href=\"../challenges/chall.php?name=$name\"> here </a> for getting started!";
+                    echo "Click <a href=\"../challenges/chall.html?name=$name\"> here </a> for getting started!";
                 }
                 else {
                     echo "Login went bad!";
