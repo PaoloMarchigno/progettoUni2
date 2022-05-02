@@ -1,14 +1,20 @@
 .navig {
-    background-color: rgba(107, 106, 106, 0.205);
-    height: 100px;
-}
-b {
-    color: rgb(2, 63, 2);
-}
-.butt{
-    margin-right: 150px; 
+    background-color: rgba(107, 106, 106, 0.24);
+
 }
 
+.b {
+    color: rgb(2, 63, 2);
+}
+svg[name="ic"],img[name="ic"] {
+    vertical-align: baseline;
+}
+.nav-item a:hover,.active a{
+    border-bottom: 5px solid red;     
+}
+.butt{
+    margin: 150px;
+}
 .boxes {
     background-color: yellow;
 
