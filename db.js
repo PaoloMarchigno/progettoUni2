@@ -7,6 +7,6 @@ const db = new Client({
   database: 'flagify',
   password: 'root',
   port: 5433,
-});
+}); // fewfew
 
 exports.db = db;
