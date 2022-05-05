@@ -71,13 +71,24 @@ function restrict(req, res, next) {
     }
 }
 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
+});
 
 app.get("/profilo", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
 });
 
+app.get("/challenges", (req,res) => {
+    res.sendFile(path.join(__dirname, "static/templates/challenges_2/challenges.html"));
+});
+
+app.get("/challenges_2", (req,res) => {
+    res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
+});
+
 app.get("/login", (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/login_2/login.html"));
+    res.sendFile(path.join(__dirname, "static/templates/login/login.html"));
 });
 
 app.post("/login", (req,res,next) => {
@@ -111,12 +122,9 @@ app.post("/login", (req,res,next) => {
 
 
 app.get("/signup", (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/signup_2/signup.html"));
+    res.sendFile(path.join(__dirname, "static/templates/signup/signup.html"));
 });
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
-});
 
 app.post("/signup", (req,res) => {
     if (!req.body.username  || !req.body.email || !req.body.password || !req.body.password2) {
