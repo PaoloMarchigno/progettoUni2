@@ -1,0 +1,29 @@
+{
+  "name": "flagify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thoms2901/ctf_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "call-bind": "^1.0.2",
+    "express": "latest",
+    "express-session": "latest",
+    "path": "latest",
+    "pg": "latest"
+  },
+  "bugs": {
+    "url": "https://github.com/thoms2901/ctf_project/issues"
+  },
+  "homepage": "https://github.com/thoms2901/ctf_project#readme"
+}
