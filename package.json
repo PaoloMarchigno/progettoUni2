@@ -13,7 +13,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "call-bind": "^1.0.2",
@@ -21,9 +20,5 @@
     "express-session": "latest",
     "path": "latest",
     "pg": "latest"
-  },
-  "bugs": {
-    "url": "https://github.com/thoms2901/ctf_project/issues"
-  },
-  "homepage": "https://github.com/thoms2901/ctf_project#readme"
+  }
 }
