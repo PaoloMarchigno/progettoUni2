@@ -7,6 +7,10 @@
     transform: translate(13.5%, 0);
   }
 
+  .signup{
+    padding: .5rem 1rem;
+    padding-right: 0px;
+  }
   .navigation-clean-button .navbar-text .action-button, .navigation-clean-button .navbar-text .action-button:active, .navigation-clean-button .navbar-text .action-button:hover {
     background: #56c6c6;
     border-radius: 20px;
@@ -18,6 +22,7 @@
     padding: .5rem 1rem;
     transition: background-color 0.25s;
     font-size: inherit;
+
   }
   
   .navigation-clean-button .navbar-text .action-button:hover {
