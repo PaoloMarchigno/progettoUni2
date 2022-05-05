@@ -17,7 +17,7 @@ db.connect( (err) => {
     if (err) {
 	  console.error("Errore connessione al database");
 	  console.error(err);
-	  process.exit(1);
+	  //process.exit(1);
 	}
 });
 
