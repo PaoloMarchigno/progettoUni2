@@ -115,7 +115,7 @@ app.get("/signup", (req,res) => {
 });
 
 app.get("/", (req, res) => {
-    res.send("<h1>Homepage<h1>");
+    res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
 });
 
 app.post("/signup", (req,res) => {
@@ -167,4 +167,5 @@ app.get("/logout", (req,res) => {
 
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
+    console.log("http://localhost:8000");
 });
