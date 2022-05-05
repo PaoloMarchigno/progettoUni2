@@ -100,6 +100,7 @@ app.post("/login", (req,res,next) => {
 			}
 		    else {
                 console.log('Errore email o password errati');
+                res.append('form-error', 'Errore email o password errati');
 		        req.session.error = "Email o password errati";
 				res.redirect("/login");
                 
