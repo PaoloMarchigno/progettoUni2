@@ -5,8 +5,8 @@ const db = new Client({
   user: 'postgres',
   host: '127.0.0.1',
   database: 'flagify',
-  password: 'Zephyrus3!',
-  port: 5432,
+  password: 'root',
+  port: 5433,
 }); // fewfew
 
 exports.db = db;
