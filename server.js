@@ -21,6 +21,7 @@ db.connect( (err) => {
 	}
 });
 
+app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, "static")));
 app.use(body_parser.urlencoded({ extended: true }));
@@ -62,6 +63,8 @@ function authenticate(email, pass, fn) {
     });
 }
 
+var errore_login = '';
+var errore_signup = '';
 
 function restrict(req, res, next) {
     if (req.session.user) {
@@ -79,8 +82,8 @@ app.get("/profilo", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
 });
 
-app.get("/challenges", (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/challenges_2/challenges.html"));
+app.get("/challenges", restrict, (req,res) => {
+    res.render(path.join(__dirname, "static/templates/challenges_2/challenges"), {user: req.session.user});
 });
 
 app.get("/challenges_2", (req,res) => {
@@ -88,15 +91,12 @@ app.get("/challenges_2", (req,res) => {
 });
 
 app.get("/login", (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/login/login.html"));
+    res.render(path.join(__dirname, "static/templates/login/login"), {error: errore_login});
 });
 
 app.post("/login", (req,res,next) => {
     if (!req.body.email || !req.body.password) {
-        popup.alert({
-            content: "Inserire email e password"
-        });
-	    req.session.error = "Inserire email e password";
+        errore_login = "Inserire email e password";
 	    res.redirect("/login");
     }
     else {
@@ -105,14 +105,12 @@ app.post("/login", (req,res,next) => {
 		    if (user) {
                 req.session.regenerate(function(err) {
                     req.session.user = user;
-				    req.session.success = "Login effettuato con successo";
+                    errore_login = '';
 				    res.redirect("/profilo");
 				});   
 			}
 		    else {
-                console.log('Errore email o password errati');
-                res.append('form-error', 'Errore email o password errati');
-		        req.session.error = "Email o password errati";
+                errore_login = "Email o password errati";
 				res.redirect("/login");
                 
 			}
@@ -122,24 +120,25 @@ app.post("/login", (req,res,next) => {
 
 
 app.get("/signup", (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/signup/signup.html"));
+    res.render(path.join(__dirname, "static/templates/signup/signup"), {error: errore_signup});
 });
 
 
 app.post("/signup", (req,res) => {
     if (!req.body.username  || !req.body.email || !req.body.password || !req.body.password2) {
-	    req.session.error = "Compilare tutti i campi";
+	    errore_signup = "Compilare tutti i campi";
 	    return res.redirect("/signup");
 	}
 	if (req.body.password !== req.body.password2) {
-	    req.session.error = "Le password non coincidono";
+	    errore_signup = "Le password non coincidono";
 	    return res.redirect("/signup");
 	}
     const result = utente.controlloSeEsisteUtente(db, req.body.email);
     if (result == true) {
-        req.session.error = "Utente già registrato";
+        errore_signup = "Utente già registrato";
 	    return res.redirect("/signup");
     }
+    errore_signup = '';
     utente.inserisciUtente(db, req.body.username, req.body.email, bcrypt.hashSync(req.body.password, 10));
     req.session.success = "Registrazione avvenuta con successo";
     req.session.regenerate(function() {

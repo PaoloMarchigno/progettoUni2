@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "call-bind": "^1.0.2",
     "express": "latest",
+    "ejs": "latest",
     "express-session": "latest",
     "path": "latest",
     "pg": "latest"
