@@ -15,3 +15,32 @@ svg[name="ic"],img[name="ic"] {
 .butt{
     margin: 150px;
 }
+
+.card-img-top {
+    height:25vh;
+    object-fit: cover;
+}
+.card {
+    width:18rem;
+    text-align: center;
+}
+.card:hover {
+    -webkit-box-shadow: -1px 9px 30px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow:  -1px 9px 30px -7px rgba(0,0,0,0.75);
+    box-shadow:  -1px 9px 30px -7px rgba(0,0,0,0.75);
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    -webkit-transform: scale(1.1) !important;
+    -ms-transform: scale(1.1) !important;
+    transform: scale(1.1) !important;
+    cursor: pointer !important;
+    text-shadow: none !important;
+    z-index: 2;
+}
+body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight:400;
+    font-size: 16px;
+    line-height: 1.8;
+    color:#383b3d;
+}
