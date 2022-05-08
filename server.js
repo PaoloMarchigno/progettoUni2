@@ -79,7 +79,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/profilo", restrict, (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
+    res.render(path.join(__dirname, "static/templates/profile/profile"), {user: req.session.user});
 });
 
 app.get("/challenges", restrict, (req,res) => {
