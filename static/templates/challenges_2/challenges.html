@@ -35,10 +35,10 @@
                             </svg>Challenges</a></li>
             </div>
             <span class="navbar-text actions">
-                <a class="btn btn-light action-button" href="/profilo"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                <a class="btn btn-light action-button" id="profilo" href="/profilo"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                         height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg><%= user %></a>
+                    </svg></a>
                 <a class="log-out" role="button" href="/logout">Log out</a>
             </span>
         </div>
@@ -56,6 +56,16 @@
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("profilo").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", '/info-profile', true);
+        xhttp.send();
+    </script>
 </body>
 
 </html>

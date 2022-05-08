@@ -21,7 +21,7 @@ db.connect( (err) => {
 	}
 });
 
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, "static")));
 app.use(body_parser.urlencoded({ extended: true }));
@@ -78,12 +78,25 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
 });
 
+app.get('/info-profile', restrict, (req, res) => {
+    res.send(req.session.user);
+});
+
+app.get('/error-login', (req, res) => {
+
+    res.send(errore_login);
+});
+
+app.get('/error-signup', (req, res) => {
+    res.send(errore_signup);
+});
+
 app.get("/profilo", restrict, (req,res) => {
-    res.render(path.join(__dirname, "static/templates/profile/profile"), {user: req.session.user});
+    res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
 });
 
 app.get("/challenges", restrict, (req,res) => {
-    res.render(path.join(__dirname, "static/templates/challenges_2/challenges"), {user: req.session.user});
+    res.sendFile(path.join(__dirname, "static/templates/challenges_2/challenges.html"));
 });
 
 app.get("/challenges_2", (req,res) => {
@@ -91,7 +104,8 @@ app.get("/challenges_2", (req,res) => {
 });
 
 app.get("/login", (req,res) => {
-    res.render(path.join(__dirname, "static/templates/login/login"), {error: errore_login});
+    console.log(errore_login);
+    res.sendFile(path.join(__dirname, "static/templates/login/login.html"));
 });
 
 app.post("/login", (req,res,next) => {
@@ -120,7 +134,7 @@ app.post("/login", (req,res,next) => {
 
 
 app.get("/signup", (req,res) => {
-    res.render(path.join(__dirname, "static/templates/signup/signup"), {error: errore_signup});
+    res.sendFile(path.join(__dirname, "static/templates/signup/signup.html"));
 });
 
 
