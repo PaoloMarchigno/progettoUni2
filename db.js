@@ -9,14 +9,6 @@ const db = new Client({
   port: 5555,
 }); 
 
-const chall = new Client({
-  user: 'postgres',
-  host: '18.102.20.113',
-  database: 'challenge',
-  password: 'rootroot',
-  port: 5555,
-});
 
-exports.chall = chall;
 
 exports.db = db;

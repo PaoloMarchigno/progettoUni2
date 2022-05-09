@@ -13,7 +13,6 @@ const { Router } = require("express");
 const app = express();
 
 const db = database.db;
-// const chall = database.chall;
 db.connect( (err) => {
     if (err) {
 	  console.error("Errore connessione al database");
@@ -22,14 +21,6 @@ db.connect( (err) => {
 	}
 });
 
-// chall.connect(  (err) => {
-//     if (err) {
-// 	  console.error("Errore connessione al database");
-// 	  console.error(err);
-// 	  //process.exit(1);
-// 	}
-// });
-// app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, "static")));
 app.use(body_parser.urlencoded({ extended: true }));
