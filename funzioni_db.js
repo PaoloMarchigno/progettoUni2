@@ -57,6 +57,23 @@ var challenge ={
     flag : 'flag{y0u_mu57_b3_4_r35lly_f457_cl1ck3r!}',
 }
 
+var uc ={
+    id_challenge : 2,
+    id_utente : 'thomas',
+    hint : 0,
+    solved : true,
+}
+
+
+function inserisciUtenteChallenge(db, uc){
+    const query = {
+        text: 'INSERT INTO utente_challenge(id_challenge ,id_utente, hint, solved) VALUES($1, $2, $3, $4)',
+        values: [uc.id_challenge ,uc.id_utente, uc.hint, uc.solved]
+        };
+        eseguiQuery(db, query);
+}
+
 // inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
 // modificaChallenge(db, challenge);
+inserisciUtenteChallenge(db, uc);

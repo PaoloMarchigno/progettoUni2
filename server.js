@@ -81,6 +81,13 @@ app.get("/getchall",(req,res) => {
     });
 });
 
+app.get('/challenge_done', (req, res) => {
+    req.session.user = 'thomas';
+    db.query("SELECT uc.id_challenge FROM utente_challenge uc WHERE id_utente = $1", [req.session.user]).then( (result) => {
+        res.send(result.rows);
+    });
+});
+
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));

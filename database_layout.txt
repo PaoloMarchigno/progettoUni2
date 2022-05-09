@@ -4,15 +4,17 @@ TABLE UTENTE:
 | username | email | password | scoreTot |
 +----------+-------+----------+----------+
 
-TABLE CHALLENGES
+TABLE CHALLENGE
 
-+----+------+-------+-------+---------------+------+
-| id | nome | testo | score | n_utenti_solv | flag |
-+----+------+-------+-------+---------------+------+
++----+------+-------+-------+---------------+------+------------+
+| id | nome | testo | score | n_utenti_solv | flag | difficolta |
++----+------+-------+-------+---------------+------+------------+
 
-TABLE UTENTE-CHALLENGES
+TABLE UTENTE_CHALLENGE
 
 +----------+-----------+------+--------+
 | id_chall | id_utente | hint | solved |
 +----------+-----------+------+--------+
 
+
+hint 1/2
