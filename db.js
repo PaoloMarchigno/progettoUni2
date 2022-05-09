@@ -3,10 +3,10 @@ const { Client  } = require('pg');
 
 const db = new Client({
   user: 'postgres',
-  host: '127.0.0.1',
+  host: '18.102.29.113',
   database: 'flagify',
-  password: 'root',
-  port: 5433,
-}); // fewfew
+  password: 'rootroot',
+  port: 5555,
+}); 
 
 exports.db = db;
