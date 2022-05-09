@@ -74,9 +74,9 @@ function restrict(req, res, next) {
 }
 
 app.get("/getchall",(req,res) => {
-    const id =req.query.id;
-    console.log(id);
-    db.query("SELECT * FROM challenge WHERE id = $1", [id]).then( (result) => {
+    const ch =req.query.id;
+    console.log("id: " + ch);
+    db.query("SELECT * FROM challenge WHERE id = $1", [ch]).then( (result) => {
         res.send(result.rows[0].nome+"!"+result.rows[0].testo+"!");
     });
 });
