@@ -100,7 +100,6 @@ app.get('/info-profile', restrict, (req, res) => {
 });
 
 app.get('/error-login', (req, res) => {
-
     res.send(errore_login);
 });
 
