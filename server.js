@@ -86,7 +86,7 @@ app.get("/getchall",(req,res) => {
     const ch =req.query.id;
     console.log(ch);
     chall.query("SELECT * FROM challenges WHERE id = $1", [ch]).then( (result) => {
-        res.send(result.rows[0].name+"!"+result.rows[0].text+"!");
+        res.send(result.rows[0].nome+"!"+result.rows[0].testo+"!");
     });
     
 });

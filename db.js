@@ -11,10 +11,10 @@ const db = new Client({
 
 const chall = new Client({
   user: 'postgres',
-  host: '127.0.0.1',
-  database: 'challenges',
-  password: 'root',
-  port: 5433,
+  host: '18.102.20.113',
+  database: 'challenge',
+  password: 'rootroot',
+  port: 5555,
 });
 
 exports.chall = chall;
