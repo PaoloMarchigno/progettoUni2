@@ -46,7 +46,6 @@ function eliminaChallenge(db, id){
         values: [id]
         };
     eseguiQuery(db, query);
-
 }
 
 var challenge ={
