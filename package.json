@@ -15,9 +15,10 @@
   "author": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "boostrap": "^2.0.0",
     "call-bind": "^1.0.2",
-    "express": "latest",
     "ejs": "latest",
+    "express": "latest",
     "express-session": "latest",
     "path": "latest",
     "pg": "latest"

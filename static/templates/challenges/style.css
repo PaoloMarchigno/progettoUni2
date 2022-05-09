@@ -2,7 +2,9 @@
     background-color: rgba(107, 106, 106, 0.24);
 
 }
-
+#btnTrigger {
+    display:none;
+}
 .b {
     color: rgb(2, 63, 2);
 }

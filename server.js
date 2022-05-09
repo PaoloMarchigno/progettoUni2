@@ -13,6 +13,7 @@ const { Router } = require("express");
 const app = express();
 
 const db = database.db;
+const chall = database.chall;
 db.connect( (err) => {
     if (err) {
 	  console.error("Errore connessione al database");
@@ -21,6 +22,13 @@ db.connect( (err) => {
 	}
 });
 
+chall.connect(  (err) => {
+    if (err) {
+	  console.error("Errore connessione al database");
+	  console.error(err);
+	  //process.exit(1);
+	}
+});
 // app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, "static")));
@@ -73,6 +81,15 @@ function restrict(req, res, next) {
         req.session.error = "Access denied!";
     }
 }
+
+app.get("/getchall",(req,res) => {
+    const ch =req.query.id;
+    console.log(ch);
+    chall.query("SELECT * FROM challenges WHERE id = $1", [ch]).then( (result) => {
+        res.send(result.rows[0].name+"!"+result.rows[0].text+"!");
+    });
+    
+});
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
