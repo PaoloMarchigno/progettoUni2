@@ -74,11 +74,17 @@ function restrict(req, res, next) {
 }
 
 app.get("/getchall",(req,res) => {
-    const ch =req.query.id;
-    console.log("id: " + ch);
-    db.query("SELECT * FROM challenge WHERE id = $1", [ch]).then( (result) => {
-        res.send(result.rows[0].nome+"!"+result.rows[0].testo+"!");
-    });
+    const id =req.query.id;
+    if (id == undefined){
+        db.query("SELECT * FROM challenge").then( (result) => {
+            res.send(result);
+        });
+    }
+    else{
+        db.query("SELECT * FROM challenge WHERE id=$1", [id]).then( (result) => {
+            res.send(result);
+        });
+    }
 });
 
 app.get('/challenge_done', (req, res) => {

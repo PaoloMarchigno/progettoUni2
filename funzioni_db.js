@@ -49,12 +49,13 @@ function eliminaChallenge(db, id){
 }
 
 var challenge ={
-    id : 1,
-    nome : 'Infinite Server',
-    testo : 'Questo server sembra avere molte pagine, sono sicuro che qualcuno arriverà alla fine... prima o poi. Indirizzo: http://infinite.challs.olicyber.it',
-    score : 200,
+    id : 5,
+    nome : 'Prova da eliminare la vendetta',
+    testo : 'In questa serie di sfide, chiamate challenge, verranno introdotti alcuni concetti fondamentali riguardo alle competizioni Capture The Flag (CTF), in particolare del formato jeopardy. In ogni challenge ti verrà richiesto di trovare un\'informazione segreta chiamata flag, sfruttando le vulnerabilità presenti all\'interno della sfida. Trovando ed inviando la flag alla piattaforma otterrai dei punti in base alla difficoltà della sfida che ti farà salire in classifica. \nPer questa primissima challenge invia questa flag nel campo qua sotto: \nflag{My_f1R57_54Ni7Y_ch3Ck}',
+    score : 100,
     n_utenti_solv : 0,
-    flag : 'flag{y0u_mu57_b3_4_r35lly_f457_cl1ck3r!}',
+    flag : 'flag{My_f1R57_54Ni7Y_ch3Ck}',
+    url_image: 'templates/challenges/infinite-server.jpg',
 }
 
 var uc ={
@@ -76,4 +77,5 @@ function inserisciUtenteChallenge(db, uc){
 // inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
 // modificaChallenge(db, challenge);
-inserisciUtenteChallenge(db, uc);
+// inserisciUtenteChallenge(db, uc);
+
