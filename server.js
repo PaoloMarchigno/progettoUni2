@@ -89,7 +89,7 @@ app.get("/getchall",(req,res) => {
 
 app.get('/challenge_done', (req, res) => {
     req.session.user = 'thomas';
-    db.query("SELECT uc.id_challenge FROM utente_challenge uc WHERE id_utente = $1", [req.session.user]).then( (result) => {
+    db.query("SELECT uc.id_chall FROM utente_challenge uc WHERE id_utente = $1", [req.session.user]).then( (result) => {
         res.send(result.rows);
     });
 });
@@ -101,6 +101,13 @@ app.get("/", (req, res) => {
 
 app.get('/info-profile', restrict, (req, res) => {
     res.send(req.session.user);
+});
+
+app.get('/getFlag', (req,res) => {
+    var id = req.query.id;
+    db.query("SELECT flag FROM challenge WHERE id = $1", [id.toString()]).then( (result) => {
+        res.send(result.rows[0].flag);
+    });
 });
 
 app.get('/error-login', (req, res) => {
@@ -115,7 +122,7 @@ app.get("/profilo", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
 });
 
-app.get("/challenges", restrict, (req,res) => {
+app.get("/challenges", (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/challenges_2/challenges.html"));
 });
 
@@ -140,7 +147,7 @@ app.post("/login", (req,res,next) => {
                 req.session.regenerate(function(err) {
                     req.session.user = user;
                     errore_login = '';
-				    res.redirect("/profilo");
+				    res.redirect("/challenges");
 				});   
 			}
 		    else {
@@ -177,7 +184,7 @@ app.post("/signup", (req,res) => {
     req.session.success = "Registrazione avvenuta con successo";
     req.session.regenerate(function() {
         req.session.user = req.body.email;
-	    res.redirect("/profilo");
+	    res.redirect("/challenges");
     });
 });
 
