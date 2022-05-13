@@ -46,3 +46,10 @@ body {
     line-height: 1.8;
     color:#383b3d;
 }
+.modal{
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+}
+.modal:focus{
+    opacity: 1;
+}
