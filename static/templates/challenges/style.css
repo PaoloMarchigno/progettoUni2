@@ -47,9 +47,16 @@ body {
     color:#383b3d;
 }
 .modal{
-    opacity: 0;
-    transition: opacity .5s ease-in-out;
+    animation-name: modal-animation;
+    animation-duration: 0.5s;
 }
-.modal:focus{
-    opacity: 1;
+@keyframes modal-animation {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 0px;
+        opacity: 1;
+    }
 }
