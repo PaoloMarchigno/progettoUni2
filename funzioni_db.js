@@ -63,18 +63,22 @@ var challenge ={
 var uc ={
     id_challenge : 2,
     id_utente : 'thomas',
-    hint : 0,
+    has_hint : false,
     solved : true,
+    timestamp: '',
 }
 
 
 function inserisciUtenteChallenge(db, uc){
     const query = {
-        text: 'INSERT INTO utente_challenge(id_challenge ,id_utente, hint, solved) VALUES($1, $2, $3, $4)',
-        values: [uc.id_challenge ,uc.id_utente, uc.hint, uc.solved]
+        text: 'INSERT INTO utente_challenge(id_challenge ,id_utente, has_hint, solved, timestamp) VALUES($1, $2, $3, $4, $5)',
+        values: [uc.id_challenge ,uc.id_utente, uc.has_hint, uc.solved, uc.timestamp]
         };
         eseguiQuery(db, query);
 }
+
+const query = {text: 'DELETE FROM utente_challenge'}
+eseguiQuery(db, query);
 
 //inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);

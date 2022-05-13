@@ -46,6 +46,7 @@ body {
     line-height: 1.8;
     color:#383b3d;
 }
+
 .modal{
     animation-name: modal-animation;
     animation-duration: 0.5s;

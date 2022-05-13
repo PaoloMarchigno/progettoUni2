@@ -90,7 +90,7 @@ app.get("/getchall", restrict, (req,res) => {
 
 app.get('/challenge_done', restrict,  (req, res) => {
     req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
-    db.query("SELECT uc.id_chall FROM utente_challenge uc WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
+    db.query("SELECT uc.id_challenge FROM utente_challenge uc WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
         res.send(result.rows);
     });
 });
@@ -109,6 +109,14 @@ app.get('/getFlag', restrict, (req,res) => {
     db.query("SELECT flag FROM challenge WHERE id = $1", [id.toString()]).then( (result) => {
         res.send(result.rows[0].flag);
     });
+});
+
+app.post('/addUtenteChall', restrict, (req, res) => {
+    var id = req.query.id;
+    var timestamp = req.query.timestamp;
+    var has_hint = false;
+    utente.inserisciUtenteChallenge(db, id, req.session.user.username, has_hint, timestamp);
+    res.redirect('/challenges_2');
 });
 
 app.get('/error-login', (req, res) => {

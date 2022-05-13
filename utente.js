@@ -42,6 +42,21 @@ async function getPasshash(client, email) {
     return result.rows[0].password;
 }
 
+function inserisciUtenteChallenge(db, id_challenge ,id_utente, has_hint, timestamp){
+    const query = {
+        text: 'INSERT INTO utente_challenge(id_challenge, id_utente, has_hint, timestamp) VALUES($1, $2, $3, $4)',
+        values: [id_challenge ,id_utente, has_hint, timestamp]
+        };
+	db.query(query, (err, res) => {
+		if (err) {
+			console.log(err.stack);
+		} else {
+			console.log(res.rows);
+		}
+	});
+}
+
 exports.inserisciUtente = inserisciUtente;
 exports.controlloSeEsisteUtente = controlloSeEsisteUtente;
 exports.getPasshash = getPasshash;
+exports.inserisciUtenteChallenge = inserisciUtenteChallenge;
