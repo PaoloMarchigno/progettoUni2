@@ -1,0 +1,58 @@
+{
+    "challenges":[
+        {   "id" : 1,
+            "nome" : "How to start",
+            "testo" : "In questa serie di sfide, chiamate challenge, verranno introdotti alcuni concetti fondamentali riguardo alle competizioni Capture The Flag (CTF), in particolare del formato jeopardy. In ogni challenge ti verrà richiesto di trovare un'informazione segreta chiamata flag, sfruttando le vulnerabilità presenti all'interno della sfida. Trovando ed inviando la flag alla piattaforma otterrai dei punti in base alla difficoltà della sfida che ti farà salire in classifica. \nPer questa primissima challenge invia questa flag nel campo qua sotto: \nflag{My_f1R57_54Ni7Y_ch3Ck}",
+            "score" : 100,
+            "n_utenti_solv" : 0,
+            "hint": "",
+            "flag" : "flag{My_f1R57_54Ni7Y_ch3Ck}",
+            "url_image": "",
+            "category": "intro"
+        },
+
+        {   "id" : 2,
+            "nome" : "How to start: suggerimenti",
+            "testo" : "Quando sei bloccato sulla risoluzione di una challenge, puoi provare ad aprire i suggerimenti (hint) che possono essere presenti.\nStai attento: i suggerimenti possono costare dei punti!\nLa flag è all'interno del suggerimento di questa challenge.",
+            "score" : 100,
+            "n_utenti_solv" : 0,
+            "hint": "flag{My_s3c0nd_54Ni7Y_ch3Ck}",
+            "flag" : "flag{My_s3c0nd_54Ni7Y_ch3Ck}",
+            "url_image": "",
+            "category": "intro"
+        },
+
+        {   "id" : 3,
+            "nome" : "Tutte le strade portano a Roma",
+            "testo" : "Su un'antica pergamena è stata trovata questa citazione. \nProva a decriptarla: \ncixd{xsb_zxbpxo_jlofqrof_qb_pxirqxkq}",
+            "score" : 100,
+            "n_utenti_solv" : 0,
+            "hint": "Utilizza il cifrario di Cesare",
+            "flag" : "flag{ave_caesar_morituri_te_salutant}",
+            "url_image": "",
+            "category": "cryptography"
+        },
+
+        {   "id" : 4,
+            "nome" : "Classic Cipher",
+            "testo" : "Ciphertext: xcqv{gvyavn_zvztv_etvtddlnxcgy}",
+            "score" : 100,
+            "n_utenti_solv" : 0,
+            "hint": "Utilizza il cifrario di Cesare con una rotazione",
+            "flag" : "flag{simple_rotor_bruteforcing}",
+            "url_image": "",
+            "category": "cryptography"
+        },
+
+        {   "id" : 5,
+            "nome" : "Very strong Vigenere",
+            "testo" : "Da quando ho scoperto vigenere mi sento completamente al sicuro! \nCiphertext: fzau{ncn_isors_cviovw_pwcqoze}",
+            "score" : 100,
+            "n_utenti_solv" : 0,
+            "hint": "Utilizza il cifrario di Vigenere con una chiave di quattro lettere ",
+            "flag" : "flag{non_usare_chiavi_piccole}",
+            "url_image": "",
+            "category": "cryptography"
+        }
+    ]
+}
