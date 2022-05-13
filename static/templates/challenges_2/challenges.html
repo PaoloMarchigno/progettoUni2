@@ -54,39 +54,38 @@
         var w = location.search.split('=')[1];
         x.innerHTML += w;
     </script> -->
-    
-    <div class="text-center mt-5">
-        <h1>Web Security</h1>
-    </div> 
-    <div class="container mt-3">
-        <div class="owl-carousel owl-theme">
-        </div>    
+    <div class="container-fluid container_challenge">
+        <div class="text-center mt-5">
+            <h1>Web Security</h1>
+        </div> 
+        <div class="container mt-3">
+            <div class="owl-carousel owl-theme">
+            </div>    
+        </div>   
+        <div class="modal" id="myModal" tabindex="-1">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                <h5 class="modal-title" id="title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <p id = "text" class="text-center"></p>
+                <hr>
+                    <span class="form-group d-flex ps-2 pe-2">
+                        <input class="form-control"  id="flag_response" size="20"   name="flag" placeholder="flag{...}" />
+                        <button class="btn btn-info" id="btn_flag" idd="" >Send</button>
+                    </span>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </div>
+        </div>                   
     </div>   
-    <div class="modal" id="myModal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header text-center">
-              <h5 class="modal-title" id="title">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p id = "text" class="text-center"></p>
-              <hr>
-              
-            <span class="form-group d-flex ps-2 pe-2">
-                <input class="form-control"  id="flag_response" size="20"   name="flag" placeholder="flag{...}" />
-                <button class="btn btn-info" id="btn_flag" idd="" >Send</button>
-            </span>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>    
-                                   
+                       
      <!--  -->
     <script  src="templates/challenges_2/functions.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -128,6 +127,7 @@
         window.addEventListener('load', (event) => {
             show_cards();
             show_done_challenge();
+            getNameBtn();
             document.getElementById("btn_flag").addEventListener('click', function(e){
                 e.preventDefault();
                 check_flag($(this).attr("idd"));

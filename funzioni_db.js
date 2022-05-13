@@ -78,6 +78,6 @@ function inserisciUtenteChallenge(db, uc){
 
 //inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
-modificaChallenge(db, challenge);
+// modificaChallenge(db, challenge);
 // inserisciUtenteChallenge(db, uc);
 

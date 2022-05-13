@@ -2,7 +2,7 @@
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("profilo").innerHTML = this.responseText;
+        document.getElementById("profilo").innerHTML += JSON.parse(this.responseText).username;
         }
     };
     xhttp.open("GET", '/info-profile', true);
@@ -15,7 +15,7 @@ function show_done_challenge() {
         if (this.readyState == 4 && this.status == 200) {
           const res = JSON.parse(this.responseText);
           for (var id of res){
-            id = id.id_challenge.toString();
+            id = id.id_chall.toString();
             var elem = document.getElementById(id);
             elem.style = "color: red";
           }

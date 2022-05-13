@@ -50,12 +50,12 @@ function authenticate(email, pass, fn) {
             return fn(null,null);
         }
         else {
-            db.query("SELECT password FROM utente WHERE email = $1", [email]).then( (result) => {
+            db.query("SELECT username, password FROM utente WHERE email = $1", [email]).then( (result) => {
                 if (!bcrypt.compareSync(pass, result.rows[0].password)) {
                     return fn(null, null);
                 }
                 else {
-                    return fn(null, email);
+                    return fn(null, {username: result.rows[0].username, email: email});
                 }
             });
 	    }
@@ -66,6 +66,7 @@ var errore_login = '';
 var errore_signup = '';
 
 function restrict(req, res, next) {
+    req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};        // da togliere
     if (req.session.user) {
         next();
     } else {
@@ -73,7 +74,7 @@ function restrict(req, res, next) {
     }
 }
 
-app.get("/getchall",(req,res) => {
+app.get("/getchall", restrict, (req,res) => {
     const id =req.query.id;
     if (id == undefined){
         db.query("SELECT * FROM challenge").then( (result) => {
@@ -87,9 +88,9 @@ app.get("/getchall",(req,res) => {
     }
 });
 
-app.get('/challenge_done', (req, res) => {
-    req.session.user = 'thomas';
-    db.query("SELECT uc.id_chall FROM utente_challenge uc WHERE id_utente = $1", [req.session.user]).then( (result) => {
+app.get('/challenge_done', restrict,  (req, res) => {
+    req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
+    db.query("SELECT uc.id_chall FROM utente_challenge uc WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
         res.send(result.rows);
     });
 });
@@ -103,7 +104,7 @@ app.get('/info-profile', restrict, (req, res) => {
     res.send(req.session.user);
 });
 
-app.get('/getFlag', (req,res) => {
+app.get('/getFlag', restrict, (req,res) => {
     var id = req.query.id;
     db.query("SELECT flag FROM challenge WHERE id = $1", [id.toString()]).then( (result) => {
         res.send(result.rows[0].flag);
@@ -153,7 +154,6 @@ app.post("/login", (req,res,next) => {
 		    else {
                 errore_login = "Email o password errati";
 				res.redirect("/login");
-                
 			}
 		});
 	}
@@ -183,7 +183,7 @@ app.post("/signup", (req,res) => {
     utente.inserisciUtente(db, req.body.username, req.body.email, bcrypt.hashSync(req.body.password, 10));
     req.session.success = "Registrazione avvenuta con successo";
     req.session.regenerate(function() {
-        req.session.user = req.body.email;
+        req.session.user = {username: req.body.username, email: req.body.email};
 	    res.redirect("/challenges");
     });
 });
