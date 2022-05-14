@@ -88,6 +88,8 @@ app.get("/getchall", restrict, (req,res) => {
     }
 });
 
+
+
 app.get('/challenge_done', restrict,  (req, res) => {
     req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
     db.query("SELECT uc.id_challenge FROM utente_challenge uc WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
@@ -116,7 +118,7 @@ app.post('/addUtenteChall', restrict, (req, res) => {
     var timestamp = req.query.timestamp;
     var has_hint = false;
     utente.inserisciUtenteChallenge(db, id, req.session.user.username, has_hint, timestamp);
-    res.redirect('/challenges_2');
+    res.redirect('/challenges');
 });
 
 app.get('/error-login', (req, res) => {
@@ -132,7 +134,7 @@ app.get("/profilo", restrict, (req,res) => {
 });
 
 app.get("/challenges", (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/challenges_2/challenges.html"));
+    res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
 });
 
 app.get("/challenges_2", (req,res) => {

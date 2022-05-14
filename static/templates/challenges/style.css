@@ -22,9 +22,28 @@ svg[name="ic"],img[name="ic"] {
     height:25vh;
     object-fit: cover;
 }
+
+.card-body{
+    height: 118px;
+}
+.container{
+    max-width: none;
+}
 .card {
-    width:18rem;
+    /* width:18rem; */
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    /* color: white; */
+    display: block;
+    text-align: left;
+    background: lightgray;
+    /* background: linear-gradient(to right, rgb(108, 117, 125), rgb(190, 190, 190)); */
+    line-height: 150%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 120px;
 }
 .card:hover {
     -webkit-box-shadow: -1px 9px 30px -7px rgba(0,0,0,0.75);
@@ -60,4 +79,22 @@ body {
         top: 0px;
         opacity: 1;
     }
+}
+
+/* Da pensarci poi per le freccette */
+/* .owl-carousel .owl-stage-outer{
+    position: absolute;
+    width: -moz-available;
+}
+.owl-nav{
+    height: 168px;
+    position: absolute;
+} */
+
+
+span[aria-label="Previous"]{
+    font-size: 50px;
+}
+span[aria-label="Next"]{
+    font-size: 50px;
 }
