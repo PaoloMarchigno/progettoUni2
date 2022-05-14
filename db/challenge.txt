@@ -1,6 +1,6 @@
 1,How to start,"In questa serie di sfide, chiamate challenge, verranno introdotti alcuni concetti fondamentali riguardo alle competizioni Capture The Flag (CTF), in particolare del formato jeopardy. In ogni challenge ti verrà richiesto di trovare un''informazione segreta chiamata flag, sfruttando le vulnerabilità presenti all''interno della sfida. Trovando ed inviando la flag alla piattaforma otterrai dei punti in base alla difficoltà della sfida che ti farà salire in classifica. 
 Per questa primissima challenge invia questa flag nel campo qua sotto: 
-flag{My_f1R57_54Ni7Y_ch3Ck}",100,0,flag{My_f1R57_54Ni7Y_ch3Ck},"",intro,""
+flag{My_f1R57_54Ni7Y_ch3Ck}",100,0,flag{My_f1R57_54Ni7Y_ch3Ck},"",intro,Ma lo hai letto il testo?
 2,How to start: suggerimenti,"Quando sei bloccato sulla risoluzione di una challenge, puoi provare ad aprire i suggerimenti (hint) che possono essere presenti.
 Stai attento: i suggerimenti possono costare dei punti!
 La flag è all''interno del suggerimento di questa challenge.",100,0,flag{My_s3c0nd_54Ni7Y_ch3Ck},"",intro,flag{My_s3c0nd_54Ni7Y_ch3Ck}
@@ -9,4 +9,4 @@ Prova a decriptarla:
 cixd{xsb_zxbpxo_jlofqrof_qb_pxirqxkq}",100,0,flag{ave_caesar_morituri_te_salutant},"",cryptography,Utilizza il cifrario di Cesare
 4,Classic Cipher,Ciphertext: xcqv{gvyavn_zvztv_etvtddlnxcgy},100,0,flag{simple_rotor_bruteforcing},"",cryptography,Utilizza il cifrario di Cesare con una rotazione
 5,Very strong Vigenere,"Da quando ho scoperto vigenere mi sento completamente al sicuro! 
-Ciphertext: fzau{ncn_isors_cviovw_pwcqoze}",100,0,flag{non_usare_chiavi_piccole},templates/challenges_2/rabbit.webp,cryptography,Utilizza il cifrario di Vigenere con una chiave di quattro lettere 
+Ciphertext: fzau{ncn_isors_cviovw_pwcqoze}",100,0,flag{non_usare_chiavi_piccole},"",cryptography,Utilizza il cifrario di Vigenere con una chiave di quattro lettere 

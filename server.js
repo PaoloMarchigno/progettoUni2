@@ -95,24 +95,6 @@ app.get('/get_categories', restrict, (req, res) => {
     });
 });
 
-
-
-app.get('/challenge_done', restrict,  (req, res) => {
-    req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
-    db.query("SELECT uc.id_challenge FROM utente_challenge uc WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
-        res.send(result.rows);
-    });
-});
-
-
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
-});
-
-app.get('/info-profile', restrict, (req, res) => {
-    res.send(req.session.user);
-});
-
 app.get('/getFlag', restrict, (req,res) => {
     var id = req.query.id;
     db.query("SELECT flag FROM challenge WHERE id = $1", [id.toString()]).then( (result) => {
@@ -120,13 +102,44 @@ app.get('/getFlag', restrict, (req,res) => {
     });
 });
 
+app.get('/getHint', restrict, (req,res) => {
+    var id = req.query.id;
+    db.query("SELECT hint FROM challenge WHERE id = $1", [id.toString()]).then( (result) => {
+        utente.inserisciUtenteHint(db, id, req.session.user.username, req.query.timestamp);
+        res.send(result.rows[0].hint);
+    });
+    
+});
+
+
+
 app.post('/addUtenteChall', restrict, (req, res) => {
     var id = req.query.id;
-    var timestamp = req.query.timestamp;
-    var has_hint = false;
-    utente.inserisciUtenteChallenge(db, id, req.session.user.username, has_hint, timestamp);
+    var timestamp_flag = req.query.timestamp;
+    utente.inserisciUtenteChallenge(db, id, req.session.user.username, timestamp_flag);
     res.redirect('/challenges');
 });
+
+
+app.get('/info-profile', restrict, (req, res) => {
+    res.send(req.session.user);
+});
+
+
+app.get('/challenge_done', restrict,  (req, res) => {
+    req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
+    db.query("SELECT * FROM utente_challenge  WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
+        res.send(result.rows);
+    });
+});
+
+
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
+});
+
+
 
 app.get('/error-login', (req, res) => {
     res.send(errore_login);

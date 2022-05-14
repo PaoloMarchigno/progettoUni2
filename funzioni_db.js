@@ -23,6 +23,7 @@ function eseguiQuery(db, query){
             console.log(err.stack);
         } else {
             console.log(res.rows);
+            console.log(res);
         }
         });
 }
@@ -78,7 +79,7 @@ function inserisciUtenteChallenge(db, uc){
 }
 
 const query = {text: 'DELETE FROM utente_challenge'}
-eseguiQuery(db, query);
+ eseguiQuery(db, query);
 
 //inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
