@@ -76,8 +76,9 @@ function restrict(req, res, next) {
 
 app.get("/getchall", restrict, (req,res) => {
     const id =req.query.id;
+    const category = req.query.category;
     if (id == undefined){
-        db.query("SELECT * FROM challenge").then( (result) => {
+        db.query("SELECT * FROM challenge WHERE category=$1", [category]).then( (result) => {
             res.send(result);
         });
     }
@@ -86,6 +87,12 @@ app.get("/getchall", restrict, (req,res) => {
             res.send(result);
         });
     }
+});
+
+app.get('/get_categories', restrict, (req, res) => {
+    db.query("SELECT DISTINCT category FROM challenge ").then( (result) => {
+        res.send(result);
+    });
 });
 
 
