@@ -66,11 +66,12 @@ var errore_login = '';
 var errore_signup = '';
 
 function restrict(req, res, next) {
-    req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};        // da togliere
+    // req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};        // da togliere
     if (req.session.user) {
         next();
     } else {
         req.session.error = "Access denied!";
+        res.redirect("/login");
     }
 }
 
@@ -111,7 +112,10 @@ app.get('/getHint', restrict, (req,res) => {
     
 });
 
-
+app.get('/challenge', restrict, (req, res) => {
+    var challenge = "challenges/" + req.query.challenge + ".html";
+    res.sendFile(path.join(__dirname, challenge));
+});
 
 app.post('/addUtenteChall', restrict, (req, res) => {
     var id = req.query.id;
@@ -127,7 +131,7 @@ app.get('/info-profile', restrict, (req, res) => {
 
 
 app.get('/challenge_done', restrict,  (req, res) => {
-    req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
+    // req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
     db.query("SELECT * FROM utente_challenge  WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
         res.send(result.rows);
     });
@@ -153,13 +157,13 @@ app.get("/profilo", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
 });
 
-app.get("/challenges", (req,res) => {
+app.get("/challenges", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
 });
 
-app.get("/challenges_2", (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
-});
+// app.get("/challenges_2", (req,res) => {
+//     res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
+// });
 
 app.get("/login", (req,res) => {
     console.log(errore_login);
@@ -221,7 +225,7 @@ app.post("/signup", (req,res) => {
 
 app.get("/logout", (req,res) => {
     req.session.destroy(function() {
-	res.redirect("/");
+	    res.redirect("/");
 	});
 });
 

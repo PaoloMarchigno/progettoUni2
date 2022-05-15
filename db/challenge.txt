@@ -10,3 +10,5 @@ cixd{xsb_zxbpxo_jlofqrof_qb_pxirqxkq}",100,0,flag{ave_caesar_morituri_te_salutan
 4,Classic Cipher,Ciphertext: xcqv{gvyavn_zvztv_etvtddlnxcgy},100,0,flag{simple_rotor_bruteforcing},"",cryptography,Utilizza il cifrario di Cesare con una rotazione
 5,Very strong Vigenere,"Da quando ho scoperto vigenere mi sento completamente al sicuro! 
 Ciphertext: fzau{ncn_isors_cviovw_pwcqoze}",100,0,flag{non_usare_chiavi_piccole},"",cryptography,Utilizza il cifrario di Vigenere con una chiave di quattro lettere 
+6,Web challenge intro,"Esistono delle challenge che si svolgono sul lato web: 
+ vai sul sito <a href='"/challenge?challenge=web_intro'" target='"_blank'">Clicca il link</a>",100,0,flag{try_7h1s_w3b_fl4g},"",intro,Prova a cliccare il link 

@@ -11,11 +11,14 @@
 svg[name="ic"],img[name="ic"] {
     vertical-align: baseline;
 }
-.nav-item a:hover,.active a{
+/* .nav-item a:hover,.active a{
     border-bottom: 5px solid red;     
-}
+} */
 .butt{
-    margin: 150px;
+    margin: 150px;  
+}
+.rounded-pill{
+    pointer-events: auto;
 }
 
 .card-img-top {

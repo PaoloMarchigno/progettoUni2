@@ -50,15 +50,15 @@ function eliminaChallenge(db, id){
 }
 
 var challenge ={   
-    "id" : 5,
-    "nome" : "Very strong Vigenere",
-    "testo" : "Da quando ho scoperto vigenere mi sento completamente al sicuro! \nCiphertext: fzau{ncn_isors_cviovw_pwcqoze}",
+    "id" : 6,
+    "nome" : "Web challenge intro",
+    "testo" : 'Esistono delle challenge che si svolgono sul lato web: \n vai sul sito <a href="/challenge?challenge=web_intro" target="_blank">Clicca il link</a>',
     "score" : 100,
     "n_utenti_solv" : 0,
-    "hint": "Utilizza il cifrario di Vigenere con una chiave di quattro lettere ",
-    "flag" : "flag{non_usare_chiavi_piccole}",
-    "url_image": "templates/challenges_2/rabbit.webp",
-    "category": "cryptography"
+    "hint": "Prova a cliccare il link ",
+    "flag" : "flag{try_7h1s_w3b_fl4g}",
+    "url_image": "",
+    "category": "intro"
 }
 
 var uc ={
@@ -81,7 +81,7 @@ function inserisciUtenteChallenge(db, uc){
 const query = {text: 'DELETE FROM utente_challenge'}
  eseguiQuery(db, query);
 
-//inserisciChallenge(db, challenge);
+inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
 // modificaChallenge(db, challenge);
 // inserisciUtenteChallenge(db, uc);
