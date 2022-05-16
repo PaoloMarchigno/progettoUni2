@@ -20,7 +20,6 @@ function show_done_challenge() {
           const res = JSON.parse(this.responseText);
           for (var r of res){
             id = r.id_challenge.toString();
-            console.log(r);
             if (r.timestamp_flag != null){
                 $("div[id="+id+"]").attr("solved", 'true');
             }
@@ -37,8 +36,7 @@ function show_done_challenge() {
 // mostra il popup per la conferma della richiesta dell'hint
 
 function show_modal_hint(){
-    document.getElementById("hint_btn").setAttribute('data-bs-toggle','modal');
-    document.getElementById("hint_btn").setAttribute('data-bs-target','#modalHint');
+    
     $(".hint-title").text("Unlock Hint");
     $(".hint-body").text("Do you really want to unlock the hint?");
     $(".btn-success-hint" ).attr("style", "display: block;"); 
@@ -59,6 +57,8 @@ function show_modal(id) {
           document.getElementById('alert-success').style.display= "none";
           document.getElementById('alert-already-success').style.display= "none";
           document.getElementById('alert-danger').style.display= "none";
+          document.getElementById("hint_btn").setAttribute('data-bs-toggle','modal');
+          document.getElementById("hint_btn").setAttribute('data-bs-target','#modalHint');
           if($('div[id='+ result.id+']').attr("hint") == "true"){
                 document.getElementById('hint_btn').style.backgroundColor = "#28a745";
                 document.getElementById('hint_btn').style.borderColor = "#28a745";
@@ -84,8 +84,6 @@ function show_all_cards(){
         if (this.readyState == 4 && this.status == 200) {
           var results = JSON.parse(this.responseText).rows; 
           for (var result of results){
-              console.log(result);
-              console.log(result.category);
               var html_code = '<div class="text-center mt-5"><h1>'+result.category+'</h1></div><div class="container mt-3"><div class="owl-carousel-'+result.category+' owl-carousel owl-theme"></div></div>';
             $(".div_nav").append(html_code);
             show_cards(result.category);
@@ -172,8 +170,11 @@ function confirmHint(){
           $(".hint-title").text("Hint");
           $(".hint-body").text(this.responseText);
           $(".btn-success-hint" ).attr("style", "display: none;"); 
+          document.getElementById('hint_btn').style.backgroundColor = "#28a745";
+          document.getElementById('hint_btn').style.borderColor = "#28a745";
         }
     }
     xhttp.open("GET", "/getHint?id="+ id + "&timestamp=" + date, false);
     xhttp.send();
+    show_done_challenge();
 }

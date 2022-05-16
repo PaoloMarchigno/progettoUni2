@@ -130,6 +130,18 @@ app.get('/info-profile', restrict, (req, res) => {
 });
 
 
+app.get('/info-profile-statistics', restrict, (req, res) => {
+    db.query("SELECT * FROM utente_challenge uc join challenge c on c.id=uc.id_challenge WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
+        res.send(result.rows);
+    });
+});
+
+app.get('/info-profile-utente', restrict, (req, res) => {
+    db.query("SELECT u.username, u.email, count(c.id) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.session.user.username]).then( (result) => {
+        res.send(result.rows);
+    });
+});
+
 app.get('/challenge_done', restrict,  (req, res) => {
     // req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
     db.query("SELECT * FROM utente_challenge  WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
