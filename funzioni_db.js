@@ -23,7 +23,6 @@ function eseguiQuery(db, query){
             console.log(err.stack);
         } else {
             console.log(res.rows);
-            console.log(res);
         }
         });
 }
@@ -50,15 +49,15 @@ function eliminaChallenge(db, id){
 }
 
 var challenge ={   
-    "id" : 6,
-    "nome" : "Web challenge intro",
-    "testo" : 'Esistono delle challenge che si svolgono sul lato web: \n vai sul sito <a href="/challenge?challenge=web_intro" target="_blank">Clicca il link</a>',
+    "id" : 7,
+    "nome" : "Just get credentials",
+    "testo" : 'Abbiamo trovato questo sito dove bisogna inserire le credenziali, riesci a trovarle? \n<a href="/challenge?challenge=just_get_credential" target="_blank">Just get Credential</a>',
     "score" : 100,
     "n_utenti_solv" : 0,
-    "hint": "Prova a cliccare il link ",
-    "flag" : "flag{try_7h1s_w3b_fl4g}",
+    "hint": "Magari i file JavaScript possono aiutare",
+    "flag" : "flag{d0n7_u53_cl13n7_51d3_ch3ck5!!}",
     "url_image": "",
-    "category": "intro"
+    "category": "Web Security"
 }
 
 var uc ={
@@ -81,7 +80,7 @@ function inserisciUtenteChallenge(db, uc){
 const query = {text: 'DELETE FROM utente_challenge'}
  eseguiQuery(db, query);
 
-inserisciChallenge(db, challenge);
+// inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
 // modificaChallenge(db, challenge);
 // inserisciUtenteChallenge(db, uc);

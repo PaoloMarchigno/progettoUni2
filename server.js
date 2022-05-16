@@ -113,7 +113,7 @@ app.get('/getHint', restrict, (req,res) => {
 });
 
 app.get('/challenge', restrict, (req, res) => {
-    var challenge = "challenges/" + req.query.challenge + ".html";
+    var challenge = "static/templates/challenge/" + req.query.challenge + ".html";
     res.sendFile(path.join(__dirname, challenge));
 });
 

@@ -1,3 +1,5 @@
+7,Just get credentials,"Abbiamo trovato questo sito dove bisogna inserire le credenziali, riesci a trovarle? 
+<a href='"/challenge?challenge=just_get_credential'" target='"_blank'">Just get Credential</a>",100,0,flag{d0n7_u53_cl13n7_51d3_ch3ck5!!},"",Web_security,Magari i file JavaScript possono aiutare
 1,How to start,"In questa serie di sfide, chiamate challenge, verranno introdotti alcuni concetti fondamentali riguardo alle competizioni Capture The Flag (CTF), in particolare del formato jeopardy. In ogni challenge ti verrà richiesto di trovare un''informazione segreta chiamata flag, sfruttando le vulnerabilità presenti all''interno della sfida. Trovando ed inviando la flag alla piattaforma otterrai dei punti in base alla difficoltà della sfida che ti farà salire in classifica. 
 Per questa primissima challenge invia questa flag nel campo qua sotto: 
 flag{My_f1R57_54Ni7Y_ch3Ck}",100,0,flag{My_f1R57_54Ni7Y_ch3Ck},"",intro,Ma lo hai letto il testo?
