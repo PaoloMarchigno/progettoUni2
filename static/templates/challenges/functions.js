@@ -16,6 +16,7 @@ function getNameBtn(){
 function show_done_challenge() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
+      
         if (this.readyState == 4 && this.status == 200) {
           const res = JSON.parse(this.responseText);
           for (var r of res){
@@ -82,14 +83,19 @@ function show_all_cards(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          var results = JSON.parse(this.responseText).rows; 
+          var results = JSON.parse(this.responseText).rows;
+          console.log(results); 
           for (var result of results){
               var html_code = '<div class="text-center mt-5"><h1>'+result.category+'</h1></div><div class="container mt-3"><div class="owl-carousel-'+result.category+' owl-carousel owl-theme"></div></div>';
             $(".div_nav").append(html_code);
-            show_cards(result.category);
+            show_cards(result.category);  
           }
-        }
-           
+          var card_list = document.getElementsByClassName('card');
+            for(i=0;i<card_list.length;i++) {
+                  card_list[i].setAttribute('data-bs-toggle','modal');
+                  card_list[i].setAttribute('data-bs-target','#myModal');
+            }         
+        }          
     }
     xhttp.open("GET", "/get_categories", false);
     xhttp.send();
@@ -111,11 +117,7 @@ function show_cards(category){
     }
     xhttp.open("GET", "/getchall?category=" + category, false);
     xhttp.send();
-    var card_list = document.getElementsByClassName('card');
-    for(i=0;i<card_list.length;i++) {
-        card_list[i].setAttribute('data-bs-toggle','modal');
-        card_list[i].setAttribute('data-bs-target','#myModal');
-    }                       
+           
 }
  
 // controlla se la flag inserita è giusta e in caso affermativo viene salvato nel database
