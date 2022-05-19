@@ -53,6 +53,17 @@
             "flag" : "flag{non_usare_chiavi_piccole}",
             "url_image": "",
             "category": "cryptography"
+        },
+
+        {   "id" : 8,
+            "nome" : "Software_1",
+            "testo" : "Examine the file! \n",
+            "score" : 75,
+            "n_utenti_solv" : 0,
+            "hint": "",
+            "flag" : "flag",
+            "url_image": "",
+            "category": "reverse_engineering"
         }
     ]
 }
