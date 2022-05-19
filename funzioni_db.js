@@ -49,15 +49,15 @@ function eliminaChallenge(db, id){
 }
 
 var challenge ={   
-    "id" : 7,
-    "nome" : "Just get credentials",
-    "testo" : 'Abbiamo trovato questo sito dove bisogna inserire le credenziali, riesci a trovarle? \n<a href="/challenge?challenge=just_get_credential" target="_blank">Just get Credential</a>',
+    "id" : 8,
+    "nome" : "Password Cracker",
+    "testo" : 'Puoi crackare la password? Scarica il password checker <a href="/challenge?challenge=password_crack&file=crack.py" download="crack.py" target="_blank">qui</a> e avrai bisogno della <a href="/challenge?challenge=password_crack&file=flag.txt.enc" download="flag.txt.enc" target="_blank">flag</a>  cifrata nella stessa directory',
     "score" : 100,
     "n_utenti_solv" : 0,
-    "hint": "Magari i file JavaScript possono aiutare",
-    "flag" : "flag{d0n7_u53_cl13n7_51d3_ch3ck5!!}",
+    "hint": "Controlla la password per la flag",
+    "flag" : "flag{545h_r1ng1ng_fa343060}",
     "url_image": "",
-    "category": "Web Security"
+    "category": "Reverse_engineering"
 }
 
 var uc ={
@@ -78,7 +78,7 @@ function inserisciUtenteChallenge(db, uc){
 }
 
 const query = {text: 'DELETE FROM utente_challenge'}
- eseguiQuery(db, query);
+//  eseguiQuery(db, query);
 
 // inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
