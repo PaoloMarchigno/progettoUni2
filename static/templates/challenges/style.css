@@ -110,3 +110,27 @@ span[aria-label="Previous"]{
 span[aria-label="Next"]{
     font-size: 50px;
 }
+
+.canvasContainer
+{
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 58.9px;
+    bottom: 0px;
+    z-index: -1;
+    background-color: Black;
+}
+
+.contextCanvas
+{   position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+.div{
+    height: 60px;
+}
+h1{
+    color: white;
+}
