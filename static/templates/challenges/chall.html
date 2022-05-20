@@ -22,7 +22,7 @@
     
     <div class="div bg-dark">
         <nav style="height: 60px;padding-bottom: 0px;padding-top: 0px;" class="navbar navbar-expand-lg bg-dark shadow-sm navig fixed-top">
-            <a class="navbar-brand" href="/" style="position: absolute;margin: auto;left: 10px; color: white;">Flagify</a>
+            <a class="navbar-brand" href="/" style="position: absolute;margin: auto;left: 5%; color: white; z-index: 10;">Flagify</a>
                 
             <div class="collapse navbar-collapse justify-content-center w-80" id="NavbarContent" style="position: absolute;margin: auto;left: 0;right: 0;">
                 <ul class=" nav navbar-nav">
@@ -42,7 +42,7 @@
                     </li>
                 </ul>
             </div>
-                <div class="d-lg-flex collapse" id="btn_form" style="position: absolute;margin: auto;right: 10px;">
+                <div class="d-lg-flex collapse" id="btn_form" style="position: absolute;margin: auto;right: 5%;">
                     <a href="/profilo" id="button_profile" class=" btn btn-success btn-sm rounded-pill" style="margin-right: 10px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
@@ -52,7 +52,7 @@
                     </div>
         </nav>
     </div>
-    <main role="main" class="container">
+    <main role="main" class="container" style="display: none;">
     <div class="div_nav">
         <div class="canvasContainer">
             <canvas id="c" class="contextCanvas"></canvas>
@@ -206,6 +206,7 @@
     
     <script>
         window.addEventListener('load', (event) => {
+            $('main').fadeIn(1000);
             show_all_cards();
             // show_cards();
             show_done_challenge();
