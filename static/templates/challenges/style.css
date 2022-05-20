@@ -134,3 +134,7 @@ span[aria-label="Next"]{
 h1{
     color: white;
 }
+
+nav{
+    z-index: 10;
+}
