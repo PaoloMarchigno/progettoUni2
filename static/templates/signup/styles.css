@@ -3,9 +3,7 @@
     text-decoration: none;
     color: #465765;
   }
-  .navbar-nav{
-    transform: translate(13.5%, 0);
-  }
+  
 
   .signup{
     padding: .5rem 1rem;
@@ -103,5 +101,13 @@
     text-decoration: none;
   }
 
+  a[id="button_signup"]{
+    background-color: transparent;
+    border-color: transparent;
+  }
+  a[id="button_signup"]:hover{
+    background-color: transparent;
+    border-color: transparent;
+  }
   
   
