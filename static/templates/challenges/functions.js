@@ -159,7 +159,7 @@ anim();
 window.addEventListener( 'resize', function() {
 
   w = c.width = window.innerWidth;
-  h = c.height = window.innerHeight;
+  h = c.height = $('body').height()-$('nav').height();;
   starter.x = w/2 ;
   starter.y = h/2;
 

@@ -20,9 +20,8 @@
 
 <body>
     
-    <div class="div_nav">
-       
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm navig py-2 pb-0">
+    <div class="div">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm navig py-2 pb-0 fixed-top">
             <a class="navbar-brand" href="/">Flagify</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarContent,#btn_form">
                     <span class="navbar-toggler-icon"></span>
@@ -51,20 +50,23 @@
                     </li>
                 </ul>
             </div>
-                    <form class="d-lg-flex collapse" id = "btn_form">
-                        <a href="/profilo"><button id="button_profile" class=" btn btn-success btn-sm rounded-pill">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                            </svg></button></a>
-                        <a href="/logout"><button class="btn btn-danger btn-sm rounded-pill" aria-labelledby="logout-popup"><title id="logout-popup">Logout</title>
-                            <i class="fa fa-sign-out"></i></button></a>
-                    </form>
-                
+                <form class="d-lg-flex collapse" id = "btn_form">
+                    <a href="/profilo"><button id="button_profile" class=" btn btn-success btn-sm rounded-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        </svg></button></a>
+                    <a href="/logout"><button class="btn btn-danger btn-sm rounded-pill" aria-labelledby="logout-popup"><title id="logout-popup">Logout</title>
+                        <i class="fa fa-sign-out"></i></button></a>
+                </form>
         </nav>
-        <canvas  id="c"></canvas> 
     </div>
-    
+    <main role="main" class="container">
+    <div class="div_nav">
+        <div class="canvasContainer">
+            <canvas id="c" class="contextCanvas"></canvas>
+        </div>
+    </div>
 
     <!-- owl-carousel inizio-fine-->
 
@@ -168,6 +170,7 @@
             </div>
         </div>
     </div>
+</main>
     
 
 
@@ -221,17 +224,6 @@
                 e.preventDefault();
                 check_flag($(this).attr("idd"));
             })
-            // $("#myModal").on("click", (e) => {
-            //     setTimeout(() => {  
-            //         if ($("#myModal").attr("aria-hidden") == "true"){
-            //             console.log(true);
-            //             $('.owl-carousel').trigger('play.owl.autoplay',[1000])
-            //         }
-            //         else{
-            //             console.log(false);
-            //             $('.owl-carousel').trigger('stop.owl.autoplay')
-            //         }}, 200);                
-            // });
         }); 
     </script>
 </body>
