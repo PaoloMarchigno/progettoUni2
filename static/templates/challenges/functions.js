@@ -8,7 +8,7 @@ maxDist = 30,
 initialWidth = 10,
 maxLines = 100,
 initialLines = 4,
-speed = 5,
+speed = 3,
 
 lines = [],
 frame = 0,
