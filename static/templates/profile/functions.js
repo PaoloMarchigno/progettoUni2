@@ -7,7 +7,6 @@ function getStatisctics(){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var res = JSON.parse(this.responseText);
-            
             for (challenge of res){
                 if (challenge.timestamp_flag){
                     var c = '<tr><td>' + challenge.timestamp_flag +'</td><td>'+challenge.nome+'</td><td>'+challenge.score+'</td></li>';

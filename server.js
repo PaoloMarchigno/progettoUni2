@@ -247,7 +247,15 @@ app.get("/logout", (req,res) => {
 	});
 });
 
+app.get("/scoreboard", (req,res) => {
+    res.sendFile(path.join(__dirname, "static/templates/scoreboard/scoreboard.html"));
+});
 
+app.get("/load_table",(req,res) => {
+    db.query("SELECT id_utente,sum(score::INTEGER)-50*count(timestamp_hint) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc").then( (result)=> {
+        res.send(result.rows);
+    });
+});
 // function ensureAuth(req, res, next) {
 //   if (req.session.user) {
 //     next();

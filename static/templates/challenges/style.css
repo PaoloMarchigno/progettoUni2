@@ -36,28 +36,29 @@ canvas {
     max-width: none;
 }
 .card {
-    /* width:18rem; */
+    /*width:18rem;*/
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     border-radius: 20px;
-    /* color: white; */
+    /*color: white;*/
     display: block;
     text-align: left;
     background: lightgray;
-    /* background: linear-gradient(to right, rgb(108, 117, 125), rgb(190, 190, 190)); */
+    /*background: linear-gradient(to right, rgb(108, 117, 125), rgb(190, 190, 190));*/
     line-height: 150%;
     margin-left: auto;
     margin-right: auto;
     height: 120px;
 }
+
 div[solved="true"]{
     background: rgb(40, 167, 69);
 }
 .card:hover {
-    -webkit-box-shadow: -1px 9px 30px -7px rgba(0,0,0,0.75);
-    -moz-box-shadow:  -1px 9px 30px -7px rgba(0,0,0,0.75);
-    box-shadow:  -1px 9px 30px -7px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -1px 9px 30px -7px rgba(228,6,6,0.75);
+    -moz-box-shadow:  -1px 9px 30px -7px rgba(228, 6, 6, 0.75);
+    box-shadow:  -1px 9px 30px -7px rgba(228, 6, 6, 0.75);
     transition: all 0.3s ease !important;
     box-sizing: border-box !important;
     -webkit-transform: scale(1.1) !important;
