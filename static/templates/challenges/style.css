@@ -3,8 +3,8 @@
     background-color: rgba(0, 110, 255,0.5);
 
 }
-#btnTrigger {
-    display:none;
+.owl-carousel {
+    display: block;
 }
 .b {
     color: rgb(2, 63, 2);
