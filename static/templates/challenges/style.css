@@ -1,5 +1,6 @@
 .navig {
-    background-color: rgba(107, 106, 106, 0.24);
+    /*background-color: rgba(107, 106, 106, 0.24);*/
+    background-color: rgba(0, 110, 255,0.5);
 
 }
 #btnTrigger {
@@ -20,7 +21,12 @@ svg[name="ic"],img[name="ic"] {
 .rounded-pill{
     pointer-events: auto;
 }
-
+canvas {
+    position: absolute;
+    left:0;
+    z-index:-1;
+    background-color: black;
+  }
 .card-img-top {
     height:25vh;
     object-fit: cover;
