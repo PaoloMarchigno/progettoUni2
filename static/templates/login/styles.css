@@ -3,14 +3,20 @@
     text-decoration: none;
     color: #465765;
   }
-  .navbar-nav{
-    transform: translate(13.5%, 0);
-  }
 
   .form-error{
     color: rgb(255, 115, 115);
     font-size: small;
   }
+  a[id="button_profile"]{
+    background-color: transparent;
+    border-color: transparent;
+  }
+  a[id="button_profile"]:hover{
+    background-color: transparent;
+    border-color: transparent;
+  }
+
   .navigation-clean-button .navbar-text .action-button, .navigation-clean-button .navbar-text .action-button:active, .navigation-clean-button .navbar-text .action-button:hover {
     background: #56c6c6;
     border-radius: 20px;
@@ -99,6 +105,3 @@
     opacity: 0.9;
     text-decoration: none;
   }
-
-  
-  
