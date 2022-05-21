@@ -20,10 +20,6 @@ get_scoreboard();
 
 function order_by_category() {
     var cat = $('.form-select option:selected').text();
-    if($('.form-select option:selected').value()=="-1") {
-        alert("To filter choose the category first!");
-        return;
-    }
     console.log(cat);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
