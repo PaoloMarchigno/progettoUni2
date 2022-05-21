@@ -1,4 +1,15 @@
 body {
     background-image: url("../login/sfondo.png");
-  
+    font-family: monospace;
+    font-weight:400;
+    font-size: 16px;
+    line-height: 1.8;
+    color:#383b3d;
+}
+svg[name="ic"],img[name="ic"] {
+    vertical-align: baseline;
+}
+
+.rounded-pill{
+    pointer-events: auto;
 }
