@@ -39,3 +39,15 @@ function order_by_category() {
         xhttp.open("GET", "/order_by_category?category="+cat,true);
         xhttp.send();
 }
+
+function getNameBtn(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("button_profile").innerHTML += JSON.parse(this.responseText).username;
+        centra_nav();
+        }
+    };
+    xhttp.open("GET", '/info-profile', true);
+    xhttp.send();
+ }  

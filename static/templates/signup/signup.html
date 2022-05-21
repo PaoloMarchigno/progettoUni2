@@ -81,12 +81,14 @@
     <script>
         window.addEventListener('load', (event) => {
             getError()
-            $('.navbar-brand').css('margin-right', ($('#btn_form').outerWidth() - $('.navbar-brand').outerWidth()).toString()+'px') ;
-
+            centra_nav();
         });
         window.addEventListener('resize', (event) => {
-            $('.navbar-brand').css('margin-right', ($('#btn_form').outerWidth() - $('.navbar-brand').outerWidth()).toString()+'px') ;
+            centra_nav();
         });
+        function centra_nav(){
+            $('.navbar-brand').css('margin-right', ($('#btn_form').outerWidth() - $('.navbar-brand').outerWidth()).toString()+'px') ;
+        }
     </script>
 </body>
 
