@@ -1,6 +1,15 @@
 .div{
   height: 60px;
 }
+
+#homepg {
+  height: 100vh;
+  background-size: cover;
+  position: relative;
+  background-image: url("sfondo.png");
+
+}
+
 body {
   background-image: url("../login/sfondo.png");
   font-family: monospace;
@@ -8,7 +17,8 @@ body {
   font-size: 16px;
   line-height: 1.8;
   color:#383b3d;
-}  
+}
+
 svg[name="ic"],img[name="ic"] {
   vertical-align: baseline;
 }
