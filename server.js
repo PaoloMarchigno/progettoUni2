@@ -252,7 +252,14 @@ app.get("/scoreboard", (req,res) => {
 });
 
 app.get("/load_table",(req,res) => {
-    db.query("SELECT id_utente,sum(score::INTEGER)-50*count(timestamp_hint) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc").then( (result)=> {
+    db.query("SELECT id_utente,sum(case when timestamp_flag is not NULL then score::INTEGER else 0 end)-50*count(timestamp_hint) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc").then( (result)=> {
+        res.send(result.rows);
+    });
+});
+
+app.get("/order_by_category",(req,res) => {
+    const cat = req.query.category;
+    db.query("SELECT id_utente,sum(case when category is not null and timestamp_flag is not NULL then score::INTEGER else 0 end)-50*count(case when category is not null then timestamp_hint end) as tot_score FROM utente_challenge uc left join challenge c on c.id=uc.id_challenge and category = $1 GROUP BY id_utente",[cat]).then ( (result) => {
         res.send(result.rows);
     });
 });
