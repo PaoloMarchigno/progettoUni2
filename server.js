@@ -247,7 +247,29 @@ app.get("/logout", (req,res) => {
 	});
 });
 
+app.get("/scoreboard", (req,res) => {
+    res.sendFile(path.join(__dirname, "static/templates/scoreboard/scoreboard.html"));
+});
 
+app.get("/load_table",(req,res) => {
+    db.query("SELECT id_utente,sum(case when timestamp_flag is not NULL then score::INTEGER else 0 end)-50*count(timestamp_hint) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc").then( (result)=> {
+        res.send(result.rows);
+    });
+});
+
+app.get("/order_by_category",(req,res) => {
+    const cat = req.query.category;
+    if(cat=="All categories") {
+        db.query("SELECT id_utente,sum(case when timestamp_flag is not NULL then score::INTEGER else 0 end)-50*count(timestamp_hint) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc").then( (result)=> {
+            res.send(result.rows);
+        }); 
+    }
+    else {
+        db.query("SELECT id_utente,sum(case when category is not null and timestamp_flag is not NULL then score::INTEGER else 0 end)-50*count(case when category is not null then timestamp_hint end) as tot_score FROM utente_challenge uc left join challenge c on c.id=uc.id_challenge and category = $1 GROUP BY id_utente",[cat]).then ( (result) => {
+            res.send(result.rows);
+        });
+    }
+});
 // function ensureAuth(req, res, next) {
 //   if (req.session.user) {
 //     next();
