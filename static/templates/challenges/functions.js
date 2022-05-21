@@ -174,6 +174,7 @@ function getNameBtn(){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
         document.getElementById("button_profile").innerHTML += JSON.parse(this.responseText).username;
+        centra_nav();
         }
     };
     xhttp.open("GET", '/info-profile', true);

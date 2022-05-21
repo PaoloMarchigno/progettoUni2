@@ -45,7 +45,7 @@
   
   .login-dark {
     height: 100vh;
-    background: #475d62;
+    background-image: url("sfondo.png");
     background-size: cover;
     position: relative;
   }
