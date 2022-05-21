@@ -265,7 +265,7 @@ app.get("/order_by_category",(req,res) => {
         }); 
     }
     else {
-        db.query("SELECT id_utente,sum(case when category is not null and timestamp_flag is not NULL then score::INTEGER else 0 end)-50*count(case when category is not null then timestamp_hint end) as tot_score FROM utente_challenge uc left join challenge c on c.id=uc.id_challenge and category = $1 GROUP BY id_utente",[cat]).then ( (result) => {
+        db.query("SELECT id_utente,sum(case when category is not null and timestamp_flag is not NULL then score::INTEGER else 0 end)-50*count(case when category is not null then timestamp_hint end) as tot_score FROM utente_challenge uc left join challenge c on c.id=uc.id_challenge and category = $1 GROUP BY id_utente ORDER BY tot_score desc",[cat]).then ( (result) => {
             res.send(result.rows);
         });
     }
