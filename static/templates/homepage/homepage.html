@@ -13,9 +13,9 @@
 </head>
 
 <body id="homepg">
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm  py-2 pb-0  bg-dark">
-            <a class="navbar-brand me-0" href="/" style="color: white; padding-left: 5%;">Flagify</a>
+    <div>   <!-- navbar-light e shadow-sm non fanno un cazzo, sono da togliere -->
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm  py-2 pb-0 bg-dark"> 
+            <a class="navbar-brand me-0" href="/" style="color: white; padding-left: 4px;">Flagify</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarContent,#btn_form" style="margin-right: 5%;">
                     <span class="navbar-toggler-icon" style="filter: invert();"></span>
                 </button>
@@ -45,9 +45,9 @@
             </div>
    
                 <div class="d-lg-flex collapse" id="btn_form">
-                    <a href="/login" id="button_profile" class=" btn btn-success btn-sm rounded-pill" style="margin-right: 10px;">
+                    <a href="/login" id="button_profile" class=" btn btn-prime btn-sm rounded-pill" style="margin-right: 7px;">
                         Login</a>
-                    <a href="/signup" class="btn btn-success btn-sm rounded-pill" aria-labelledby="logout-popup"><title id="logout-popup">Logout</title>
+                    <a href="/signup" class="btn btn-prime btn-sm rounded-pill" style="margin-right: 6px;" aria-labelledby="logout-popup"><title id="logout-popup">Logout</title>
                         Signup</a>
                     </div>
         </nav>
@@ -59,13 +59,15 @@
                 <h1 class="display-4 font-monospace fw-bold mb-4" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" data-aos-once="false">Flagify</h1>
                 <br>
                 <p class="font-monospace fs-6">Flagify is a platform in which you can test your skills in solving cybersecurity challenges of several topics, <br>such as Web Security, Reverse Engineering, Cryptography, Binary Exploitation.&nbsp;</p>
+                <br>
+                <p class="font-monospace fs-5 format">Note that all the flags, unless otherwise specified, follow this regex -> flag{[a-zA-Z0-9_-]+}</p>
             </div>
         </div>
         <div class="container"> <!--position-relative"-->
             <div class="row mb-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <p class="font-monospace fs-6 text-center shadow-none w-lg-50">If you wish to join our team <br>or<br>&nbsp;if you just want to share with us your experience with Flagify</p>
-                    <h2 class="font-monospace fs-2 fw-bold">Contact us</h2>
+                <div class="col-xl-9 col-xl-6 text-center mx-auto">
+                    <p class="font-monospace fs-6">If you wish to join our team or if you just want to share with us your experience with Flagify</p>
+                    <h2 class="font-monospace fs-2 fw-bold edit" style="color:aqua">Contact us</h2>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
@@ -78,7 +80,7 @@
                                 </svg>
                             </div>
                             <div class="px-2">
-                                <h6 class="mb-0 fw-bold edit" style="color:aqua">Email</h6>
+                                <h6 class="mb-0 fw-bold edit"  style="color:aqua">Email</h6>
                                 <p class="mb-0">flagify@gmail.com</p>
                             </div>
                         </div>

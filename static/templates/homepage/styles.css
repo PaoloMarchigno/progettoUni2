@@ -24,6 +24,15 @@ svg[name="ic"],img[name="ic"] {
     text-shadow: 0 0 30px rgb(25, 25, 255);
   }
 
+  .format {
+    text-shadow: 2px 1px 2px rgb(30, 0, 255);
+    /*border-color: rgb(0,0,255);*/ /*non capisco perché non funziona*/
+  }
+
+  .bg-edit {
+    color:white;
+  }
+
   .login-dark {
     height: 100vh;
     background: #475d62;
