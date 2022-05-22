@@ -2,21 +2,13 @@
   height: 60px;
 }
 
-#homepg {
-  height: 100vh;
-  background-size: cover;
-  position: relative;
-  background-image: url("sfondo.png");
-
-}
-
 body {
-  background-image: url("../login/sfondo.png");
+  background-image: url("sfondo.png");
   font-family: monospace;
   font-weight:400;
   font-size: 16px;
   line-height: 1.8;
-  color:#383b3d;
+  color:#fff;
 }
 
 svg[name="ic"],img[name="ic"] {
@@ -26,6 +18,12 @@ svg[name="ic"],img[name="ic"] {
 .rounded-pill{
   pointer-events: auto;
 }
+
+  .edit {
+    color: rgb(0, 255, 255);
+    text-shadow: 0 0 30px rgb(25, 25, 255);
+  }
+
   .login-dark {
     height: 100vh;
     background: #475d62;

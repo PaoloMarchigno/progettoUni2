@@ -1,3 +1,9 @@
+.btn-prime {
+  color: #fff;
+  background-color: rgb(25, 25, 255);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.69);
+}
+
 .bs-icon {
   --bs-icon-size: .75rem;
   display: flex;
@@ -34,7 +40,8 @@
 
 .bs-icon.bs-icon-primary {
   color: var(--bs-white);
-  background: var(--bs-primary);
+  background: rgb(25, 25, 255);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.69);
 }
 
 .bs-icon.bs-icon-primary-light {
