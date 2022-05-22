@@ -16,4 +16,4 @@ Ciphertext: fzau{ncn_isors_cviovw_pwcqoze}",100,0,flag{non_usare_chiavi_piccole}
  vai sul sito <a href='"/challenge?challenge=web_intro'" target='"_blank'">Clicca il link</a>",100,0,flag{try_7h1s_w3b_fl4g},"",intro,Prova a cliccare il link 
 8,Password Cracker,"Puoi crackare la password? Scarica il password checker <a href='"/challenge?challenge=password_crack&file=crack.py'" download='"crack.py'" target='"_blank'">qui</a> e avrai bisogno della <a href='"/challenge?challenge=password_crack&file=flag.txt.enc'" download='"flag.txt.enc'" target='"_blank'">flag</a>  cifrata nella stessa directory",100,0,flag{545h_r1ng1ng_fa343060},"",Reverse_engineering,Controlla la password per la flag
 9,Check symbols,"La flag è nel file!
-<a class='"btn btn-secondary'" href='"/challenge?challenge=Software_1&file=sw_04'" download='"sw_04'" target='"_blank'">Download</a>",75,0,flag,"",Software_security,Usa il tool strings o un comando linux
+<a class='"btn btn-secondary'" href='"/challenge?challenge=Software_1&file=sw_04'" download='"sw_04'" target='"_blank'">Download</a>",75,0,flag{0cca06f6},"",Software_security,Usa il tool strings o un comando linux
