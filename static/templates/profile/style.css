@@ -1,0 +1,18 @@
+body {
+    background-image: url("../profile/sfondo.png");
+    font-family: monospace;
+    font-weight:400;
+    font-size: 16px;
+    line-height: 1.8;
+    color:white;
+}
+svg[name="ic"],img[name="ic"] {
+    vertical-align: baseline;
+}
+
+.rounded-pill{
+    pointer-events: auto;
+}
+.info_profilo{
+    width: 50%;
+}

@@ -33,14 +33,33 @@ function getStatisctics(){
         if (this.readyState == 4 && this.status == 200) {
             var res = JSON.parse(this.responseText)[0];
             console.log(res);
-            $(".user-info").append("Username:\t"+ res.username+"<br>");
-            $(".user-info").append("Email:\t"+ res.email+"<br>");
-            $(".user-info").append("Score flag point:\t"+ score_flag_tot+"<br>");
-            $(".user-info").append("Use hint point:\t"+ score_hint_tot+"<br>");
-            $(".user-info").append("Total score:\t"+ total_score+"<br>");
-            $(".user-info").append("Challenge risolte:\t"+ n_solved_chal+ "/" + res.tot_challenges +"<br>");
+            $(".user-info").append('<tr><td>' + 'Username' +'</td><td>'+res.username+'</td></li>');
+            $(".user-info").append('<tr><td>' + 'Email' +'</td><td>'+res.email+'</td></li>');
+            $(".user-info").append('<tr><td>' + 'Score flag point' +'</td><td>'+score_flag_tot+'</td></li>');
+            $(".user-info").append('<tr><td>' + 'Use hint point' +'</td><td>'+score_hint_tot+'</td></li>');
+            $(".user-info").append('<tr><td>' + 'Total score' +'</td><td>'+total_score+'</td></li>');
+            $(".user-info").append('<tr><td>' + 'Challenge risolte' +'</td><td>'+n_solved_chal+ "/" + res.tot_challenges+'</td></li>');
+            // $(".user-info").append("Username:\t"+ res.username+"<br>");
+            // $(".user-info").append("Email:\t"+ res.email+"<br>");
+            // $(".user-info").append("Score flag point:\t"+ score_flag_tot+"<br>");
+            // $(".user-info").append("Use hint point:\t"+ score_hint_tot+"<br>");
+            // $(".user-info").append("Total score:\t"+ total_score+"<br>");
+            // $(".user-info").append("Challenge risolte:\t"+ n_solved_chal+ "/" + res.tot_challenges +"<br>");
         }
     }
     xhttp2.open("GET", '/info-profile-utente', false);
     xhttp2.send();
  }
+
+
+function getNameBtn(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("button_profile").innerHTML += JSON.parse(this.responseText).username;
+        centra_nav();
+        }
+    };
+    xhttp.open("GET", '/info-profile', true);
+    xhttp.send();
+ }  
