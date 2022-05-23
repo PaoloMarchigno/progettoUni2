@@ -83,8 +83,11 @@ svg[name="ic"],img[name="ic"] {
   }
   
   .login-dark form .btn-primary:hover, .login-dark form .btn-primary:active {
-    background: #214a80;
+    background: #ffffff;
     outline: none;
+  }
+  .btn-prime:hover{
+    color:rgb(0, 255, 255);
   }
   
   .login-dark form .forgot {
