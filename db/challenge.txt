@@ -1,5 +1,3 @@
-7,Just get credentials,"Abbiamo trovato questo sito dove bisogna inserire le credenziali, riesci a trovarle? 
-<a href='"/challenge?challenge=just_get_credential'" target='"_blank'">Just get Credential</a>",100,0,flag{d0n7_u53_cl13n7_51d3_ch3ck5!!},"",Web_security,Magari i file JavaScript possono aiutare
 1,How to start,"In questa serie di sfide, chiamate challenge, verranno introdotti alcuni concetti fondamentali riguardo alle competizioni Capture The Flag (CTF), in particolare del formato jeopardy. In ogni challenge ti verrà richiesto di trovare un''informazione segreta chiamata flag, sfruttando le vulnerabilità presenti all''interno della sfida. Trovando ed inviando la flag alla piattaforma otterrai dei punti in base alla difficoltà della sfida che ti farà salire in classifica. 
 Per questa primissima challenge invia questa flag nel campo qua sotto: 
 flag{My_f1R57_54Ni7Y_ch3Ck}",100,0,flag{My_f1R57_54Ni7Y_ch3Ck},"",intro,Ma lo hai letto il testo?
@@ -14,6 +12,11 @@ cixd{xsb_zxbpxo_jlofqrof_qb_pxirqxkq}",100,0,flag{ave_caesar_morituri_te_salutan
 Ciphertext: fzau{ncn_isors_cviovw_pwcqoze}",100,0,flag{non_usare_chiavi_piccole},"",cryptography,Utilizza il cifrario di Vigenere con una chiave di quattro lettere 
 6,Web challenge intro,"Esistono delle challenge che si svolgono sul lato web: 
  vai sul sito <a href='"/challenge?challenge=web_intro'" target='"_blank'">Clicca il link</a>",100,0,flag{try_7h1s_w3b_fl4g},"",intro,Prova a cliccare il link 
+7,Just get credentials,"Abbiamo trovato questo sito dove bisogna inserire le credenziali, riesci a trovarle? 
+<a href='"/challenge?challenge=just_get_credential'" target='"_blank'">Just get Credential</a>",100,0,flag{d0n7_u53_cl13n7_51d3_ch3ck5!!},"",Web_security,Magari i file JavaScript possono aiutare
 8,Password Cracker,"Puoi crackare la password? Scarica il password checker <a href='"/challenge?challenge=password_crack&file=crack.py'" download='"crack.py'" target='"_blank'">qui</a> e avrai bisogno della <a href='"/challenge?challenge=password_crack&file=flag.txt.enc'" download='"flag.txt.enc'" target='"_blank'">flag</a>  cifrata nella stessa directory",100,0,flag{545h_r1ng1ng_fa343060},"",Reverse_engineering,Controlla la password per la flag
 9,Check symbols,"La flag è nel file!
-<a class='"btn btn-secondary'" href='"/challenge?challenge=Software_1&file=sw_04'" download='"sw_04'" target='"_blank'">Download</a>",75,0,flag{0cca06f6},"",Software_security,Usa il tool strings
+<a class='"btn btn-secondary'" href='"/challenge?challenge=Software_1&file=sw_04'" download='"sw_04'" target='"_blank'">Download</a>",75,0,flag,"",Software_security,Usa il tool strings o un comando linux
+10,Mod 26,"Alcune volte la crittografia può essere semplice, conosci il ROT13? 
+ synt{a3kg_g1z3_1g''yy_o3_q1ss1phyg}",100,0,flag{n3xt_t1m3_1t'll_b3_d1ff1cult},"",cryptography,Può essere risolto online se non vuoi farlo online
+11,Python reverse,"Il <a href='"/challenge?challenge=reverse_python&file=encripted.txt'" download='"encripted.txt'" target='"_blank'">file</a> è stato cifrato con <a href='"/challenge?challenge=reverse_python&file=encrypt.py'" download='"encrypt.py'" target='"_blank'">questo</a>  file, riuscirai a defifrarlo?",100,0,flag{but_1_th0ught_Dlog_wa5_h4rd},"",Reverse_engineering,"La chiave di cifratura va tra 0 e 255, ma ricorda che la flag ha sempre lo stesso formato ;)"

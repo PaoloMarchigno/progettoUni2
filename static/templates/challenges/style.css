@@ -137,3 +137,6 @@ a:hover{
 /*main{
     background: black;
 }*/
+.owl-nav{
+    display: none;
+}

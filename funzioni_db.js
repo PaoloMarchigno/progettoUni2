@@ -49,13 +49,13 @@ function eliminaChallenge(db, id){
 }
 
 var challenge ={   
-    "id" : 8,
-    "nome" : "Password Cracker",
-    "testo" : 'Puoi crackare la password? Scarica il password checker <a href="/challenge?challenge=password_crack&file=crack.py" download="crack.py" target="_blank">qui</a> e avrai bisogno della <a href="/challenge?challenge=password_crack&file=flag.txt.enc" download="flag.txt.enc" target="_blank">flag</a>  cifrata nella stessa directory',
+    "id" : 11,
+    "nome" : "Python reverse",
+    "testo" : 'Il <a href="/challenge?challenge=reverse_python&file=encripted.txt" download="encripted.txt" target="_blank">file</a> è stato cifrato con <a href="/challenge?challenge=reverse_python&file=encrypt.py" download="encrypt.py" target="_blank">questo</a>  file, riuscirai a defifrarlo?',
     "score" : 100,
-    "n_utenti_solv" : 0,
-    "hint": "Controlla la password per la flag",
-    "flag" : "flag{545h_r1ng1ng_fa343060}",
+    "n_utenti_solv" : 0,    
+    "hint": "La chiave di cifratura va tra 0 e 255, ma ricorda che la flag ha sempre lo stesso formato ;)",
+    "flag" : "flag{but_1_th0ught_Dlog_wa5_h4rd}",
     "url_image": "",
     "category": "Reverse_engineering"
 }
@@ -82,6 +82,6 @@ const query = {text: 'DELETE FROM utente_challenge'}
 
 // inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
-// modificaChallenge(db, challenge);
+modificaChallenge(db, challenge);
 // inserisciUtenteChallenge(db, uc);
 
