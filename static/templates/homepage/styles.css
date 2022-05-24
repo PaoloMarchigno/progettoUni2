@@ -12,7 +12,7 @@ body {
 }
 
 svg[name="ic"],img[name="ic"] {
-  vertical-align: baseline;
+  vertical-align: middle;
 }
 
 .rounded-pill{

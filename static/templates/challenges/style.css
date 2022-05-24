@@ -3,7 +3,7 @@
     color: rgb(2, 63, 2);
 }
 svg[name="ic"],img[name="ic"] {
-    vertical-align: baseline;
+    vertical-align: middle;
 }
 
 .butt{
