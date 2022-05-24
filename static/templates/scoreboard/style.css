@@ -7,7 +7,7 @@ body {
     color:#383b3d;
 }
 svg[name="ic"],img[name="ic"] {
-    vertical-align: baseline;
+    vertical-align: middle;
 }
 
 .rounded-pill{
