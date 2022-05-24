@@ -22,7 +22,7 @@ db.connect( (err) => {
 	}
 });
 
-//app.set("view engine", "ejs");
+app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "static")));
 app.use(body_parser.urlencoded({ extended: true }));
 app.use(body_parser.json());
@@ -180,10 +180,6 @@ app.get("/challenges", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
 });
 
-// app.get("/challenges_2", (req,res) => {
-//     res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
-// });
-
 app.get("/login", (req,res) => {
     console.log(errore_login);
     res.sendFile(path.join(__dirname, "static/templates/login/login.html"));
@@ -272,13 +268,13 @@ app.get("/order_by_category",(req,res) => {
     }
 });
 
-/*app.post('/send-email', function(req, res) {
+app.post('/send-email', function(req, res) {
     let transporter = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
         secure: true,
         auth: {
-            user: 'flagify@gmail.com',
+            user: 'flagify1@gmail.com',
             pass: 'ctf_project',
         }
     });
@@ -296,7 +292,7 @@ app.get("/order_by_category",(req,res) => {
         console.log('Message %s sent: %s', info.messageId, info.response);
             res.render('index');
         });
-});*/
+});
 
 // function ensureAuth(req, res, next) {
 //   if (req.session.user) {
