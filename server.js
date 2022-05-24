@@ -9,7 +9,7 @@ const session = require("express-session");
 const utente = require("./utente");
 const res = require("express/lib/response");
 const { Router } = require("express");
-//const nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 
 const app = express();
 
@@ -269,7 +269,7 @@ app.get("/order_by_category",(req,res) => {
 });
 
 app.post('/send-email', function(req, res) {
-    let transporter = nodeMailer.createTransport({
+    let transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
         secure: true,
@@ -278,19 +278,22 @@ app.post('/send-email', function(req, res) {
             pass: 'ctf_project',
         }
     });
+    console.log(req.body.to);
+    console.log("________________________________________________________________");
     let mailOptions = {
-        from: '"utente" <sua_email>', // sender address
-        to: req.body.to, // list of receivers
-        subject: req.body.subject, // Subject line
-        text: req.body.body, // plain text body
-        html: '<b>NodeJS Email Tutorial</b>' // html body
+        from: "flagify1@gmail.com", // sender address
+        to: "zingaretti.mattia@gmail.com", // list of receivers
+        subject: "Email di congratulazioni", // Subject line
+        //text: "bho", // plain text body -> non se sa perché non me lo prende
+        html: '<p> MAGICA ROMA SIAMO I CAMPIONI DELLA CONFERENCE LEAGUE FORZA LUPAAAA XSEMPRE </p>' // html body
     };
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
-            res.render('index');
+            //res.render('index');
+            res.redirect('/');
         });
 });
 

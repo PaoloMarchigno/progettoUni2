@@ -20,6 +20,7 @@
     "ejs": "latest",
     "express": "latest",
     "express-session": "latest",
+    "nodemailer": "^6.7.5",
     "path": "latest",
     "pg": "latest"
   }
