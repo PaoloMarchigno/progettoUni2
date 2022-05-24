@@ -9,6 +9,7 @@ const session = require("express-session");
 const utente = require("./utente");
 const res = require("express/lib/response");
 const { Router } = require("express");
+//const nodemailer = require("nodemailer");
 
 const app = express();
 
@@ -21,7 +22,7 @@ db.connect( (err) => {
 	}
 });
 
-
+//app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "static")));
 app.use(body_parser.urlencoded({ extended: true }));
 app.use(body_parser.json());
@@ -270,6 +271,33 @@ app.get("/order_by_category",(req,res) => {
         });
     }
 });
+
+/*app.post('/send-email', function(req, res) {
+    let transporter = nodeMailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'flagify@gmail.com',
+            pass: 'ctf_project',
+        }
+    });
+    let mailOptions = {
+        from: '"utente" <sua_email>', // sender address
+        to: req.body.to, // list of receivers
+        subject: req.body.subject, // Subject line
+        text: req.body.body, // plain text body
+        html: '<b>NodeJS Email Tutorial</b>' // html body
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+            res.render('index');
+        });
+});*/
+
 // function ensureAuth(req, res, next) {
 //   if (req.session.user) {
 //     next();
