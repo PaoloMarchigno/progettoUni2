@@ -35,7 +35,7 @@ svg[name="ic"],img[name="ic"] {
 
   .login-dark {
     height: 100vh;
-    background: #475d62;
+    background-image: url("sfondo.png");
     background-size: cover;
     position: relative;
   }
@@ -51,15 +51,16 @@ svg[name="ic"],img[name="ic"] {
     top: 50%;
     left: 50%;
     color: #fff;
-    box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
   }
   
-  .login-dark .illustration {
+  /*.login-dark .illustration {
     text-align: center;
-    padding: 15px 0 20px;
+    padding: 15px 0 20px;       --> Questo serviva per l'iconcina col lucchetto, ma fa schifo
+                                    ci mettiamo il nostro logo >>
     font-size: 100px;
-    color: #2980ef;
-  }
+    color: #ef2929;
+  }*/
   
   .login-dark form .form-control {
     background: none;
@@ -72,19 +73,18 @@ svg[name="ic"],img[name="ic"] {
   }
   
   .login-dark form .btn-primary {
-    background: #214a80;
+    background: #1919FF;
     border: none;
     border-radius: 4px;
     padding: 11px;
-    box-shadow: none;
+    box-shadow: 0 0 10px rgba(0, 255, 255);
     margin-top: 26px;
     text-shadow: none;
     outline: none;
   }
   
   .login-dark form .btn-primary:hover, .login-dark form .btn-primary:active {
-    background: #ffffff;
-    outline: none;
+    color:rgb(0, 255, 255);   
   }
   .btn-prime:hover{
     color:rgb(0, 255, 255);
