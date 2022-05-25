@@ -12,8 +12,8 @@
 </head>
 <body>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm  py-2 bg-dark">
-            <a class="navbar-brand" href="/" style="color: white; padding-left: 5%;"><img class="logo_flag" src="img/logo.png" style="height: 45px;"></img></a>
+        <nav class="navbar navbar-expand-lg py-2 pb-0  bg-dark">
+            <a class="navbar-brand" href="/" style="color: white; padding-left: 4px;"><img class="logo_flag" src="img/logo.png" style="height: 45px;"></img></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarContent,#btn_form" style="margin-right: 5px">
                     <span class="navbar-toggler-icon" style="filter: invert();"></span>
                 </button>
@@ -26,24 +26,24 @@
                                     d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                                 <path fill-rule="evenodd"
                                     d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
-                            </svg> Home</a>
+                            </svg> <span class="elem">Home</span></a>
                     </li>
                     <li class="nav-item active" role="presentation">
-                        <a href="/scoreboard" class="nav-link fw-bold text-white mt-2"><img name="ic"
-                                src="templates/challenges/podium.png" width="24" height="24" style="filter: invert();"> Scoreboard</a>
+                        <a href="/scoreboard" class="nav-link fw-bold text-white"><img name="ic"
+                                src="templates/challenges/podium.png" width="26" height="26" style="filter: invert();"> <span class="elem">Scoreboard</span></a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="/challenges" class="nav-link fw-bold text-white">
-                                <img name = "ic"src="img/icon-flag.png" width="26" height="26">Challenges</a>
+                                <img name="ic" src="img/icon-flag.png" width="32" height="32"><span class="elem">Challenges</span></a>
                     </li>
                 </ul>
             </div>
                 <div class="d-lg-flex collapse m-auto" id="btn_form">
                     <a href="/profilo" id="button_profile" class=" btn btn-success btn-sm rounded-pill">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill pb-1" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-right: 6px" fill="currentColor" class="bi bi-person-fill pb-1" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
                         </svg></a>
-                    <a href="/logout" class="btn btn-danger btn-sm rounded-pill ms-2" aria-labelledby="logout-popup"><title id="logout-popup">Logout</title>
+                    <a href="/logout" class="btn btn-danger btn-sm rounded-pill ms-2" style="margin-right: 5px" aria-labelledby="logout-popup"><title id="logout-popup">Logout</title>
                         <i class="fa fa-sign-out"></i></a>
                     </div>
         </nav>

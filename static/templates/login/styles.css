@@ -17,6 +17,10 @@
     border-color: transparent;
   }
 
+  svg[name="ic"],img[name="ic"] {
+    vertical-align: middle;
+  }
+
   .navigation-clean-button .navbar-text .action-button, .navigation-clean-button .navbar-text .action-button:active, .navigation-clean-button .navbar-text .action-button:hover {
     background: #56c6c6;
     border-radius: 20px;

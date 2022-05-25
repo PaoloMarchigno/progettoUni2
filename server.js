@@ -9,6 +9,8 @@ const session = require("express-session");
 const utente = require("./utente");
 const res = require("express/lib/response");
 const { Router } = require("express");
+const nodemailer = require("nodemailer");
+try{require("dotenv").config();}catch(e){console.log(e);}
 
 const app = express();
 
@@ -21,7 +23,7 @@ db.connect( (err) => {
 	}
 });
 
-
+app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "static")));
 app.use(body_parser.urlencoded({ extended: true }));
 app.use(body_parser.json());
@@ -179,10 +181,6 @@ app.get("/challenges", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
 });
 
-// app.get("/challenges_2", (req,res) => {
-//     res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
-// });
-
 app.get("/login", (req,res) => {
     console.log(errore_login);
     res.sendFile(path.join(__dirname, "static/templates/login/login.html"));
@@ -270,6 +268,37 @@ app.get("/order_by_category",(req,res) => {
         });
     }
 });
+
+app.post('/send-email', function(req, res) {
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.outlook.com',
+        port: 587,
+        secure: false,
+        auth: {
+            user: 'flagify@outlook.it',
+            pass: process.env.EMAIL_PASS,
+        },
+        secureConnection: false,
+        tls: {
+            rejectUnauthorized: false,
+        }
+    });
+    let mailOptions = {
+        from: "flagify@outlook.it", // sender address
+        to: "flagify@outlook.it", // list of receivers
+        subject: req.body.name, // Subject line
+        html:  "<b>User email: </b>" + req.body.email + "<br><br>" + req.body.message // html body
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+            //res.render('index');
+            res.redirect('/');
+        });
+});
+
 // function ensureAuth(req, res, next) {
 //   if (req.session.user) {
 //     next();
