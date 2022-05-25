@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<title> ART TEST </title>
+    	<meta charset="UTF-8">
+    	<style>
+    		.button {
+    		  border: none;
+    		  color: white;
+    		  padding: 15px 32px;
+    		  text-align: center;
+    		  text-decoration: none;
+    		  display: inline-block;
+    		  font-size: 16px;
+    		  margin: 4px 2px;
+    		  cursor: pointer;
+    		}
+    		.buttonRed {background-color: #FF0000;} 
+    		.buttonGreen {background-color: #00FF00;}  
+    		.buttonBlue {background-color: #0000FF;} 
+    	</style>
+    </head>
+    <body>
+    	<center>
+    		<h2> ART TEST </h2><br>
+    		<p> Premi il pulsante di colore </p><br>
+    		<form id="myform" method="POST"  name = "myform" action="server.php">
+    			<table>
+    				<tr>
+    					<th>
+    						<div>
+    						    <button id="Rosso" name="Rosso" class="button buttonRed">Blu</button>
+    						</div>
+    					</th>
+    					<th>
+    						<div>
+    						    <button id="Verde" name="Verde" class="button buttonGreen">Rosso</button>
+    						</div>
+    					</th>
+    					<th>
+    						<div>
+								<button id ='hidden' type="input" name="result">
+    							<button id="Blu" name="Blu" class="button buttonBlue">Verde</button>
+    						</div>
+    					</th>
+    				</tr>
+    			</table>
+    		</form>
+    	</center>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		
+		window.addEventListener('load', (event) => {
+			var list = ["Verde","Rosso","Blu"];
+			var x = Math.floor(Math.random()*3);
+			var rnd_color = list[x];
+			//console.log(rnd_color);
+			$('p').append(rnd_color+'?');
+			$('#hidden').append(rnd_color);
+			//document.getElementsByName('para').setAttribute('value',rnd_color);
+		});
+		
+	</script>
+	
+    </body>
+
+</html>
