@@ -10,6 +10,7 @@ const utente = require("./utente");
 const res = require("express/lib/response");
 const { Router } = require("express");
 const nodemailer = require("nodemailer");
+try{require("dotenv").config();}catch(e){console.log(e);}
 
 const app = express();
 
@@ -270,22 +271,23 @@ app.get("/order_by_category",(req,res) => {
 
 app.post('/send-email', function(req, res) {
     let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
+        host: 'smtp.outlook.com',
+        port: 587,
+        secure: false,
         auth: {
-            user: 'flagify1@gmail.com',
-            pass: 'ctf_project',
+            user: 'flagify@outlook.it',
+            pass: process.env.EMAIL_PASS,
+        },
+        secureConnection: false,
+        tls: {
+            rejectUnauthorized: false,
         }
     });
-    console.log(req.body.to);
-    console.log("________________________________________________________________");
     let mailOptions = {
-        from: "flagify1@gmail.com", // sender address
-        to: "zingaretti.mattia@gmail.com", // list of receivers
-        subject: "Email di congratulazioni", // Subject line
-        //text: "bho", // plain text body -> non se sa perché non me lo prende
-        html: '<p> MAGICA ROMA SIAMO I CAMPIONI DELLA CONFERENCE LEAGUE FORZA LUPAAAA XSEMPRE </p>' // html body
+        from: "flagify@outlook.it", // sender address
+        to: "flagify@outlook.it", // list of receivers
+        subject: req.body.name, // Subject line
+        html:  "<b>User email: </b>" + req.body.email + "<br><br>" + req.body.message // html body
     };
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
