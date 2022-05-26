@@ -117,7 +117,7 @@ app.get('/getHint', restrict, (req,res) => {
 app.get('/challenge', restrict, (req, res) => {
     var challenge;
     if (req.query.file){
-        challenge = "static/templates/challenge/" + req.query.challenge + "/"+req.query.file;
+        challenge = "static/templates/challenge/" + req.query.challenge + "/" + req.query.file;
     }
     else{
         challenge = "static/templates/challenge/" + req.query.challenge + "/index.html";
