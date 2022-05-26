@@ -20,3 +20,4 @@ Ciphertext: fzau{ncn_isors_cviovw_pwcqoze}",100,0,flag{non_usare_chiavi_piccole}
 10,Mod 26,"Alcune volte la crittografia può essere semplice, conosci il ROT13? 
  synt{a3kg_g1z3_1g''yy_o3_q1ss1phyg}",100,0,flag{n3xt_t1m3_1t'll_b3_d1ff1cult},"",cryptography,Può essere risolto online se non vuoi farlo online
 11,Python reverse,"Il <a href='"/challenge?challenge=reverse_python&file=encripted.txt'" download='"encripted.txt'" target='"_blank'">file</a> è stato cifrato con <a href='"/challenge?challenge=reverse_python&file=encrypt.py'" download='"encrypt.py'" target='"_blank'">questo</a>  file, riuscirai a defifrarlo?",100,0,flag{but_1_th0ught_Dlog_wa5_h4rd},"",Reverse_engineering,"La chiave di cifratura va tra 0 e 255, ma ricorda che la flag ha sempre lo stesso formato ;)"
+12,Infinite_server,"<a href='"/challenge?challenge=infinite_server'" target='"blank'">file</a>",360,0,flag,"",Web_security,attaccati
