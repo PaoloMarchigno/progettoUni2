@@ -49,13 +49,13 @@ function eliminaChallenge(db, id){
 }
 
 var challenge ={   
-    "id" : 11,
-    "nome" : "Python reverse",
-    "testo" : 'Il <a href="/challenge?challenge=reverse_python&file=encripted.txt" download="encripted.txt" target="_blank">file</a> è stato cifrato con <a href="/challenge?challenge=reverse_python&file=encrypt.py" download="encrypt.py" target="_blank">questo</a>  file, riuscirai a defifrarlo?',
+    "id" : 14,
+    "nome" : "Stripped",
+    "testo" : 'Questo file è spoglio, riesci a trovare la flag?<br> <a href="/challenge?challenge=stripped&file=stripped" download="stripped" target="_blank">file</a>',
     "score" : 100,
     "n_utenti_solv" : 0,    
-    "hint": "La chiave di cifratura va tra 0 e 255, ma ricorda che la flag ha sempre lo stesso formato ;)",
-    "flag" : "flag{but_1_th0ught_Dlog_wa5_h4rd}",
+    "hint": "Prova a vedere il binario del file",
+    "flag" : "flag{s3cr3t_d4t4_9c10c3ce5bbcd8f22986de48e5101979040b6b22}",
     "url_image": "",
     "category": "Reverse_engineering"
 }
@@ -80,8 +80,8 @@ function inserisciUtenteChallenge(db, uc){
 const query = {text: 'DELETE FROM utente_challenge'}
 //  eseguiQuery(db, query);
 
-// inserisciChallenge(db, challenge);
+inserisciChallenge(db, challenge);
 // eliminaChallenge(db, 1);
-modificaChallenge(db, challenge);
+// modificaChallenge(db, challenge);
 // inserisciUtenteChallenge(db, uc);
 
