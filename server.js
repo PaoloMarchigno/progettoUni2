@@ -139,7 +139,7 @@ app.get('/info-profile', restrict, (req, res) => {
 
 
 app.get('/info-profile-statistics', restrict, (req, res) => {
-    if(req.query) {
+    if(req.query.id) {
         console.log("profile stat ricevuto: "+req.query.id);
         db.query("SELECT * FROM utente_challenge uc join challenge c on c.id=uc.id_challenge WHERE id_utente = $1", [req.query.id]).then( (result) => {
             res.send(result.rows);
@@ -153,7 +153,7 @@ app.get('/info-profile-statistics', restrict, (req, res) => {
 });
 
 app.get('/info-profile-utente', restrict, (req, res) => {
-    if(req.query) {
+    if(req.query.id) {
         console.log("profile-utente ricevuto: "+req.query.id);
         db.query("SELECT u.username, u.email, count(c.id) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.query.id]).then( (result) => {
             res.send(result.rows);
@@ -190,11 +190,12 @@ app.get('/error-signup', (req, res) => {
 });
 
 app.get("/profilo", restrict, (req,res) => {
-    if(req.query) {
+    if(req.query.id) {
         console.log("profilo ricevuto: "+req.query.id);
         res.sendFile(path.join(__dirname, "static/templates/scoreboard/profile/profile.html"));
     }
     else {
+        console.log("corretto");
         res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
     }
 });
