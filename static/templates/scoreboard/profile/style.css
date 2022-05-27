@@ -1,10 +1,10 @@
 body {
-    background-image: url("../login/sfondo.png");
+    background-image: url("../profile/sfondo.png");
     font-family: monospace;
     font-weight:400;
     font-size: 16px;
     line-height: 1.8;
-    color:#383b3d;
+    color:white;
 }
 svg[name="ic"],img[name="ic"] {
     vertical-align: middle;
@@ -12,6 +12,10 @@ svg[name="ic"],img[name="ic"] {
 
 .rounded-pill{
     pointer-events: auto;
+}
+
+.info_profilo{
+    width: 50%;
 }
 
 .elem {
@@ -34,7 +38,4 @@ svg[name="ic"],img[name="ic"] {
     --_t: var(--h);
     --_p: 100%;
     --_s: .3s
-  }
-  a {
-    text-decoration: none;
   }

@@ -139,15 +139,31 @@ app.get('/info-profile', restrict, (req, res) => {
 
 
 app.get('/info-profile-statistics', restrict, (req, res) => {
-    db.query("SELECT * FROM utente_challenge uc join challenge c on c.id=uc.id_challenge WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
+    if(req.query) {
+        console.log("profile stat ricevuto: "+req.query.id);
+        db.query("SELECT * FROM utente_challenge uc join challenge c on c.id=uc.id_challenge WHERE id_utente = $1", [req.query.id]).then( (result) => {
+            res.send(result.rows);
+        });
+    }
+    else {
+        db.query("SELECT * FROM utente_challenge uc join challenge c on c.id=uc.id_challenge WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
         res.send(result.rows);
-    });
+        });
+    }
 });
 
 app.get('/info-profile-utente', restrict, (req, res) => {
-    db.query("SELECT u.username, u.email, count(c.id) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.session.user.username]).then( (result) => {
+    if(req.query) {
+        console.log("profile-utente ricevuto: "+req.query.id);
+        db.query("SELECT u.username, u.email, count(c.id) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.query.id]).then( (result) => {
+            res.send(result.rows);
+        });
+    }
+    else {
+        db.query("SELECT u.username, u.email, count(c.id) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.session.user.username]).then( (result) => {
         res.send(result.rows);
-    });
+        });
+    }
 });
 
 app.get('/challenge_done', restrict,  (req, res) => {
@@ -174,7 +190,13 @@ app.get('/error-signup', (req, res) => {
 });
 
 app.get("/profilo", restrict, (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
+    if(req.query) {
+        console.log("profilo ricevuto: "+req.query.id);
+        res.sendFile(path.join(__dirname, "static/templates/scoreboard/profile/profile.html"));
+    }
+    else {
+        res.sendFile(path.join(__dirname, "static/templates/profile/profile.html"));
+    }
 });
 
 app.get("/challenges", restrict, (req,res) => {
@@ -245,7 +267,7 @@ app.get("/logout", (req,res) => {
 	});
 });
 
-app.get("/scoreboard", (req,res) => {
+app.get("/scoreboard",restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/scoreboard/scoreboard.html"));
 });
 
@@ -268,7 +290,6 @@ app.get("/order_by_category",(req,res) => {
         });
     }
 });
-
 app.post('/send-email', function(req, res) {
     let transporter = nodemailer.createTransport({
         host: 'smtp.outlook.com',

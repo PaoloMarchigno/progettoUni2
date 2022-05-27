@@ -1,3 +1,5 @@
+
+
 function get_scoreboard() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -7,7 +9,7 @@ function get_scoreboard() {
             console.log(res);
             for (user of res) {
                 console.log(user.id_utente);
-                var t ="<tr><th scope='row'></th><td class='text-center'>"+i+"</td><td class='text-center'>"+user.tot_score+"</td><td class='text-center'>"+user.id_utente+"</td></tr>"
+                var t ="<tr><th scope='row'></th><td class='text-center'>"+i+"</td><td class='text-center'>"+user.tot_score+"</td><td class='text-center'><a href="+"'"+"/profilo?id="+user.id_utente+"'>"+user.id_utente+"</a></td></tr>"
                 $('.scoreboard_table').append(t);
                 i++;
             }
@@ -30,7 +32,7 @@ function order_by_category() {
             $('.scoreboard_table').html("");
             for (user of res) {
                 console.log(user.id_utente);
-                var t ="<tr><th scope='row'></th><td class='text-center'>"+i+"</td><td class='text-center'>"+user.tot_score+"</td><td class='text-center'>"+user.id_utente+"</td></tr>"
+                var t ="<tr><th scope='row'></th><td class='text-center'>"+i+"</td><td class='text-center'>"+user.tot_score+"</td><td class='text-center'><a href='/profilo?id='"+user.id_utente+">"+user.id_utente+"</a></td></tr>"
                 $('.scoreboard_table').append(t);
                 i++;
             }
@@ -51,3 +53,4 @@ function getNameBtn(){
     xhttp.open("GET", '/info-profile', true);
     xhttp.send();
  }  
+
