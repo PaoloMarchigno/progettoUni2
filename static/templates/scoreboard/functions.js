@@ -1,5 +1,3 @@
-
-
 function get_scoreboard() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

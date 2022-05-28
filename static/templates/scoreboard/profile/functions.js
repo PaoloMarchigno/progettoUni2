@@ -42,7 +42,6 @@ function getStatisctics(){
             var res = JSON.parse(this.responseText)[0];
             //console.log(res);
             $(".user-info").append('<tr><td>' + 'Username' +'</td><td>'+res.username+'</td></li>');
-            $(".user-info").append('<tr><td>' + 'Email' +'</td><td>'+res.email+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Score flag point' +'</td><td>'+score_flag_tot+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Use hint point' +'</td><td>'+score_hint_tot+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Total score' +'</td><td>'+total_score+'</td></li>');
