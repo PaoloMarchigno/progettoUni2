@@ -7,7 +7,7 @@ function get_scoreboard() {
             console.log(res);
             for (user of res) {
                 console.log(user.id_utente);
-                var t ="<tr><th scope='row'></th><td class='text-center'>"+i+"</td><td class='text-center'>"+user.tot_score+"</td><td class='text-center'><a href="+"'"+"/profilo?id="+user.id_utente+"'>"+user.id_utente+"</a></td></tr>"
+                var t ="<tr><td class='text-center'>"+i+"</td><td class='text-center'>"+user.tot_score+"</td><td class='text-center'><a href="+"'"+"/profilo?id="+user.id_utente+"'>"+user.id_utente+"</a></td></tr>"
                 $('.scoreboard_table').append(t);
                 i++;
             }
@@ -19,7 +19,7 @@ function get_scoreboard() {
 get_scoreboard();
 
 function order_by_category() {
-    var cat = $('.form-select option:selected').text();
+    var cat = $('.form-select option:selected')[0].value;
     console.log(cat);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -30,7 +30,7 @@ function order_by_category() {
             $('.scoreboard_table').html("");
             for (user of res) {
                 console.log(user.id_utente);
-                var t ="<tr><th scope='row'></th><td class='text-center'>"+i+"</td><td class='text-center'>"+user.tot_score+"</td><td class='text-center'><a href='/profilo?id='"+user.id_utente+">"+user.id_utente+"</a></td></tr>"
+                var t ="<tr><td class='text-center'>"+i+"</td><td class='text-center'>"+user.tot_score+"</td><td class='text-center'><a href='/profilo?id='"+user.id_utente+">"+user.id_utente+"</a></td></tr>"
                 $('.scoreboard_table').append(t);
                 i++;
             }

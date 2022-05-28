@@ -99,7 +99,7 @@ app.get("/getchall", restrict, (req,res) => {
 
 // prende solo le categorie delle challenge
 app.get('/get_categories', restrict, (req, res) => {
-    db.query("SELECT DISTINCT category FROM challenge").then( (result) => {
+    db.query("SELECT DISTINCT category FROM challenge ORDER BY category").then( (result) => {
         res.send(result);
     });
 });

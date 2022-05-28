@@ -87,7 +87,9 @@ function show_all_cards(){
           var results = JSON.parse(this.responseText).rows;
           console.log(results); 
           for (var result of results){
-              var html_code = '<div class="text-center mt-5"><h1>'+result.category+'</h1></div><div class="container mt-3"><div class="owl-carousel-'+result.category+' owl-carousel owl-theme"></div></div>';
+              var cat = result.category.replace('_', ' ');
+              cat = cat.replace('AAA', '');
+              var html_code = '<div class="text-center mt-5"><h1>'+cat+'</h1></div><div class="container mt-3"><div class="owl-carousel-'+result.category+' owl-carousel owl-theme"></div></div>';
             $(".div_nav").append(html_code);
             show_cards(result.category);  
           }
