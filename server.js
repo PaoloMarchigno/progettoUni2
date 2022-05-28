@@ -23,6 +23,7 @@ db.connect( (err) => {
 	}
 });
 
+// impostazioni per l'utilizzo del backend
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "static")));
 app.use(body_parser.urlencoded({ extended: true }));
@@ -46,6 +47,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+// funzione di autenticazione 
 function authenticate(email, pass, fn) {
     utente.controlloSeEsisteUtente(db, email).then( (check) => {
         if (!check) {
@@ -67,8 +69,8 @@ function authenticate(email, pass, fn) {
 var errore_login = '';
 var errore_signup = '';
 
+// permette l'accesso ad alcune sezioni del sito solo se si è loggati
 function restrict(req, res, next) {
-    // req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};        // da togliere
     if (req.session.user) {
         next();
     } else {
@@ -77,6 +79,9 @@ function restrict(req, res, next) {
     }
 }
 
+/***************************FUNZIONI GET DATABASE CHALLENGE************************************************************************************************************************************************************/
+
+// prende tutte le challenge presenti nel database
 app.get("/getchall", restrict, (req,res) => {
     const id =req.query.id;
     const category = req.query.category;
@@ -92,12 +97,14 @@ app.get("/getchall", restrict, (req,res) => {
     }
 });
 
+// prende solo le categorie delle challenge
 app.get('/get_categories', restrict, (req, res) => {
     db.query("SELECT DISTINCT category FROM challenge").then( (result) => {
         res.send(result);
     });
 });
 
+// ritorna la flag per una determinata challenge
 app.get('/getFlag', restrict, (req,res) => {
     var id = req.query.id;
     db.query("SELECT flag FROM challenge WHERE id = $1", [id.toString()]).then( (result) => {
@@ -105,6 +112,7 @@ app.get('/getFlag', restrict, (req,res) => {
     });
 });
 
+// prende l'hint della challenge richiesta
 app.get('/getHint', restrict, (req,res) => {
     var id = req.query.id;
     db.query("SELECT hint FROM challenge WHERE id = $1", [id.toString()]).then( (result) => {
@@ -114,30 +122,21 @@ app.get('/getHint', restrict, (req,res) => {
     
 });
 
-app.get('/challenge', restrict, (req, res) => {
-    var challenge;
-    if (req.query.file){
-        challenge = "static/templates/challenge/" + req.query.challenge + "/" + req.query.file;
-    }
-    else{
-        challenge = "static/templates/challenge/" + req.query.challenge + "/index.html";
-    }
-    res.sendFile(path.join(__dirname, challenge));
+// prende le challenge già risolte dall'utente della sessione
+app.get('/challenge_done', restrict,  (req, res) => {
+    db.query("SELECT * FROM utente_challenge  WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
+        res.send(result.rows);
+    });
 });
 
-app.post('/addUtenteChall', restrict, (req, res) => {
-    var id = req.query.id;
-    var timestamp_flag = req.query.timestamp;
-    utente.inserisciUtenteChallenge(db, id, req.session.user.username, timestamp_flag);
-    res.redirect('/challenges');
-});
+/***************************FUNZIONI GET DATABASE UTENTE************************************************************************************************************************************************************/
 
-
+// richiede chi è l'utente di sessione
 app.get('/info-profile', restrict, (req, res) => {
     res.send(req.session.user);
 });
 
-
+// richiede le statistiche dell'utente di sessione o di un altro utente
 app.get('/info-profile-statistics', restrict, (req, res) => {
     if(req.query.id) {
         console.log("profile stat ricevuto: "+req.query.id);
@@ -152,6 +151,7 @@ app.get('/info-profile-statistics', restrict, (req, res) => {
     }
 });
 
+// richiede il numero di challenge risolte rispetto al totale dall'utente di sessione o da un altro utente
 app.get('/info-profile-utente', restrict, (req, res) => {
     if(req.query.id) {
         console.log("profile-utente ricevuto: "+req.query.id);
@@ -166,29 +166,33 @@ app.get('/info-profile-utente', restrict, (req, res) => {
     }
 });
 
-app.get('/challenge_done', restrict,  (req, res) => {
-    // req.session.user = {username: 'thomas', email: 'thomas.kirschner2901@gmail.com'};
-    db.query("SELECT * FROM utente_challenge  WHERE id_utente = $1", [req.session.user.username]).then( (result) => {
-        res.send(result.rows);
-    });
+// inserisce la challenge tra quelle risolte dall'utente
+app.post('/addUtenteChall', restrict, (req, res) => {
+    var id = req.query.id;
+    var timestamp_flag = req.query.timestamp;
+    utente.inserisciUtenteChallenge(db, id, req.session.user.username, timestamp_flag);
+    res.redirect('/challenges');
 });
 
 
+/***************************FUNZIONI GET PATH************************************************************************************************************************************************************/
 
+// pagina homepage
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
 });
 
-
-
+// errore pagina login
 app.get('/error-login', (req, res) => {
     res.send(errore_login);
 });
 
+// errore pagina signup
 app.get('/error-signup', (req, res) => {
     res.send(errore_signup);
 });
 
+// pagina profilo
 app.get("/profilo", restrict, (req,res) => {
     if(req.query.id) {
         console.log("profilo ricevuto: "+req.query.id);
@@ -200,15 +204,49 @@ app.get("/profilo", restrict, (req,res) => {
     }
 });
 
+// pagina scoreboadr
+app.get("/scoreboard",restrict, (req,res) => {
+    res.sendFile(path.join(__dirname, "static/templates/scoreboard/scoreboard.html"));
+});
+
+// pagina challenges
 app.get("/challenges", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
 });
 
+// serve per mandare le singole challenge o i file scaricabili delle challenge
+app.get('/challenge', restrict, (req, res) => {
+    var challenge;
+    if (req.query.file){
+        challenge = "static/templates/challenge/" + req.query.challenge + "/" + req.query.file;
+    }
+    else{
+        challenge = "static/templates/challenge/" + req.query.challenge + "/index.html";
+    }
+    res.sendFile(path.join(__dirname, challenge));
+});
+
+// pagina login
 app.get("/login", (req,res) => {
     console.log(errore_login);
     res.sendFile(path.join(__dirname, "static/templates/login/login.html"));
 });
 
+// pagina signup
+app.get("/signup", (req,res) => {
+    res.sendFile(path.join(__dirname, "static/templates/signup/signup.html"));
+});
+
+// logout
+app.get("/logout", (req,res) => {
+    req.session.destroy(function() {
+	    res.redirect("/");
+	});
+});
+
+/***************************FUNZIONI POST PATH************************************************************************************************************************************************************/
+
+// effettua il login 
 app.post("/login", (req,res,next) => {
     if (!req.body.email || !req.body.password) {
         errore_login = "Inserire email e password";
@@ -216,7 +254,6 @@ app.post("/login", (req,res,next) => {
     }
     else {
         authenticate(req.body.email, req.body.password, (err, user) => {
-            //if (err) { return next(err); }
 		    if (user) {
                 req.session.regenerate(function(err) {
                     req.session.user = user;
@@ -232,12 +269,7 @@ app.post("/login", (req,res,next) => {
 	}
 });
 
-
-app.get("/signup", (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/signup/signup.html"));
-});
-
-
+// effettua il signup
 app.post("/signup", (req,res) => {
     if (!req.body.username  || !req.body.email || !req.body.password || !req.body.password2) {
 	    errore_signup = "Compilare tutti i campi";
@@ -262,22 +294,16 @@ app.post("/signup", (req,res) => {
 });
 
 
-app.get("/logout", (req,res) => {
-    req.session.destroy(function() {
-	    res.redirect("/");
-	});
-});
+/***************************FUNZIONI AUSILIARIE************************************************************************************************************************************************************/
 
-app.get("/scoreboard",restrict, (req,res) => {
-    res.sendFile(path.join(__dirname, "static/templates/scoreboard/scoreboard.html"));
-});
-
+// prende lo score totale di ogni utente
 app.get("/load_table",(req,res) => {
     db.query("SELECT id_utente,sum(case when timestamp_flag is not NULL then score else 0 end)-50*count(timestamp_hint) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc").then( (result)=> {
         res.send(result.rows);
     });
 });
 
+// prende lo score per categoria di ogni utente
 app.get("/order_by_category",(req,res) => {
     const cat = req.query.category;
     if(cat=="All categories") {
@@ -291,6 +317,8 @@ app.get("/order_by_category",(req,res) => {
         });
     }
 });
+
+// invia una email per avere dei feedback
 app.post('/send-email', function(req, res) {
     let transporter = nodemailer.createTransport({
         host: 'smtp.outlook.com',
@@ -321,23 +349,7 @@ app.post('/send-email', function(req, res) {
         });
 });
 
-// function ensureAuth(req, res, next) {
-//   if (req.session.user) {
-//     next();
-//   } else {
-//     return res.json(401, {error: 'user must be logged in.'});
-//   }
-// }
-
-// app.get("/getUtente", ensureAuth, (req,res) => {
-//     var email = req.session.user;
-//     db.query("SELECT * FROM utenti WHERE email = $1", [email])
-// 		.then(result => {
-// 			res.status(200).json(result.rows);
-// 		}).catch(e => { console.error(e.stack) });
-// });
-
-
+// connesste il server alla porta 8000
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
     console.log("http://localhost:8000");
