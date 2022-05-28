@@ -1,5 +1,6 @@
 const { Client } = require('pg');
 
+// inserisce utente nel database
 function inserisciUtente(client, username, email, password) {
     const query = {
 	text: 'INSERT INTO utente(username, email, password) VALUES($1, $2, $3)',
