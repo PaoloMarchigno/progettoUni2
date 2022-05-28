@@ -13,6 +13,7 @@ function inserisciUtente(client, username, email, password) {
     });
 }
 
+// controlla se esiste l'utente nel database
 async function controlloSeEsisteUtente(client, email) {
     try {
 	    const query = {
@@ -27,6 +28,7 @@ async function controlloSeEsisteUtente(client, email) {
     }
 }
 
+// ritorna l'hash della password dal database
 async function getPasshash(client, email) {
     try {
 	    const query = {
@@ -41,6 +43,7 @@ async function getPasshash(client, email) {
     return result.rows[0].password;
 }
 
+// inserisce la challenge selezionata tra quelle risolte dall'utente
 function inserisciUtenteChallenge(db, id_challenge ,id_utente, timestamp_flag){
 	checkUtenteChallenge(db, id_challenge ,id_utente).then((res) =>{
 		if (res){
@@ -81,6 +84,7 @@ function inserisciUtenteChallenge(db, id_challenge ,id_utente, timestamp_flag){
 	});
 }
 
+// inserisce l'hint utilizzata tra quelle risolte dall'utente
 function inserisciUtenteHint(db, id_challenge, id_utente, timestamp_hint){
 	checkUtenteChallenge(db, id_challenge ,id_utente).then((res) =>{
 		if (res){
@@ -121,6 +125,7 @@ function inserisciUtenteHint(db, id_challenge, id_utente, timestamp_hint){
 	});
 }
 
+// controlla se un utente ha risolta una challenge
 async function checkUtenteChallenge(db, id_challenge ,id_utente){
 	const query = {
         text: 'SELECT * FROM utente_challenge WHERE id_challenge=$1 and id_utente=$2 ',
