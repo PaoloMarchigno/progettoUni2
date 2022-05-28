@@ -11,13 +11,13 @@
 </head>
 
 <body>
-    <div class="div bg-dark">
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm navig py-2 pb-0 fidex-top">
-            <a class="navbar-brand" href="/" style="color: white; padding-left: 5%;"><img class="logo_flag" src="img/logo.png" style="height: 45px;"></img></a>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light py-2 pb-0 bg-dark"> 
+            <a class="navbar-brand me-0" href="/" style="color: white; padding-left: 4px;"><img class="logo_flag" src="img/logo.png" style="height: 45px;"></img></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarContent,#btn_form" style="margin-right: 5%;">
                     <span class="navbar-toggler-icon" style="filter: invert();"></span>
                 </button>
-            <div class="collapse navbar-collapse justify-content-center w-80" id="NavbarContent">
+            <div class="collapse navbar-collapse justify-content-center" id="NavbarContent">
                 <ul class="nav navbar-nav">
                     <li class="nav-item" role="presentation">
                         <a href="/" class="nav-link fw-bold text-white"><svg name="ic" xmlns="http://www.w3.org/2000/svg"
@@ -26,22 +26,22 @@
                                     d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                                 <path fill-rule="evenodd"
                                     d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
-                            </svg> Home</a>
+                            </svg> <span class="elem">Home</span></a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a href="/scoreboard" class="nav-link fw-bold text-white"><img name="ic"
-                                src="templates/challenges/podium.png" width="26" height="26" style="filter: invert();"> Scoreboard</a>
+                        <a href="/scoreboard" class="nav-link fw-bold text-white">
+                            <img name="ic" src="templates/challenges/podium.png" width="26" height="26" style="filter: invert();"> <span class="elem">Scoreboard</span></a>
                     </li>
                     <li class="nav-item" role="presentation">
                         <a href="/challenges" class="nav-link fw-bold text-white">
-                                <img src="img/icon-flag.png" width="35" height="35">Challenges</a>
+                                <img name="ic" src="templates/homepage/icon-flag.png" width="32" height="32"><span class="elem">Challenges</span></a>
                     </li>
                 </ul>
             </div>
-                <div class="d-lg-flex collapse" id="btn_form" style="padding-right: 5%;">
-                    <a href="/login" id="button_profile" class=" btn  btn-sm rounded-pill" style="background-color: #214a80;color: white;margin-right: 10%;">
+                <div class="d-lg-flex collapse" id="btn_form">
+                    <a href="/login" class="btn btn-prime btn-sm rounded-pill" style="margin-right: 7px;">
                         Login</a>
-                    <a href="/signup"aria-labelledby="logout-popup" class="btn  btn-sm rounded-pill" style="background: #214a80;color: white;"><title id="logout-popup">Logout</title>
+                    <a href="/signup" aria-labelledby="logout-popup" class="btn btn-prime btn-sm rounded-pill" style="margin-right: 6px"><!--title id="logout-popup">Logout</title-->
                         Signup</a>
                 </div>
             </nav>
@@ -49,7 +49,8 @@
     <div class="signup-dark">
     <form method="post">
         <h2 class="visually-hidden">Signup Form</h2>
-        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+        <div align="center"><img src="img/logo.png" width="75%" height="75%"></div>
+        <br><br>
         <div class="form-group mb-3"><input class="form-control" type="text" name="username" placeholder="Username" /></div>
         <div class="form-group mb-3"><input class="form-control" type="email" name="email" placeholder="Email" /></div>
         <div class="form-group mb-3"><input class="form-control" type="password" name="password" placeholder="Password" /></div>

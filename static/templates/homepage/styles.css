@@ -48,7 +48,6 @@ svg[name="ic"],img[name="ic"] {
 
   .format {
     text-shadow: 2px 1px 2px rgb(25, 25, 255);
-    /*border-color: rgb(0,0,255);*/ /*non capisco perché non funziona*/
   }
 
   .bg-edit {
@@ -75,14 +74,6 @@ svg[name="ic"],img[name="ic"] {
     color: #fff;
     box-shadow: 0 0 4px rgba(255, 255, 255, 0.7);
   }
-  
-  /*.login-dark .illustration {
-    text-align: center;
-    padding: 15px 0 20px;       --> Questo serviva per l'iconcina col lucchetto, ma fa schifo
-                                    ci mettiamo il nostro logo >>
-    font-size: 100px;
-    color: #ef2929;
-  }*/
   
   .login-dark form .form-control {
     background: none;
