@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="templates/homepage/styles.css">
     <link rel="stylesheet" href="css/Contact-Details.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 
@@ -47,10 +48,10 @@
             </div>
    
                 <div class="d-lg-flex collapse" id="btn_form">
-                    <a href="/login" id="button_profile" class=" btn btn-prime btn-sm rounded-pill" style="margin-right: 7px;">
+                    <!-- <a href="/login" id="button_profile" class=" btn btn-prime btn-sm rounded-pill" style="margin-right: 7px;">
                         Login</a>
                     <a href="/signup" class="btn btn-prime btn-sm rounded-pill" style="margin-right: 6px;" aria-labelledby="logout-popup"><title id="logout-popup">Logout</title>
-                        Signup</a>
+                        Signup</a> -->
                 </div>
         </nav>
     </div>
@@ -116,9 +117,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bs-init.js"></script>
+    <script src="templates/homepage/script.js"></script>
     <script>
     window.addEventListener('load', (event) => {
-            centra_nav();
+        getNameBtn();
+        centra_nav();
     });
     window.addEventListener('resize', (event) => {
         centra_nav();
