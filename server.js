@@ -306,7 +306,7 @@ app.get("/load_table",(req,res) => {
 // prende lo score per categoria di ogni utente
 app.get("/order_by_category",(req,res) => {
     const cat = req.query.category;
-    if(cat=="All categories") {
+    if(cat=="-1") {
         db.query("SELECT id_utente,sum(case when timestamp_flag is not NULL then score else 0 end)-50*count(timestamp_hint) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc").then( (result)=> {
             res.send(result.rows);
         }); 
