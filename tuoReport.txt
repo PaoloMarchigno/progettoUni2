@@ -13,14 +13,16 @@ Il server del nostro sito è scritto in nodejs, ed è suddiviso in 6 sezioni:
     - L'ultima parte riguarda alcune funzioni ausiliarie, come quella dedicata all'invio di una email di feedback.
 
 
-Il batabase è di tipo PostgreSQL ed è formato da tre tabelle, come descritto nel file db/database_layout.txt:
+Il database è di tipo PostgreSQL ed è formato da tre tabelle, come descritto nel file db/database_layout.txt:
     - utente
     - challenge
     - utente_challenge
 La prima è formata dalle informazioni base dell'utente e ha come chiave primaria l'username, la seconda contiente informazioni riguardo ogni singola challenge ed ha come chiave primaria l'id della stessa. 
 La tabella utente_challenge ha una duplice chiave primaria formata dall'username di un utente e l'id di una challenge; in quest'ultima vengono salvate i timestamp della risoluzione della challenge e della richiesta dell'hint utilizzati da ogni singolo utente.
 
+
 Lo sfondo utilizzato nella pagina delle challenge, situato in static/js/sfondo.js, è uno script js che permette di avere un background dinamico costituito da linee colorate che si muovono pseudo-randomicamente.
+
 
 Per le cards delle challenge vengono utilizzate varie funzioni in successione, le quali fanno richieste al server tramite XMLHttpRequest. 
 Prende tutte le categorie e per ogni categoria crea un carosello contentente tutte le challenge ad essa appartenenti. Dopo aver disposto tutte le cards, colora di verde quelle già risolte dall'utente di sessione e viene preso il nome dell'utente e messo vicino al pulsante profilo.
