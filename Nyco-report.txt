@@ -1,0 +1,39 @@
+Args: 
+        - homepage          [x] 
+        - login/signup      []
+        - challenge singole []
+-----------------------------------------------------
+   _______________
+  /               \
+ |     Homepage    |
+  \_______________/___________________________________________________________________________________________________________
+Flagify è una piattaforma che nasce con l'intento di testare le proprie skill nella risoluzione di problemi di
+Cybersecurity di vario genere: Web Security, Reverse Engineering, Cryptography, Binary Exploitation,
+Software Security, e altre ancora.
+
+La parte interessante da commentare della nostra homepage è il form, fatto per permettere agli utenti,
+di interagire con coloro che mantengono il sito (cioè noi). 
+Compilando i tre campi di questo form (suo indirizzo email, oggetto della mail, corpo) l'utente può mandarci un'email: 
+questo servizio è stato gestito tramite un'apposita funzione scritta in nodejs che sostanzialmente consente di "auto-inviare"
+un'email al nostro indirizzo 'flagify@outlook.it'. Un'altra funzione da commentare nella cartella homepage è quella nel file
+'script.js' che serve per avere in alto a destra il nome dell'utente attualmente loggato al posto dei pulsanti che si trovano
+quando si accede inizialmente al sito (Login/Signup).
+
+--------------------------------------------------------------------------------------------------------------------------------
+  ___________________
+ /                   \
+|    Login/Signup     |
+ \___________________/___________________________________________________________________________________________________________
+I pulsanti di Login e Signup reindirizzano rispettivamente alle pagine di login, in cui un utente già registrato può accedere al
+al proprio profilo, e di signup, in cui un utente nuovo si può registrare.
+Sia per il login che per il signup viene gestito il caso in cui l'utente sbagli e-mail, password, o inserisca password che non 
+corrispondono, mostrando una stringa d'errore.
+
+---------------------------------------------------------------------------------------------------------------------------------
+  _______________
+ /               \
+|    Challenge    |
+ \_______________/________________________________________________________________________________________________________________
+ Nella cartella 'challenge' vi sono tutte le challenge presenti sul sito.
+ In particolare, i file relativi alle varie challenge che si possono scaricare dal sito vengono presi da qui, passati come
+ parametri in una richiesta di tipo GET.
