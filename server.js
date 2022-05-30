@@ -49,7 +49,7 @@ app.use(function(req, res, next) {
 
 // funzione di autenticazione 
 function authenticate(email, pass, fn) {
-    utente.controlloSeEsisteUtente(db, email).then( (check) => {
+    utente.controllo_se_esiste_utente(db, email).then( (check) => {
         if (!check) {
             return fn(null,null);
         }
@@ -116,7 +116,7 @@ app.get('/getFlag', restrict, (req,res) => {
 app.get('/getHint', restrict, (req,res) => {
     var id = req.query.id;
     db.query("SELECT hint FROM challenge WHERE id = $1", [id.toString()]).then( (result) => {
-        utente.inserisciUtenteHint(db, id, req.session.user.username, req.query.timestamp);
+        utente.inserisci_utente_hint(db, id, req.session.user.username, req.query.timestamp);
         res.send(result.rows[0].hint);
     });
     
@@ -170,7 +170,7 @@ app.get('/info-profile-utente', restrict, (req, res) => {
 app.post('/addUtenteChall', restrict, (req, res) => {
     var id = req.query.id;
     var timestamp_flag = req.query.timestamp;
-    utente.inserisciUtenteChallenge(db, id, req.session.user.username, timestamp_flag);
+    utente.inserisci_utente_challenge(db, id, req.session.user.username, timestamp_flag);
     res.redirect('/challenges');
 });
 
@@ -279,13 +279,13 @@ app.post("/signup", (req,res) => {
 	    errore_signup = "Le password non coincidono";
 	    return res.redirect("/signup");
 	}
-    const result = utente.controlloSeEsisteUtente(db, req.body.email);
+    const result = utente.controllo_se_esiste_utente(db, req.body.email);
     if (result == true) {
         errore_signup = "Utente già registrato";
 	    return res.redirect("/signup");
     }
     errore_signup = '';
-    utente.inserisciUtente(db, req.body.username, req.body.email, bcrypt.hashSync(req.body.password, 10));
+    utente.inserisci_utente(db, req.body.username, req.body.email, bcrypt.hashSync(req.body.password, 10));
     req.session.success = "Registrazione avvenuta con successo";
     req.session.regenerate(function() {
         req.session.user = {username: req.body.username, email: req.body.email};

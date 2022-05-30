@@ -1,7 +1,7 @@
 const { Client } = require('pg');
 
 // inserisce utente nel database
-function inserisciUtente(client, username, email, password) {
+function inserisci_utente(client, username, email, password) {
     const query = {
 	text: 'INSERT INTO utente(username, email, password) VALUES($1, $2, $3)',
 	values: [username, email, password]
@@ -14,7 +14,7 @@ function inserisciUtente(client, username, email, password) {
 }
 
 // controlla se esiste l'utente nel database
-async function controlloSeEsisteUtente(client, email) {
+async function controllo_se_esiste_utente(client, email) {
     try {
 	    const query = {
 	        text: 'SELECT * FROM utente WHERE email = $1',
@@ -28,24 +28,10 @@ async function controlloSeEsisteUtente(client, email) {
     }
 }
 
-// ritorna l'hash della password dal database
-async function getPasshash(client, email) {
-    try {
-	    const query = {
-	        text: 'SELECT password FROM utente WHERE email = $1',
-	        values: [email]
-	    };
-	    var result = await client.query(query);
-    } catch (err) {
-	    console.log(err.stack);
-		process.exit(1);
-    }
-    return result.rows[0].password;
-}
 
 // inserisce la challenge selezionata tra quelle risolte dall'utente
-function inserisciUtenteChallenge(db, id_challenge ,id_utente, timestamp_flag){
-	checkUtenteChallenge(db, id_challenge ,id_utente).then((res) =>{
+function inserisci_utente_challenge(db, id_challenge ,id_utente, timestamp_flag){
+	check_utente_challenge(db, id_challenge ,id_utente).then((res) =>{
 		if (res){
 			var esiste_flag = res.timestamp_flag;
 			var esiste_hint = res.timestamp_hint;
@@ -85,8 +71,8 @@ function inserisciUtenteChallenge(db, id_challenge ,id_utente, timestamp_flag){
 }
 
 // inserisce l'hint utilizzata tra quelle risolte dall'utente
-function inserisciUtenteHint(db, id_challenge, id_utente, timestamp_hint){
-	checkUtenteChallenge(db, id_challenge ,id_utente).then((res) =>{
+function inserisci_utente_hint(db, id_challenge, id_utente, timestamp_hint){
+	check_utente_challenge(db, id_challenge ,id_utente).then((res) =>{
 		if (res){
 			var esiste_flag = res.timestamp_flag;
 			var esiste_hint = res.timestamp_hint;
@@ -126,7 +112,7 @@ function inserisciUtenteHint(db, id_challenge, id_utente, timestamp_hint){
 }
 
 // controlla se un utente ha risolta una challenge
-async function checkUtenteChallenge(db, id_challenge ,id_utente){
+async function check_utente_challenge(db, id_challenge ,id_utente){
 	const query = {
         text: 'SELECT * FROM utente_challenge WHERE id_challenge=$1 and id_utente=$2 ',
         values: [id_challenge ,id_utente]
@@ -136,9 +122,8 @@ async function checkUtenteChallenge(db, id_challenge ,id_utente){
 };
 
 
-exports.inserisciUtente = inserisciUtente;
-exports.controlloSeEsisteUtente = controlloSeEsisteUtente;
-exports.getPasshash = getPasshash;
-exports.inserisciUtenteChallenge = inserisciUtenteChallenge;
-exports.checkUtenteChallenge = checkUtenteChallenge;
-exports.inserisciUtenteHint = inserisciUtenteHint;
+exports.inserisci_utente = inserisci_utente;
+exports.controllo_se_esiste_utente = controllo_se_esiste_utente;
+exports.inserisci_utente_challenge = inserisci_utente_challenge;
+exports.check_utente_challenge = check_utente_challenge;
+exports.inserisci_utente_hint = inserisci_utente_hint;
