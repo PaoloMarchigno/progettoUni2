@@ -12,3 +12,92 @@ tom:
     db
     challenges/js backend
     sfondo
+
+
+NICO
+
+Args: 
+        - homepage          [x] 
+        - login/signup      []
+        - challenge singole []
+-----------------------------------------------------
+   _______________
+  /               \
+ |     Homepage    |
+  \_______________/___________________________________________________________________________________________________________
+Flagify è una piattaforma che nasce con l'intento di testare le proprie skill nella risoluzione di problemi di
+Cybersecurity di vario genere: Web Security, Reverse Engineering, Cryptography, Binary Exploitation,
+Software Security, e altre ancora.
+
+La parte interessante da commentare della nostra homepage è il form, fatto per permettere agli utenti,
+di interagire con coloro che mantengono il sito (cioè noi). 
+Compilando i tre campi di questo form (suo indirizzo email, oggetto della mail, corpo) l'utente può mandarci un'email: 
+questo servizio è stato gestito tramite un'apposita funzione scritta in nodejs che sostanzialmente consente di "auto-inviare"
+un'email al nostro indirizzo 'flagify@outlook.it'. Un'altra funzione da commentare nella cartella homepage è quella nel file
+'script.js' che serve per avere in alto a destra il nome dell'utente attualmente loggato al posto dei pulsanti che si trovano
+quando si accede inizialmente al sito (Login/Signup).
+
+--------------------------------------------------------------------------------------------------------------------------------
+  ___________________
+ /                   \
+|    Login/Signup     |
+ \___________________/___________________________________________________________________________________________________________
+I pulsanti di Login e Signup reindirizzano rispettivamente alle pagine di login, in cui un utente già registrato può accedere al
+al proprio profilo, e di signup, in cui un utente nuovo si può registrare.
+Sia per il login che per il signup viene gestito il caso in cui l'utente sbagli e-mail, password, o inserisca password che non 
+corrispondono, mostrando una stringa d'errore.
+
+---------------------------------------------------------------------------------------------------------------------------------
+  _______________
+ /               \
+|    Challenge    |
+ \_______________/________________________________________________________________________________________________________________
+ Nella cartella 'challenge' vi sono tutte le challenge presenti sul sito.
+ In particolare, i file relativi alle varie challenge che si possono scaricare dal sito vengono presi da qui, passati come
+ parametri in una richiesta di tipo GET.
+
+
+ EDO
+
+Nella cartella scoreboard sono presenti:
+	-file scoreboard.html:
+		utilizza una table bootstrap che mostra la classifica degli utenti e dispone delle seguenti funzionalità:
+			-Filter: selezionando una categoria del form-select e cliccando sul bottone Filter viene mostrata la scoreboard relativa alla categoria selezionata.
+			-link-profilo-utente:
+				 è possibile cliccare sui nomi utenti presenti e visualizzare i relativi profili e statistiche in quanto al click l'id dell'utente viene passato tramite URL e mostrata la pagina \profilo\profilo.html che eseguendo degli script presenti in scoreboard\profilo\functions.js richiede i dati al server e li carica.
+	-cartella Profilo che contiene i dati per implementare la  seconda funzionalità della scoreboard sopra descritta.
+	-style.css(stile della scoreboard)
+	-functions.js: contiene le funzioni necessarie al caricamento della scoreboard, i dati vengono richiesti al server con delle GET XMLhttpRequest.
+
+
+THO
+
+Args:
+    -server
+    -db
+    -challenges/js backend
+    -sfondo
+
+Il server del nostro sito è scritto in nodejs, ed è suddiviso in 6 sezioni: 
+    - La prima sezione è riservata alle impostazioni per l'utilizzo del backend node e ad alcune funzioni come "restrict" per permettere l'accesso ad alcune pagine solo agli utenti loggati.
+    - La seconda serve per prendere le informazioni relative alle challenge dal database, come il titolo, la descrizione, la flag e tanto altro.
+    - La terza si focalizza sul prendere le informazioni relative agli utenti dal database, come l'username, l'email e le statistiche calcolate tramite query apposite.
+    - La quarta sezione reindirizza l'utente alle path che vuole raggiungere. Es: /homepage o /challenges.
+    - La quinta è riservata alle funzioni post del login e del signup che comunicano direttamente col database e salvano le modifiche effettuate all'utente.
+    - L'ultima parte riguarda alcune funzioni ausiliarie, come quella dedicata all'invio di una email di feedback.
+
+
+Il database è di tipo PostgreSQL ed è formato da tre tabelle, come descritto nel file db/database_layout.txt:
+    - utente
+    - challenge
+    - utente_challenge
+La prima è formata dalle informazioni base dell'utente e ha come chiave primaria l'username, la seconda contiente informazioni riguardo ogni singola challenge ed ha come chiave primaria l'id della stessa. 
+La tabella utente_challenge ha una duplice chiave primaria formata dall'username di un utente e l'id di una challenge; in quest'ultima vengono salvate i timestamp della risoluzione della challenge e della richiesta dell'hint utilizzati da ogni singolo utente.
+
+
+Lo sfondo utilizzato nella pagina delle challenge, situato in static/js/sfondo.js, è uno script js che permette di avere un background dinamico costituito da linee colorate che si muovono pseudo-randomicamente.
+
+
+Per le cards delle challenge vengono utilizzate varie funzioni in successione, le quali fanno richieste al server tramite XMLHttpRequest. 
+Prende tutte le categorie e per ogni categoria crea un carosello contentente tutte le challenge ad essa appartenenti. Dopo aver disposto tutte le cards, colora di verde quelle già risolte dall'utente di sessione e viene preso il nome dell'utente e messo vicino al pulsante profilo.
+Successivamente quando si clicca su una card, viene mostrato un modal che prende le informazioni della challenge da far vedere dal server. 
