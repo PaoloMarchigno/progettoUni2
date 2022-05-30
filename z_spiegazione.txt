@@ -2,6 +2,7 @@ dividiamo
 edo: 
     scoreboard
     challenges/html frontend
+    profilo
 nico:
     home
     login/signup
