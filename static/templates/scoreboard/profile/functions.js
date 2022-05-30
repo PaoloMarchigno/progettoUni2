@@ -1,11 +1,9 @@
 
-
+/*************************richiede i dati dell'utente cliccato sulla scoreboard al server*******/
 function getStatisctics(){
-    //console.log(window.location.search);
     const param = new URLSearchParams(window.location.search);
-    var id="";
-    if (param.has('id')) id = param.get('id');
-    console.log("parso l'url: "+id);
+    var id=""; //<id_URL> 
+    if (param.has('id')) id = param.get('id');//parso dall'URL l'id dell'utente cliccato sulla scoreboard 
     var xhttp = new XMLHttpRequest();
     var score_flag_tot = 0;
     var score_hint_tot = 0;
@@ -33,33 +31,27 @@ function getStatisctics(){
             console.log(score_flag_tot, score_hint_tot, total_score);
         }
     };
-    xhttp.open("GET", '/info-profile-statistics?id='+id, false);
+    xhttp.open("GET", '/info-profile-statistics?id='+id, false);//richiedo al server le statistiche dell'utente con id=<id_URL>
     xhttp.send();
 
     var xhttp2 = new XMLHttpRequest();
     xhttp2.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var res = JSON.parse(this.responseText)[0];
-            //console.log(res);
             $(".user-info").append('<tr><td>' + 'Username' +'</td><td>'+res.username+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Score flag point' +'</td><td>'+score_flag_tot+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Use hint point' +'</td><td>'+score_hint_tot+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Total score' +'</td><td>'+total_score+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Challenge risolte' +'</td><td>'+n_solved_chal+ "/" + res.tot_challenges+'</td></li>');
-            // $(".user-info").append("Username:\t"+ res.username+"<br>");
-            // $(".user-info").append("Email:\t"+ res.email+"<br>");
-            // $(".user-info").append("Score flag point:\t"+ score_flag_tot+"<br>");
-            // $(".user-info").append("Use hint point:\t"+ score_hint_tot+"<br>");
-            // $(".user-info").append("Total score:\t"+ total_score+"<br>");
-            // $(".user-info").append("Challenge risolte:\t"+ n_solved_chal+ "/" + res.tot_challenges +"<br>");
+           
         }
     }
-    xhttp2.open("GET", '/info-profile-utente?id='+id, false);
+    xhttp2.open("GET", '/info-profile-utente?id='+id, false);//richiedo al server i dati relativi al profilo dell'utente
     xhttp2.send();
  }
 
 
-function getNameBtn(){
+function getNameBtn(){ /********inserisce il nome dell'utente loggato nel bottone del profilo */
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
