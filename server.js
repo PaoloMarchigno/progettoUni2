@@ -14,6 +14,7 @@ try{require("dotenv").config();}catch(e){console.log(e);}
 
 const app = express();
 
+// connessione col databse
 const db = database.db;
 db.connect( (err) => {
     if (err) {
@@ -23,7 +24,7 @@ db.connect( (err) => {
 	}
 });
 
-// impostazioni per l'utilizzo del backend
+// impostazioni per l'utilizzo del backend node
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "static")));
 app.use(body_parser.urlencoded({ extended: true }));
@@ -36,16 +37,6 @@ app.use(session({
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
 
-app.use(function(req, res, next) {
-    var err = req.session.error;
-    var msg = req.session.success;
-    delete req.session.error;
-    delete req.session.success;
-    res.locals.message = "";
-    if (err) res.locals.message = '<p class="msg error">' + err + '</p>';
-    if (msg) res.locals.message = '<p class="msg success">' + msg + '</p>';
-    next();
-});
 
 // funzione di autenticazione 
 function authenticate(email, pass, fn) {
