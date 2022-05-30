@@ -249,7 +249,7 @@ app.get("/logout", (req,res) => {
 // effettua il login 
 app.post("/login", (req,res,next) => {
     if (!req.body.email || !req.body.password) {
-        errore_login = "Inserire email e password";
+        errore_login = "Enter your email and password";
 	    res.redirect("/login");
     }
     else {
@@ -262,7 +262,7 @@ app.post("/login", (req,res,next) => {
 				});   
 			}
 		    else {
-                errore_login = "Email o password errati";
+                errore_login = "Incorrect email or password";
 				res.redirect("/login");
 			}
 		});
@@ -272,21 +272,21 @@ app.post("/login", (req,res,next) => {
 // effettua il signup
 app.post("/signup", (req,res) => {
     if (!req.body.username  || !req.body.email || !req.body.password || !req.body.password2) {
-	    errore_signup = "Compilare tutti i campi";
+	    errore_signup = "Fill in all fields";
 	    return res.redirect("/signup");
 	}
 	if (req.body.password !== req.body.password2) {
-	    errore_signup = "Le password non coincidono";
+	    errore_signup = "Passwords do not match";
 	    return res.redirect("/signup");
 	}
     const result = utente.controllo_se_esiste_utente(db, req.body.email);
     if (result == true) {
-        errore_signup = "Utente già registrato";
+        errore_signup = "User already registered";
 	    return res.redirect("/signup");
     }
     errore_signup = '';
     utente.inserisci_utente(db, req.body.username, req.body.email, bcrypt.hashSync(req.body.password, 10));
-    req.session.success = "Registrazione avvenuta con successo";
+    req.session.success = "Registration was successful";
     req.session.regenerate(function() {
         req.session.user = {username: req.body.username, email: req.body.email};
 	    res.redirect("/challenges");
