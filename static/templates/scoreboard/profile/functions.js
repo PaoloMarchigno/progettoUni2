@@ -29,6 +29,7 @@ function getStatisctics(){
                 }
             }
             total_score = score_flag_tot-score_hint_tot;
+            score_hint_tot = score_hint_tot/50;
             
             console.log(score_flag_tot, score_hint_tot, total_score);
         }
@@ -42,10 +43,10 @@ function getStatisctics(){
             var res = JSON.parse(this.responseText)[0];
             //console.log(res);
             $(".user-info").append('<tr><td>' + 'Username' +'</td><td>'+res.username+'</td></li>');
-            $(".user-info").append('<tr><td>' + 'Score flag point' +'</td><td>'+score_flag_tot+'</td></li>');
-            $(".user-info").append('<tr><td>' + 'Use hint point' +'</td><td>'+score_hint_tot+'</td></li>');
+            $(".user-info").append('<tr><td>' + 'Challenge points' +'</td><td>'+score_flag_tot+'</td></li>');
+            $(".user-info").append('<tr><td>' + 'Hint used' +'</td><td>'+score_hint_tot+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Total score' +'</td><td>'+total_score+'</td></li>');
-            $(".user-info").append('<tr><td>' + 'Challenge risolte' +'</td><td>'+n_solved_chal+ "/" + res.tot_challenges+'</td></li>');
+            $(".user-info").append('<tr><td>' + 'Solved challenges' +'</td><td>'+n_solved_chal+ "/" + res.tot_challenges+'</td></li>');
             // $(".user-info").append("Username:\t"+ res.username+"<br>");
             // $(".user-info").append("Email:\t"+ res.email+"<br>");
             // $(".user-info").append("Score flag point:\t"+ score_flag_tot+"<br>");
