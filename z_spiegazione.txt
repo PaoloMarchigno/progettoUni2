@@ -1,0 +1,13 @@
+dividiamo
+edo: 
+    scoreboard
+    challenges/html frontend
+nico:
+    home
+    login/signup
+    challenge singole
+tom:
+    server
+    db
+    challenges/js backend
+    sfondo
