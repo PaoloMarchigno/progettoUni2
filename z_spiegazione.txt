@@ -58,16 +58,16 @@ corrispondono, mostrando una stringa d'errore.
 
 
  EDO
-
-Nella cartella scoreboard sono presenti:
-	-file scoreboard.html:
-		utilizza una table bootstrap che mostra la classifica degli utenti e dispone delle seguenti funzionalità:
-			-Filter: selezionando una categoria del form-select e cliccando sul bottone Filter viene mostrata la scoreboard relativa alla categoria selezionata.
-			-link-profilo-utente:
-				 è possibile cliccare sui nomi utenti presenti e visualizzare i relativi profili e statistiche in quanto al click l'id dell'utente viene passato tramite URL e mostrata la pagina \profilo\profilo.html che eseguendo degli script presenti in scoreboard\profilo\functions.js richiede i dati al server e li carica.
-	-cartella Profilo che contiene i dati per implementare la  seconda funzionalità della scoreboard sopra descritta.
-	-style.css(stile della scoreboard)
-	-functions.js: contiene le funzioni necessarie al caricamento della scoreboard, i dati vengono richiesti al server con delle GET XMLhttpRequest.
+Tutte le pagine sono responsive in particolare abbiamo utilizzato dei breakpoint per il carosello,le classi bootstrap del component Collapse per la navbar,responsive grid e table per le pagine profilo e scoreboard
+La scoreboard realizzata mediante una table bootstrap  mostra la classifica degli utenti e dispone delle seguenti funzionalità:
+			-Filter: 
+                selezionando una categoria del form-select e cliccando sul bottone Filter viene mostrata la scoreboard relativa alla categoria selezionata.
+			-Link-profilo-utente:
+				è possibile cliccare sui nomi utenti presenti (evidenziati in viola) e visualizzare i relativi profili e statistiche in quanto al click l'id dell'utente viene passato tramite URL e mostrata la pagina \profilo\profilo.html che eseguendo degli script presenti in scoreboard\profilo\functions.js richiede i dati al server e li carica.
+La cartella profile contenuta in templates\scoreboard  contiene i dati per implementare la  seconda funzionalità della scoreboard sopra descritta
+in particolare il file functions.js fornisce le funzioni necessarie al caricamento della scoreboard, i dati vengono richiesti al server con delle GET XMLHttpRequest.
+In questo modo ogni utente accedendo alla scoreboard potrà vedere tutte le statistiche e parte delle informazioni degli altri utenti in quanto l'email per ragioni di privacy non è presente. 
+La struttura della cartella templates\profile è analoga a scoreboard\profile e consente di visualizzare il profilo completo dell'utente di sessione mostrando anche la relativa email.
 
 
 THO
@@ -101,3 +101,4 @@ Lo sfondo utilizzato nella pagina delle challenge, situato in static/js/sfondo.j
 Per le cards delle challenge vengono utilizzate varie funzioni in successione, le quali fanno richieste al server tramite XMLHttpRequest. 
 Prende tutte le categorie e per ogni categoria crea un carosello contentente tutte le challenge ad essa appartenenti. Dopo aver disposto tutte le cards, colora di verde quelle già risolte dall'utente di sessione e viene preso il nome dell'utente e messo vicino al pulsante profilo.
 Successivamente quando si clicca su una card, viene mostrato un modal che prende le informazioni della challenge da far vedere dal server. 
+
