@@ -2,10 +2,12 @@
 
 Flagify is a platform in which you can test your skills in solving cybersecurity challenges of several topics,
 such as:
+
 * Web Security
 * Reverse Engineering
 * Cryptography
 * Binary Exploitation
+* Software Security
 
 We're looking forward to implement our platform to make it available online.
 
