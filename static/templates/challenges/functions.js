@@ -31,7 +31,7 @@ function show_done_challenge() {
           }
         }
     }
-    xhttp.open("GET", "/challenge_done", true);
+    xhttp.open("GET", "/challenge_done", false);
     xhttp.send();
 }
 
