@@ -31,7 +31,7 @@ function show_done_challenge() {
           }
         }
     }
-    xhttp.open("GET", "/challenge_done", false);
+    xhttp.open("GET", "/challenge_done", true);
     xhttp.send();
 }
 
@@ -77,6 +77,32 @@ function show_modal(id) {
     xhttp.send();
 }
 
+function show_caruosel(){
+    $('.owl-carousel').owlCarousel({
+        autoplay: true,
+        autoplayhoverpause: true,
+        autotimeout: 250,
+        loop: true,
+        margin: 0,
+        responsiveClass: true,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 1,
+                nav: true
+            },
+            992: {
+                items: 2,
+                nav: false
+            },
+            1200: {
+                items: 3,
+                nav: true,
+                loop: true
+            }
+        }
+    });
+}
 
 // mostra tutte le card delle challenge presenti nel database
 
@@ -97,10 +123,11 @@ function show_all_cards(){
             for(i=0;i<card_list.length;i++) {
                   card_list[i].setAttribute('data-bs-toggle','modal');
                   card_list[i].setAttribute('data-bs-target','#myModal');
-            }         
+            }
+            show_caruosel();         
         }          
     }
-    xhttp.open("GET", "/get_categories", false);
+    xhttp.open("GET", "/get_categories", true);
     xhttp.send();
 }
 
@@ -135,7 +162,7 @@ function check_flag(id){
         if (this.readyState == 4 && this.status == 200) {
           right_flag = this.responseText;       }
     }
-    xhttp.open("GET", "/getFlag?id="+ id, false);
+    xhttp.open("GET", "/getFlag?id="+ id, true);
     xhttp.send();
     var flag = document.getElementById('flag_response').value;
     if (flag == right_flag){
@@ -158,7 +185,7 @@ function aggiungereUtenteChallenge(id){
     date += " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {}};
-    xhttp.open("POST", "/addUtenteChall?id="+ id + "&timestamp=" + date, false);
+    xhttp.open("POST", "/addUtenteChall?id="+ id + "&timestamp=" + date, true);
     xhttp.send();
 }
 
@@ -179,7 +206,7 @@ function confirmHint(){
           document.getElementById('hint_btn').style.borderColor = "#28a745";
         }
     }
-    xhttp.open("GET", "/getHint?id="+ id + "&timestamp=" + date, false);
+    xhttp.open("GET", "/getHint?id="+ id + "&timestamp=" + date, true);
     xhttp.send();
     show_done_challenge();
 }
