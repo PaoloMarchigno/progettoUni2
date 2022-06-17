@@ -162,7 +162,7 @@ function check_flag(id){
         if (this.readyState == 4 && this.status == 200) {
           right_flag = this.responseText;       }
     }
-    xhttp.open("GET", "/getFlag?id="+ id, true);
+    xhttp.open("GET", "/getFlag?id="+ id, false);
     xhttp.send();
     var flag = document.getElementById('flag_response').value;
     if (flag == right_flag){
@@ -185,7 +185,7 @@ function aggiungereUtenteChallenge(id){
     date += " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {}};
-    xhttp.open("POST", "/addUtenteChall?id="+ id + "&timestamp=" + date, true);
+    xhttp.open("POST", "/addUtenteChall?id="+ id + "&timestamp=" + date, false);
     xhttp.send();
 }
 
@@ -206,7 +206,7 @@ function confirmHint(){
           document.getElementById('hint_btn').style.borderColor = "#28a745";
         }
     }
-    xhttp.open("GET", "/getHint?id="+ id + "&timestamp=" + date, true);
+    xhttp.open("GET", "/getHint?id="+ id + "&timestamp=" + date, false);
     xhttp.send();
     show_done_challenge();
 }
