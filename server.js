@@ -10,9 +10,18 @@ const utente = require("./utente");
 const res = require("express/lib/response");
 const { Router } = require("express");
 const nodemailer = require("nodemailer");
+const puppeteer = require('puppeteer')
+const fs = require('fs')
+var vhost = require('vhost');
+
+
+
+
 try{require("dotenv").config();}catch(e){console.log(e);}
 
-const app = express();
+const app = express()
+app.use(vhost('pp', require('./path/to/m')));
+//app.use(vhost('sync.mysite.com', require('./path/to/sync')))
 
 // connessione col databse
 const db = database.db;
@@ -26,7 +35,7 @@ db.connect( (err) => {
 
 // impostazioni per l'utilizzo del backend node
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "static")));
+app.use(express.static(path.join(__dirname, "/static")));
 app.use(body_parser.urlencoded({ extended: true }));
 app.use(body_parser.json());
 app.use(session({
@@ -37,19 +46,109 @@ app.use(session({
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
 
+//funzione per il report pdf 
 
+const main = async (json) => {
+
+     
+ 
+  
+      const browser = await puppeteer.launch({ headless: true });
+      const page = await browser.newPage();
+      
+    
+
+
+    fs.writeFile("./prova3.html", `<!DOCTYPE html> 
+    '<html lang="en">'+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=
+   
+   , initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body id="5">
+   
+   <a >prova</a> \n` + json.test +"\n" + json.prova2+"\n" + json.prova3 +`
+   <embed type="text/html" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt">
+   </body>
+</html>`, function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("The file was saved!");
+  }); 
+    
+   await page.goto("file:///C:/Users/Paolo/Documents/ctf_project/prova3.html", {waitUntil: 'networkidle0'});
+   
+    const pdf = await page.pdf({ path: './prova.pdf', format: 'A4' });
+    
+ }
+
+
+app.post('/info-pdf', async function (req, res) {
+        console.log( "eccolo" + req.body)
+       
+        console.log(req.body)
+        const pdf = await main(req.body);
+      
+        console.log("prova")
+        res.send("ok")
+       
+     
+});
+
+app.get('/info-pdf', async function (req, res) {
+    console.log( "eccolo" + req.body)
+   
+
+    res.download(__dirname + '/prova.pdf', 'prova.pdf');
+ 
+ 
+});
+
+
+
+
+
+
+//funzione che controlla problematiche sul campo password 
+function controlPassword(password) 
+{   console.log(password.toLowerCase().includes("insert") || password.toLowerCase().includes("delete") || password.toLowerCase().includes("union"))
+    return password.toLowerCase().includes("insert") ||  password.toLowerCase().includes("update") || password.toLowerCase().includes("delete") || password.toLowerCase().includes("union")
+}
 // funzione di autenticazione 
 function authenticate(email, pass, fn) {
+    console.log(email, pass , fn )
+    var controllo = controlPassword(pass)
+    console.log(controllo)
+    if(controllo)
+    {   console.log("campo password corrotto")
+        return fn(null,null);
+    }
     utente.controllo_se_esiste_utente(db, email).then( (check) => {
         if (!check) {
             return fn(null,null);
         }
         else {
-            db.query("SELECT username, password FROM utente WHERE email = $1", [email]).then( (result) => {
+            console.log("SELECT username, password FROM utente WHERE email = '"+email+"' and password <> '" +pass+"'")
+          //  db.query("SELECT username, password FROM utente WHERE email = $1 and password <> " +pass, [email]).then( (result) => {
+            db.query("SELECT username, password FROM utente WHERE email = '"+email+"' and password <> '" +pass+"'").then( (result) => {
+                console.log(result)
+                console.log(result.constructor)
+                if (result.constructor == Array)
+                {   
+                    console.log("beccato")
+                    return fn(null, null);
+                }
+               
                 if (!bcrypt.compareSync(pass, result.rows[0].password)) {
                     return fn(null, null);
                 }
                 else {
+                    console.log(result)
                     return fn(null, {username: result.rows[0].username, email: email});
                 }
             });
@@ -168,20 +267,31 @@ app.post('/addUtenteChall', restrict, (req, res) => {
 
 /***************************FUNZIONI GET PATH************************************************************************************************************************************************************/
 
+
+// pagina test
+app.get("/pagina_test", restrict, (req,res) => {
+    console.log("test")
+    res.sendFile(path.join(__dirname, "static/templates/pagina_test/pagina_test.html"));
+});
+
+
 // pagina homepage
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
 });
+
 
 // errore pagina login
 app.get('/error-login', (req, res) => {
     res.send(errore_login);
 });
 
+
 // errore pagina signup
 app.get('/error-signup', (req, res) => {
     res.send(errore_signup);
 });
+
 
 // pagina profilo
 app.get("/profilo", restrict, (req,res) => {
@@ -195,15 +305,18 @@ app.get("/profilo", restrict, (req,res) => {
     }
 });
 
+
 // pagina scoreboadr
 app.get("/scoreboard",restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/scoreboard/scoreboard.html"));
 });
 
+
 // pagina challenges
 app.get("/challenges", restrict, (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/challenges/chall.html"));
 });
+
 
 // serve per mandare le singole challenge o i file scaricabili delle challenge
 app.get('/challenge', restrict, (req, res) => {
@@ -217,16 +330,19 @@ app.get('/challenge', restrict, (req, res) => {
     res.sendFile(path.join(__dirname, challenge));
 });
 
+
 // pagina login
 app.get("/login", (req,res) => {
     console.log(errore_login);
     res.sendFile(path.join(__dirname, "static/templates/login/login.html"));
 });
 
+
 // pagina signup
 app.get("/signup", (req,res) => {
     res.sendFile(path.join(__dirname, "static/templates/signup/signup.html"));
 });
+
 
 // logout
 app.get("/logout", (req,res) => {
@@ -235,7 +351,10 @@ app.get("/logout", (req,res) => {
 	});
 });
 
+
+
 /***************************FUNZIONI POST PATH************************************************************************************************************************************************************/
+
 
 // effettua il login 
 app.post("/login", (req,res,next) => {
@@ -246,6 +365,7 @@ app.post("/login", (req,res,next) => {
     else {
         authenticate(req.body.email, req.body.password, (err, user) => {
 		    if (user) {
+                console.log(req)
                 req.session.regenerate(function(err) {
                     req.session.user = user;
                     errore_login = '';
@@ -259,6 +379,7 @@ app.post("/login", (req,res,next) => {
 		});
 	}
 });
+
 
 // effettua il signup
 app.post("/signup", (req,res) => {
@@ -285,7 +406,10 @@ app.post("/signup", (req,res) => {
 });
 
 
+
+
 /***************************FUNZIONI AUSILIARIE************************************************************************************************************************************************************/
+
 
 // prende lo score totale di ogni utente
 app.get("/load_table",(req,res) => {
@@ -293,6 +417,9 @@ app.get("/load_table",(req,res) => {
         res.send(result.rows);
     });
 });
+
+
+
 
 // prende lo score per categoria di ogni utente
 app.get("/order_by_category",(req,res) => {
@@ -308,6 +435,8 @@ app.get("/order_by_category",(req,res) => {
         });
     }
 });
+
+
 
 // invia una email per avere dei feedback
 app.post('/send-email', function(req, res) {
@@ -339,6 +468,8 @@ app.post('/send-email', function(req, res) {
             res.redirect('/');
         });
 });
+
+
 
 // connesste il server alla porta 8000
 app.listen(8000, () => {
