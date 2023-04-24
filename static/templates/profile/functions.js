@@ -1,3 +1,9 @@
+var email = ""
+var user = ""
+var score_tot = ""
+var score_hint = ""
+var t_challenges = ""
+var solved_chal = ""
 function getStatisctics(){
     var score_flag_tot = 0;
     var score_hint_tot = 0;
@@ -33,6 +39,12 @@ function getStatisctics(){
         if (this.readyState == 4 && this.status == 200) {
             var res = JSON.parse(this.responseText)[0];
             console.log(res);
+            email = res.email 
+            user = res.user
+            score_hint = score_hint_tot
+            score_tot = score_flag_tot
+            t_challenges =res.tot_challenges
+            solved_chal = n_solved_chal
             $(".user-info").append('<tr><td>' + 'Username' +'</td><td>'+res.username+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Email' +'</td><td>'+res.email+'</td></li>');
             $(".user-info").append('<tr><td>' + 'Challenge points' +'</td><td>'+score_flag_tot+'</td></li>');
@@ -45,6 +57,29 @@ function getStatisctics(){
     xhttp2.send();
  }
 
+ function downloadStats() {
+    var xhttp3 = new XMLHttpRequest();
+
+   
+
+    xhttp3.onreadystatechange = function() {
+       
+    
+        console.log(this.responseText);
+        if(this.responseText === "ok")
+        {
+            window.open('/info-pdf');
+        }
+
+    }
+   
+    xhttp3.open("POST", '/info-profile-utente2', false);
+    var json = {email : "email" , user : "user" , score_tot : score_tot , score_hint : score_hint , solved_chal}
+    console.log(json)
+    xhttp3.setRequestHeader("Content-Type", "application/json");
+    xhttp3.send(JSON.stringify(json));
+
+ }
 
 function getNameBtn(){
     var xhttp = new XMLHttpRequest();

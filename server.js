@@ -48,7 +48,7 @@ app.use(session({
 
 //funzione per il report pdf 
 
-const main = async (json) => {
+const main = async (email, user , score_tot , score_hint, total_ch , solved) => {
 
      
  
@@ -57,10 +57,10 @@ const main = async (json) => {
       const page = await browser.newPage();
       
     
+        
 
-
-    fs.writeFile("./prova3.html", `<!DOCTYPE html> 
-    '<html lang="en">'+
+var stringaHtml= `<!DOCTYPE html> 
+    <html lang="en">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,41 +70,63 @@ const main = async (json) => {
    <title>Document</title>
 </head>
 <body id="5">
-   
-   <a >prova</a> \n` + json.test +"\n" + json.prova2+"\n" + json.prova3 +`
-   <embed type="text/html" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt">
-   </body>
-</html>`, function (err) {
+    <center> <h1> Profile Statistics certificate <h1> </center>
+    <br>
+    <br> 
+    <center> <h4> user :  <h4> </center>  <center> <h4> ` + 
+    user   +
+    `</center> <h4><br><br>
+    <center> <h4> email :  <h4> </center>   <center> <h4>` + 
+    email  +
+    ` </center> <h4><br><br>
+    <center> <h4> total_score :  <h4> </center>   <center> <h4>` + 
+    score_tot  +
+    ` </center> <h4><br><br>
+    <center> <h4> lost points :  <h4> </center>  <center> <h4>` + 
+    score_hint +
+    `</center> <h4>
+    <br><br>
+    <center> <h4> solved/total challenge :  <h4> </center>  <center> <h4>` + 
+      solved  + "/" + total_ch + 
+    `</center> <h4>
+    <br><br>
+    </body>
+</html>`
+  
+//<embed type="text/html" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt">
+
+    fs.writeFile("./prova3.html",stringaHtml , function (err) {
     if (err) {
       return console.log(err);
     }
     console.log("The file was saved!");
   }); 
     
-   await page.goto("file:///C:/Users/Paolo/Documents/ctf_project/prova3.html", {waitUntil: 'networkidle0'});
+   await page.goto("file:///C:/Users/Paolo/Documents/progetto_uni/progettoUni/ctf_project/prova3.html", {waitUntil: 'networkidle0'});
    
-    const pdf = await page.pdf({ path: './prova.pdf', format: 'A4' });
+    const pdf = await page.pdf({ path: './stat_certificate.pdf', format: 'A4' });
     
  }
 
 
 app.post('/info-pdf', async function (req, res) {
-        console.log( "eccolo" + req.body)
        
-        console.log(req.body)
+       
+   
         const pdf = await main(req.body);
       
-        console.log("prova")
+      
         res.send("ok")
        
      
 });
 
+
 app.get('/info-pdf', async function (req, res) {
     console.log( "eccolo" + req.body)
    
 
-    res.download(__dirname + '/prova.pdf', 'prova.pdf');
+    res.download(__dirname + '/stat_certificate.pdf', 'stat_certificate.pdf');
  
  
 });
@@ -254,6 +276,49 @@ app.get('/info-profile-utente', restrict, (req, res) => {
         res.send(result.rows);
         });
     }
+});
+
+app.post('/info-profile-utente2', async function (req, res)  {
+    console.log("ciao")
+    console.log(req.body)
+    var email = "prova"
+    var user = ""
+    var  score_tot = ""
+    var score_hint = ""
+    var tot_challenges = 0
+    var solved = ""
+   
+    
+   await  db.query("SELECT u.username, u.email, count(c.id) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.session.user.username]).then( async (result) => {
+        var size = result.rowCount
+        console.log(size, result)
+        if (size === 0) 
+        {
+            res.send("nok")
+        }
+        else{
+            email = result.rows[0].email
+            user = result.rows[0].username
+            score_tot = req.body.solved_chal
+            tot_challenges = result.rows[0].tot_challenges
+            solved = req.body.score_tot
+            score_hint = req.body.score_hint
+            //score_hint = '<embed type="text/html" width = "400px" height = "300px" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt"></embed>'
+            console.log(req.body)
+            console.log("eccoci" , email,user,score_tot,score_hint)
+            const pdf = await main(email, user , score_tot , score_hint,tot_challenges ,solved);
+          
+        }
+        });
+
+       
+    
+  
+    console.log("prova")
+    res.send("ok")
+   
+   
+
 });
 
 // inserisce la challenge tra quelle risolte dall'utente
