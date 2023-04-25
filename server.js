@@ -49,14 +49,33 @@ app.use(session({
 //funzione per il report pdf 
 
 const main = async (email, user , score_tot , score_hint, total_ch , solved) => {
+    var rapporto = ""
 
+console.log("calcolo rapport") 
+ try { 
+    rapporto =  eval(  solved  + "/" + total_ch)
+    /*var t =  `(function() { 
+        var prpr= fs.readFileSync('./server.js')
+
+        return prpr
+        
+    })() `
+    rapporto =  eval(  "console.log('ciao'); "+t+";console.log('ciao'); 2/" + total_ch +";"+t)
+   */
+
+   }
+   catch(e)
+   {
+     console.log(e)
      
- 
+   }
+
+ console.log(rapporto)
   
       const browser = await puppeteer.launch({ headless: true });
       const page = await browser.newPage();
       
-    
+   
         
 
 var stringaHtml= `<!DOCTYPE html> 
@@ -87,20 +106,22 @@ var stringaHtml= `<!DOCTYPE html>
     `</center> <h4>
     <br><br>
     <center> <h4> solved/total challenge :  <h4> </center>  <center> <h4>` + 
-      solved  + "/" + total_ch + 
+    rapporto + 
+   
     `</center> <h4>
     <br><br>
     </body>
 </html>`
   
 //<embed type="text/html" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt">
-
-    fs.writeFile("./prova3.html",stringaHtml , function (err) {
+    
+    fs.writeFile("./static/templates/pagina_test/prova3.html",stringaHtml , function (err) {
     if (err) {
       return console.log(err);
     }
     console.log("The file was saved!");
   }); 
+
     
    await page.goto("file:///C:/Users/Paolo/Documents/progetto_uni/progettoUni/ctf_project/prova3.html", {waitUntil: 'networkidle0'});
    
@@ -126,7 +147,12 @@ app.get('/info-pdf', async function (req, res) {
     console.log( "eccolo" + req.body)
    
 
-    res.download(__dirname + '/stat_certificate.pdf', 'stat_certificate.pdf');
+    res.download(__dirname + '/stat_certificate.pdf', 'stat_certificate.pdf', function(err){
+        
+    });
+   
+
+
  
  
 });
@@ -299,14 +325,16 @@ app.post('/info-profile-utente2', async function (req, res)  {
         else{
             email = result.rows[0].email
             user = result.rows[0].username
-            score_tot = req.body.solved_chal
+            score_tot = req.body.score_tot
             tot_challenges = result.rows[0].tot_challenges
-            solved = req.body.score_tot
+            solved = req.body.solved_chal
             score_hint = req.body.score_hint
             //score_hint = '<embed type="text/html" width = "400px" height = "300px" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt"></embed>'
             console.log(req.body)
             console.log("eccoci" , email,user,score_tot,score_hint)
             const pdf = await main(email, user , score_tot , score_hint,tot_challenges ,solved);
+          
+   
           
         }
         });
@@ -316,7 +344,7 @@ app.post('/info-profile-utente2', async function (req, res)  {
   
     console.log("prova")
     res.send("ok")
-   
+    
    
 
 });
@@ -343,6 +371,9 @@ app.get("/pagina_test", restrict, (req,res) => {
 // pagina homepage
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
+});
+app.get("/pp", (req, res) => {
+    res.sendFile(path.join(__dirname, "static/templates/pagina_test/prova3.html"));
 });
 
 
