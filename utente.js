@@ -24,7 +24,7 @@ async function controllo_se_esiste_utente(client, email) {
 		return result.rows.length > 0;
     } catch (err) {
 	    console.log(err.stack);
-		process.exit(1);
+		return false
     }
 }
 

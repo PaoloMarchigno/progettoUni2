@@ -68,7 +68,7 @@ function getStatisctics(){
         console.log(this.responseText);
         if(this.responseText === "ok")
         {
-            window.open('/pp');
+            window.open('/info-pdf');
         }
 
     }

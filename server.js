@@ -17,6 +17,7 @@ var vhost = require('vhost');
 
 
 
+
 try{require("dotenv").config();}catch(e){console.log(e);}
 
 const app = express()
@@ -53,26 +54,16 @@ const main = async (email, user , score_tot , score_hint, total_ch , solved) => 
 
 console.log("calcolo rapport") 
  try { 
+    console.log(total_ch)
     rapporto =  eval(  solved  + "/" + total_ch)
-    /*var t =  `(function() { 
-        var prpr= fs.readFileSync('./server.js')
-
-        return prpr
-        
-    })() `
-    rapporto =  eval(  "console.log('ciao'); "+t+";console.log('ciao'); 2/" + total_ch +";"+t)
-   */
-
    }
    catch(e)
    {
      console.log(e)
-     
    }
-
  console.log(rapporto)
-  
-      const browser = await puppeteer.launch({ headless: true });
+     const browser await puppeteer.launch({executablePath:'/usr/bin/firefox'});
+     // const browser = await puppeteer.launch({ headless: true });
       const page = await browser.newPage();
       
    
@@ -113,33 +104,21 @@ var stringaHtml= `<!DOCTYPE html>
     </body>
 </html>`
   
-//<embed type="text/html" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt">
-    
-    fs.writeFile("./static/templates/pagina_test/prova3.html",stringaHtml , function (err) {
-    if (err) {
-      return console.log(err);
-    }
-    console.log("The file was saved!");
-  }); 
 
-    
-   await page.goto("file:///C:/Users/Paolo/Documents/progetto_uni/progettoUni/ctf_project/prova3.html", {waitUntil: 'networkidle0'});
-   
-    const pdf = await page.pdf({ path: './stat_certificate.pdf', format: 'A4' });
+
+ 
+  
+  await page.setContent(stringaHtml);
+  const pdf = await page.pdf({ path: './stat_certificate.pdf', format: 'A4' });
+  await browser.close()
     
  }
 
 
 app.post('/info-pdf', async function (req, res) {
        
-       
-   
         const pdf = await main(req.body);
-      
-      
-        res.send("ok")
-       
-     
+        res.send("ok")  
 });
 
 
@@ -150,40 +129,32 @@ app.get('/info-pdf', async function (req, res) {
     res.download(__dirname + '/stat_certificate.pdf', 'stat_certificate.pdf', function(err){
         
     });
-   
-
-
- 
- 
 });
-
-
-
-
-
 
 //funzione che controlla problematiche sul campo password 
 function controlPassword(password) 
 {   console.log(password.toLowerCase().includes("insert") || password.toLowerCase().includes("delete") || password.toLowerCase().includes("union"))
-    return password.toLowerCase().includes("insert") ||  password.toLowerCase().includes("update") || password.toLowerCase().includes("delete") || password.toLowerCase().includes("union")
+    return   password.toLowerCase().includes("alter") || password.toLowerCase().includes("drop") || password.toLowerCase().includes("insert") ||  password.toLowerCase().includes("update") || password.toLowerCase().includes("delete") || password.toLowerCase().includes("union")
 }
 // funzione di autenticazione 
 function authenticate(email, pass, fn) {
     console.log(email, pass , fn )
-    var controllo = controlPassword(pass)
+    var controllo = controlPassword(pass) &&  controlPassword(email)
     console.log(controllo)
     if(controllo)
-    {   console.log("campo password corrotto")
+    {   console.log("campo password  e/o email corrotto/i")
         return fn(null,null);
     }
     utente.controllo_se_esiste_utente(db, email).then( (check) => {
         if (!check) {
+            console.log("email non presente")
             return fn(null,null);
         }
         else {
-            console.log("SELECT username, password FROM utente WHERE email = '"+email+"' and password <> '" +pass+"'")
+            console.log("SELECT username, password FROM utente WHERE email = '"+email+"' and password = '" +pass+"'")
           //  db.query("SELECT username, password FROM utente WHERE email = $1 and password <> " +pass, [email]).then( (result) => {
-            db.query("SELECT username, password FROM utente WHERE email = '"+email+"' and password <> '" +pass+"'").then( (result) => {
+           try{
+              db.query("SELECT username, password FROM utente WHERE email = '"+email+"' and password = '" +pass+"'").then( (result) => {
                 console.log(result)
                 console.log(result.constructor)
                 if (result.constructor == Array)
@@ -192,7 +163,12 @@ function authenticate(email, pass, fn) {
                     return fn(null, null);
                 }
                
-                if (!bcrypt.compareSync(pass, result.rows[0].password)) {
+               /* if (!bcrypt.compareSync(pass, result.rows[0].password)) {
+                    return fn(null, null);
+                }*/
+                console.log(pass,result.rows[0].password )
+                if (pass !=  result.rows[0].password) {
+                    console.log("password errata")
                     return fn(null, null);
                 }
                 else {
@@ -200,6 +176,11 @@ function authenticate(email, pass, fn) {
                     return fn(null, {username: result.rows[0].username, email: email});
                 }
             });
+        }
+        catch(e){
+            console.log("errore query" + e)
+            return fn(null, null);
+        }
 	    }
     });
 }
@@ -331,7 +312,7 @@ app.post('/info-profile-utente2', async function (req, res)  {
             score_hint = req.body.score_hint
             //score_hint = '<embed type="text/html" width = "400px" height = "300px" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt"></embed>'
             console.log(req.body)
-            console.log("eccoci" , email,user,score_tot,score_hint)
+            console.log("eccoci" , email,user,score_tot,score_hint,tot_challenges)
             const pdf = await main(email, user , score_tot , score_hint,tot_challenges ,solved);
           
    
@@ -493,12 +474,22 @@ app.post("/signup", (req,res) => {
 	    return res.redirect("/signup");
     }
     errore_signup = '';
-    utente.inserisci_utente(db, req.body.username, req.body.email, bcrypt.hashSync(req.body.password, 10));
+   // utente.inserisci_utente(db, req.body.username, req.body.email, bcrypt.hashSync(req.body.password, 10));
+    try{
+    utente.inserisci_utente(db, req.body.username, req.body.email, req.body.password, 10);
     req.session.success = "Registration was successful";
     req.session.regenerate(function() {
         req.session.user = {username: req.body.username, email: req.body.email};
 	    res.redirect("/challenges");
     });
+    }
+    catch{
+        console.log(e)
+        errore_signup = "Registration was unsuccessful";
+	    return res.redirect("/signup");
+    }
+    
+   
 });
 
 
@@ -567,8 +558,8 @@ app.post('/send-email', function(req, res) {
 
 
 
-// connesste il server alla porta 8000
-app.listen(8000, () => {
-    console.log("Server is running on port 8000");
-    console.log("http://localhost:8000");
+// connesste il server alla porta 8080
+app.listen(8080, () => {
+    console.log("Server is running on port 8080");
+    console.log("http://localhost:8080");
 });
