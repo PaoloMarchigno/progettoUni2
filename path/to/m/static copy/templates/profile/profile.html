@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="templates/profile/style.css">
+
+    <title>Profilo</title>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm  py-2 pb-0  bg-dark">
+            <a class="navbar-brand" href="/" style="color: white; padding-left: 5%;"><img class="logo_flag" src="img/logo.png" style="height: 45px;"></img></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarContent,#btn_form" style="margin-right: 5%;">
+                    <span class="navbar-toggler-icon" style="filter: invert();"></span>
+                </button>
+            <div class="collapse navbar-collapse justify-content-center" id="NavbarContent">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation">
+                        <a href="/" class="nav-link fw-bold text-white"><svg name="ic" xmlns="http://www.w3.org/2000/svg"
+                                width="26" height="26" fill="white" class="bi bi-house-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                                <path fill-rule="evenodd"
+                                    d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                            </svg> <span class="elem">Home</span></a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a href="/scoreboard" class="nav-link fw-bold text-white"><img name="ic"
+                                src="templates/challenges/podium.png" width="26" height="26" style="filter: invert();"> <span class="elem">Scoreboard</span></a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a href="/challenges" class="nav-link fw-bold text-white">
+                                <img name="ic" src="img/icon-flag.png" width="32" height="32"><span class="elem">Challenges</span></a>
+                    </li>
+                </ul>
+            </div>
+                
+        
+                <div class="d-lg-flex collapse" id="btn_form">
+                    <a href="/profilo" id="button_profile" class=" btn btn-success btn-sm rounded-pill">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill pb-1" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                        </svg></a>
+                    <a href="/logout" class="btn btn-danger btn-sm rounded-pill ms-2" aria-labelledby="logout-popup"><title id="logout-popup">Logout</title>
+                        <i class="fa fa-sign-out"></i></a>
+                    </div>
+        </nav>
+        
+    </div>
+    <!-- <h1 class="text-center">Profilo</h1> -->
+    <div class="container">
+        <div class="m-5 py-5 info_profilo">
+            <div class="container">
+                <div class="justify-content-center">
+                    <title style="display: block;font-size: xx-large;">Info profilo  </title>  <span><button onclick="downloadStats()" class=" btn btn-warning btn-sm rounded-pill"> scarica le statistiche</button></span> 
+                    <table class="table user-info table-dark table-striped table-bordered border-white">
+                        <tbody class="scoreboard_table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="m-5 py-5">
+            <div class="container">
+                <div class="justify-content-center">
+                    <title style="display: block;font-size: xx-large;">Challenge completate</title>
+                    <table class="table table_challenge_flag table-dark table-striped table-bordered border-white">
+                        <thead>
+                            <tr>
+                              <th class="text-center px-0" scope="col">Timestamp</th>
+                              <th class="text-center" scope="col">Challenges</th>
+                              <th class="text-center" scope="col">Score</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody class="scoreboard_table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="m-5 py-5">
+            <div class="container">
+                <div class="justify-content-center">
+                    <title style="display: block;font-size: xx-large;">Hint richiesti</title>
+                    <table class="table table_challenge_hint table-dark table-striped table-bordered border-white">
+                        <thead>
+                            <tr>
+                              <th class="text-center px-0" scope="col">Timestamp</th>
+                              <th class="text-center" scope="col">Challenges</th>
+                              <th class="text-center" scope="col">Points lost</th>
+                            </tr>
+                        </thead>
+                        <tbody class="scoreboard_table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+<script src="templates/profile/functions.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+    window.addEventListener('load', (event) => {
+        getNameBtn();
+        getStatisctics();
+        centra_nav();
+    });
+    window.addEventListener('resize', (event) => {
+            centra_nav();
+        });
+    function centra_nav(){
+        $('.navbar-brand').css('margin-right', ($('#btn_form').outerWidth() - $('.navbar-brand').outerWidth()).toString()+'px') ;
+    }
+</script>
+
+</html>

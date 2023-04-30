@@ -47,7 +47,7 @@
             </nav>
     </div>
     <div class="signup-dark">
-    <form method="post">
+    <form >
         <h2 class="visually-hidden">Signup Form</h2>
         <div align="center"><img src="img/logo.png" width="75%" height="75%"></div>
         <br><br>
@@ -56,7 +56,7 @@
         <div class="form-group mb-3"><input class="form-control" type="password" name="password" placeholder="Password" /></div>
         <div class="form-group mb-3"><input class="form-control" type="password" name="password2" placeholder="Confirm Password" /></div>
         <div class="form-error" id="form-error"></div>
-        <div class="form-group mb-3"><button class="btn btn-primary d-block w-100" type="submit" onclick="getError()">Sign up</button></div>
+        <div class="form-group mb-3"><button class="btn btn-primary d-block w-100" type="submit">Sign up</button></div>
         
         </div>
         <!-- <a class="forgot" href="#">Forgot your email or password?</a> -->
@@ -79,7 +79,7 @@
     </script>
     <script>
         window.addEventListener('load', (event) => {
-            getError()
+          //  getError()
             centra_nav();
         });
         window.addEventListener('resize', (event) => {

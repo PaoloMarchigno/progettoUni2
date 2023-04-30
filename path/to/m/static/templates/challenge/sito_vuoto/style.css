@@ -1,0 +1,30 @@
+/* Ecco la seconda parte della flag: "can_t_see_me_" */
+/* In questo file non c'e' altro, l'ho copiato da internet, non perdere tempo */
+
+body {
+    background: url('../images/banner.jpg') no-repeat -83px 0px;
+    text-align: center;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Ropa Sans', sans-serif;
+    background-size: cover;
+  }
+  h1 {
+    padding-top: 60px;
+    color: white;
+    font-size: 50px;
+    font-family: 'Ropa Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+  .agile-tb {
+    border: 2px solid rgba(255, 255, 255, 0.21);
+    padding: 40px 40px;
+  }
+  .main-content {
+    width: 80%;
+    margin: 60px auto;
+    color: white;
+  }
+  

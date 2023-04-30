@@ -1,0 +1,3 @@
+admin,admin@admin.com,$2a$10$E2zMwXqeeJubBxHhCHlnQenWcHHHYEHz8lwtmPcRiRgWiZ0rx7icu
+aa,aa@aa.com,$2a$10$y5nmEnOgyub3nNvRJFZShuxOD3BQV6mNZShlEdQBX1ZdiNf.Q/g/a
+nyconauta,nicomessi@hotmail.it,$2a$10$0TbWqF82TY25LDeJ366OwuV5HMmsPZ/HCGWO4FFCed0ANKOoyCHf6

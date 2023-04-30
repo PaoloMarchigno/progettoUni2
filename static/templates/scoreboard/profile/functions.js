@@ -60,6 +60,6 @@ function getNameBtn(){ /********inserisce il nome dell'utente loggato nel botton
         centra_nav();
         }
     };
-    xhttp.open("GET", '/info-profile', true);
+    xhttp.open("GET", 'pp:8080/info-profile', true);
     xhttp.send();
  }  

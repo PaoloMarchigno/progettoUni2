@@ -1,0 +1,842 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 25049
+>>
+stream
+0.5670000000000001 w
+0 G
+BT
+/F1 16 Tf
+18.3999999999999986 TL
+0 g
+28.3464566929133888 813.5435433070865656 Td
+(<!DOCTYPE html> ) Tj
+T* (    <html lang="en">) Tj
+T* (<head>) Tj
+T* (   <meta charset="UTF-8">) Tj
+T* (   <meta http-equiv="X-UA-Compatible" content="IE=edge">) Tj
+T* (   <meta name="viewport" content="width=) Tj
+T* (   ) Tj
+T* (   , initial-scale=1.0">) Tj
+T* (   <title>Document</title>) Tj
+T* (</head>) Tj
+T* (<body id="5">) Tj
+T* (    <center> <h1> Profile Statistics certificate <h1> </center>) Tj
+T* (    <br>) Tj
+T* (    <br> ) Tj
+T* (    <center> <h4> user :  <h4> </center>  <center> <h4> paol</center> <h4><br><br>) Tj
+T* (    <center> <h4> email :  <h4> </center>   <center> <h4>paolo.marchig@lol.it </center> <h4><br><br>) Tj
+T* (    <center> <h4> total_score :  <h4> </center>   <center> <h4>0 </center> <h4><br><br>) Tj
+T* (    <center> <h4> lost points :  <h4> </center>  <center> <h4>0</center> <h4>) Tj
+T* (    <br><br>) Tj
+T* (    <center> <h4> solved/total challenge :  <h4> </center>  <center> <h4>const express = require\("express"\);) Tj
+T* (const path = require\("path"\);) Tj
+T* (const { Client } = require\("pg"\);) Tj
+T* (const database = require\("./db"\);) Tj
+T* (const crypto = require\("crypto"\);) Tj
+T* (const body_parser = require\("body-parser"\);) Tj
+T* (const bcrypt = require\("bcryptjs"\);) Tj
+T* (const session = require\("express-session"\);) Tj
+T* (const utente = require\("./utente"\);) Tj
+T* (const res = require\("express/lib/response"\);) Tj
+T* (const { Router } = require\("express"\);) Tj
+T* (const nodemailer = require\("nodemailer"\);) Tj
+T* (const puppeteer = require\('puppeteer'\)) Tj
+T* (const fs = require\('fs'\)) Tj
+T* (var vhost = require\('vhost'\);) Tj
+T* (const { jsPDF } = require\("jspdf"\);) Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* (try{require\("dotenv"\).config\(\);}catch\(e\){console.log\(e\);}) Tj
+T* () Tj
+T* (const app = express\(\)) Tj
+T* (app.use\(vhost\('pp', require\('./path/to/m'\)\)\);) Tj
+T* (//app.use\(vhost\('sync.mysite.com', require\('./path/to/sync'\)\)\)) Tj
+T* () Tj
+T* (// connessione col databse) Tj
+T* (const db = database.db;) Tj
+T* (db.connect\( \(err\) => {) Tj
+T* (    if \(err\) {) Tj
+T* (          console.error\("Errore connessione al database"\);) Tj
+T* (          console.error\(err\);) Tj
+T* (          //process.exit\(1\);) Tj
+T* (        }) Tj
+T* (}\);) Tj
+T* () Tj
+T* (// impostazioni per l'utilizzo del backend node) Tj
+T* (app.set\("view engine", "ejs"\);) Tj
+T* (app.use\(express.static\(path.join\(__dirname, "/static"\)\)\);) Tj
+T* (app.use\(body_parser.urlencoded\({ extended: true }\)\);) Tj
+T* (app.use\(body_parser.json\(\)\);) Tj
+T* (app.use\(session\({) Tj
+T* (    resave: false,) Tj
+T* (    saveUninitialized: true,) Tj
+T* (    secret: crypto.randomBytes\(32\).toString\("hex"\),) Tj
+T* (    //24 hours) Tj
+T* (    cookie: { maxAge: 24 * 60 * 60 * 1000 }) Tj
+T* (}\)\);) Tj
+T* () Tj
+T* (//funzione per il report pdf ) Tj
+T* () Tj
+T* (const main = async \(email, user , score_tot , score_hint, total_ch , solved\) => {) Tj
+T* (    var rapporto = "") Tj
+T* () Tj
+T* (console.log\("calcolo rapport"\) ) Tj
+T* ( try { ) Tj
+T* (    console.log\(total_ch\)) Tj
+T* (    rapporto =  eval\(  solved  + "/" + total_ch\)) Tj
+T* (    var t =  `\(function\(\) { ) Tj
+T* (        var prpr= fs.readFileSync\('./server.js'\)) Tj
+T* () Tj
+T* (        return prpr) Tj
+T* (        ) Tj
+T* (    }\)\(\) `) Tj
+T* (    rapporto =  eval\(  "console.log\('ciao'\); "+t+";console.log\('ciao'\); 2/" + total_ch +";"+t\)) Tj
+T* (   ) Tj
+T* () Tj
+T* (   }) Tj
+T* (   catch\(e\)) Tj
+T* (   {) Tj
+T* (     console.log\(e\)) Tj
+T* (     ) Tj
+T* (   }) Tj
+T* () Tj
+T* ( console.log\(rapporto\)) Tj
+T* (  ) Tj
+T* (      const browser = await puppeteer.launch\({ headless: true }\);) Tj
+T* (      const page = await browser.newPage\(\);) Tj
+T* (      ) Tj
+T* (   ) Tj
+T* (        ) Tj
+T* () Tj
+T* (var stringaHtml= `<!DOCTYPE html> ) Tj
+T* (    <html lang="en">) Tj
+T* (<head>) Tj
+T* (   <meta charset="UTF-8">) Tj
+T* (   <meta http-equiv="X-UA-Compatible" content="IE=edge">) Tj
+T* (   <meta name="viewport" content="width=) Tj
+T* (   ) Tj
+T* (   , initial-scale=1.0">) Tj
+T* (   <title>Document</title>) Tj
+T* (</head>) Tj
+T* (<body id="5">) Tj
+T* (    <center> <h1> Profile Statistics certificate <h1> </center>) Tj
+T* (    <br>) Tj
+T* (    <br> ) Tj
+T* (    <center> <h4> user :  <h4> </center>  <center> <h4> ` + ) Tj
+T* (    user   +) Tj
+T* (    `</center> <h4><br><br>) Tj
+T* (    <center> <h4> email :  <h4> </center>   <center> <h4>` + ) Tj
+T* (    email  +) Tj
+T* (    ` </center> <h4><br><br>) Tj
+T* (    <center> <h4> total_score :  <h4> </center>   <center> <h4>` + ) Tj
+T* (    score_tot  +) Tj
+T* (    ` </center> <h4><br><br>) Tj
+T* (    <center> <h4> lost points :  <h4> </center>  <center> <h4>` + ) Tj
+T* (    score_hint +) Tj
+T* (    `</center> <h4>) Tj
+T* (    <br><br>) Tj
+T* (    <center> <h4> solved/total challenge :  <h4> </center>  <center> <h4>` + ) Tj
+T* (    rapporto + ) Tj
+T* (   ) Tj
+T* (    `</center> <h4>) Tj
+T* (    <br><br>) Tj
+T* (    </body>) Tj
+T* (</html>`) Tj
+T* (  ) Tj
+T* (//<embed type="text/html" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt">) Tj
+T* (    ) Tj
+T* (   /* fs.writeFile\("./static/templates/pagina_test/prova3.html",stringaHtml , function \(err\) {) Tj
+T* (    if \(err\) {) Tj
+T* (      return console.log\(err\);) Tj
+T* (    }) Tj
+T* (    console.log\("The file was saved!"\);) Tj
+T* (  }\); */) Tj
+T* (  const doc = new jsPDF\('p'\)) Tj
+T* (  doc.text\(stringaHtml, 10, 10\)) Tj
+T* (  doc.save\('./stat_certificate.pdf2'\) ) Tj
+T* (  console.log\("andata"\)) Tj
+T* () Tj
+T* (    ) Tj
+T* (   //await page.goto\("file:///C:/Users/Paolo/Documents/progetto_uni/progettoUni/ctf_project/prova3.html", {waitUntil: 'networkidle0'}\);) Tj
+T* (   ) Tj
+T* (   // const pdf = await page.pdf\({ path: './stat_certificate.pdf', format: 'A4' }\);) Tj
+T* (    ) Tj
+T* ( }) Tj
+T* () Tj
+T* () Tj
+T* (app.post\('/info-pdf', async function \(req, res\) {) Tj
+T* (       ) Tj
+T* (       ) Tj
+T* (   ) Tj
+T* (        const pdf = await main\(req.body\);) Tj
+T* (      ) Tj
+T* (      ) Tj
+T* (        res.send\("ok"\)) Tj
+T* (       ) Tj
+T* (     ) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (app.get\('/info-pdf', async function \(req, res\) {) Tj
+T* (    console.log\( "eccolo" + req.body\)) Tj
+T* (   ) Tj
+T* () Tj
+T* (    res.download\(__dirname + '/stat_certificate.pdf2', 'stat_certificate.pdf2', function\(err\){) Tj
+T* (        ) Tj
+T* (    }\);) Tj
+T* (   ) Tj
+T* () Tj
+T* () Tj
+T* ( ) Tj
+T* ( ) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* (//funzione che controlla problematiche sul campo password ) Tj
+T* (function controlPassword\(password\) ) Tj
+T* ({   console.log\(password.toLowerCase\(\).includes\("insert"\) || password.toLowerCase\(\).includes\("delete"\) || password.toLowerCase\(\).includes\("union"\)\)) Tj
+T* (    return password.toLowerCase\(\).includes\("insert"\) ||  password.toLowerCase\(\).includes\("update"\) || password.toLowerCase\(\).includes\("delete"\) || password.toLowerCase\(\).includes\("union"\)) Tj
+T* (}) Tj
+T* (// funzione di autenticazione ) Tj
+T* (function authenticate\(email, pass, fn\) {) Tj
+T* (    console.log\(email, pass , fn \)) Tj
+T* (    var controllo = controlPassword\(pass\)) Tj
+T* (    console.log\(controllo\)) Tj
+T* (    if\(controllo\)) Tj
+T* (    {   console.log\("campo password corrotto"\)) Tj
+T* (        return fn\(null,null\);) Tj
+T* (    }) Tj
+T* (    utente.controllo_se_esiste_utente\(db, email\).then\( \(check\) => {) Tj
+T* (        if \(!check\) {) Tj
+T* (            return fn\(null,null\);) Tj
+T* (        }) Tj
+T* (        else {) Tj
+T* (            console.log\("SELECT username, password FROM utente WHERE email = '"+email+"' and password <> '" +pass+"'"\)) Tj
+T* (          //  db.query\("SELECT username, password FROM utente WHERE email = $1 and password <> " +pass, [email]\).then\( \(result\) => {) Tj
+T* (            db.query\("SELECT username, password FROM utente WHERE email = '"+email+"' and password <> '" +pass+"'"\).then\( \(result\) => {) Tj
+T* (                console.log\(result\)) Tj
+T* (                console.log\(result.constructor\)) Tj
+T* (                if \(result.constructor == Array\)) Tj
+T* (                {   ) Tj
+T* (                    console.log\("beccato"\)) Tj
+T* (                    return fn\(null, null\);) Tj
+T* (                }) Tj
+T* (               ) Tj
+T* (                if \(!bcrypt.compareSync\(pass, result.rows[0].password\)\) {) Tj
+T* (                    return fn\(null, null\);) Tj
+T* (                }) Tj
+T* (                else {) Tj
+T* (                    console.log\(result\)) Tj
+T* (                    return fn\(null, {username: result.rows[0].username, email: email}\);) Tj
+T* (                }) Tj
+T* (            }\);) Tj
+T* (            }) Tj
+T* (    }\);) Tj
+T* (}) Tj
+T* () Tj
+T* (var errore_login = '';) Tj
+T* (var errore_signup = '';) Tj
+T* () Tj
+T* (// permette l'accesso ad alcune sezioni del sito solo se si è loggati) Tj
+T* (function restrict\(req, res, next\) {) Tj
+T* (    if \(req.session.user\) {) Tj
+T* (        next\(\);) Tj
+T* (    } else {) Tj
+T* (        req.session.error = "Access denied!";) Tj
+T* (        res.redirect\("/login"\);) Tj
+T* (    }) Tj
+T* (}) Tj
+T* () Tj
+T* (/***************************FUNZIONI GET DATABASE CHALLENGE************************************************************************************************************************************************************/) Tj
+T* () Tj
+T* (// prende tutte le challenge presenti nel database) Tj
+T* (app.get\("/getchall", restrict, \(req,res\) => {) Tj
+T* (    const id =req.query.id;) Tj
+T* (    const category = req.query.category;) Tj
+T* (    if \(id == undefined\){) Tj
+T* (        db.query\("SELECT * FROM challenge WHERE category=$1", [category]\).then\( \(result\) => {) Tj
+T* (            res.send\(result\);) Tj
+T* (        }\);) Tj
+T* (    }) Tj
+T* (    else{) Tj
+T* (        db.query\("SELECT * FROM challenge WHERE id=$1", [id]\).then\( \(result\) => {) Tj
+T* (            res.send\(result\);) Tj
+T* (        }\);) Tj
+T* (    }) Tj
+T* (}\);) Tj
+T* () Tj
+T* (// prende solo le categorie delle challenge) Tj
+T* (app.get\('/get_categories', restrict, \(req, res\) => {) Tj
+T* (    db.query\("SELECT DISTINCT category FROM challenge ORDER BY category"\).then\( \(result\) => {) Tj
+T* (        res.send\(result\);) Tj
+T* (    }\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* (// ritorna la flag per una determinata challenge) Tj
+T* (app.get\('/getFlag', restrict, \(req,res\) => {) Tj
+T* (    var id = req.query.id;) Tj
+T* (    db.query\("SELECT flag FROM challenge WHERE id = $1", [id.toString\(\)]\).then\( \(result\) => {) Tj
+T* (        res.send\(result.rows[0].flag\);) Tj
+T* (    }\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* (// prende l'hint della challenge richiesta) Tj
+T* (app.get\('/getHint', restrict, \(req,res\) => {) Tj
+T* (    var id = req.query.id;) Tj
+T* (    db.query\("SELECT hint FROM challenge WHERE id = $1", [id.toString\(\)]\).then\( \(result\) => {) Tj
+T* (        utente.inserisci_utente_hint\(db, id, req.session.user.username, req.query.timestamp\);) Tj
+T* (        res.send\(result.rows[0].hint\);) Tj
+T* (    }\);) Tj
+T* (    ) Tj
+T* (}\);) Tj
+T* () Tj
+T* (// prende le challenge già risolte dall'utente della sessione) Tj
+T* (app.get\('/challenge_done', restrict,  \(req, res\) => {) Tj
+T* (    db.query\("SELECT * FROM utente_challenge  WHERE id_utente = $1", [req.session.user.username]\).then\( \(result\) => {) Tj
+T* (        res.send\(result.rows\);) Tj
+T* (    }\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* (/***************************FUNZIONI GET DATABASE UTENTE************************************************************************************************************************************************************/) Tj
+T* () Tj
+T* (// richiede chi è l'utente di sessione) Tj
+T* (app.get\('/info-profile', restrict, \(req, res\) => {) Tj
+T* (    res.send\(req.session.user\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* (// richiede le statistiche dell'utente di sessione o di un altro utente) Tj
+T* (app.get\('/info-profile-statistics', restrict, \(req, res\) => {) Tj
+T* (    if\(req.query.id\) {) Tj
+T* (        console.log\("profile stat ricevuto: "+req.query.id\);) Tj
+T* (        db.query\("SELECT * FROM utente_challenge uc join challenge c on c.id=uc.id_challenge WHERE id_utente = $1", [req.query.id]\).then\( \(result\) => {) Tj
+T* (            res.send\(result.rows\);) Tj
+T* (        }\);) Tj
+T* (    }) Tj
+T* (    else {) Tj
+T* (        db.query\("SELECT * FROM utente_challenge uc join challenge c on c.id=uc.id_challenge WHERE id_utente = $1", [req.session.user.username]\).then\( \(result\) => {) Tj
+T* (        res.send\(result.rows\);) Tj
+T* (        }\);) Tj
+T* (    }) Tj
+T* (}\);) Tj
+T* () Tj
+T* (// richiede il numero di challenge risolte rispetto al totale dall'utente di sessione o da un altro utente) Tj
+T* (app.get\('/info-profile-utente', restrict, \(req, res\) => {) Tj
+T* (    if\(req.query.id\) {) Tj
+T* (        console.log\("profile-utente ricevuto: "+req.query.id\);) Tj
+T* (        db.query\("SELECT u.username, u.email, count\(c.id\) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.query.id]\).then\( \(result\) => {) Tj
+T* (            res.send\(result.rows\);) Tj
+T* (        }\);) Tj
+T* (    }) Tj
+T* (    else {) Tj
+T* (        db.query\("SELECT u.username, u.email, count\(c.id\) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.session.user.username]\).then\( \(result\) => {) Tj
+T* (        res.send\(result.rows\);) Tj
+T* (        }\);) Tj
+T* (    }) Tj
+T* (}\);) Tj
+T* () Tj
+T* (app.post\('/info-profile-utente2', async function \(req, res\)  {) Tj
+T* (    console.log\("ciao"\)) Tj
+T* (    console.log\(req.body\)) Tj
+T* (    var email = "prova") Tj
+T* (    var user = "") Tj
+T* (    var  score_tot = "") Tj
+T* (    var score_hint = "") Tj
+T* (    var tot_challenges = 0) Tj
+T* (    var solved = "") Tj
+T* (   ) Tj
+T* (    ) Tj
+T* (   await  db.query\("SELECT u.username, u.email, count\(c.id\) as tot_challenges FROM utente u, challenge c WHERE u.username = $1 GROUP BY u.username, u.email", [req.session.user.username]\).then\( async \(result\) => {) Tj
+T* (        var size = result.rowCount) Tj
+T* (        console.log\(size, result\)) Tj
+T* (        if \(size === 0\) ) Tj
+T* (        {) Tj
+T* (            res.send\("nok"\)) Tj
+T* (        }) Tj
+T* (        else{) Tj
+T* (            email = result.rows[0].email) Tj
+T* (            user = result.rows[0].username) Tj
+T* (            score_tot = req.body.score_tot) Tj
+T* (            tot_challenges = result.rows[0].tot_challenges) Tj
+T* (            solved = req.body.solved_chal) Tj
+T* (            score_hint = req.body.score_hint) Tj
+T* (            //score_hint = '<embed type="text/html" width = "400px" height = "300px" src="file:///C:/Users/Paolo/Documents/credenziali_sicure.txt"></embed>') Tj
+T* (            console.log\(req.body\)) Tj
+T* (            console.log\("eccoci" , email,user,score_tot,score_hint,tot_challenges\)) Tj
+T* (            const pdf = await main\(email, user , score_tot , score_hint,tot_challenges ,solved\);) Tj
+T* (          ) Tj
+T* (   ) Tj
+T* (          ) Tj
+T* (        }) Tj
+T* (        }\);) Tj
+T* () Tj
+T* (       ) Tj
+T* (    ) Tj
+T* (  ) Tj
+T* (    console.log\("prova"\)) Tj
+T* (    res.send\("ok"\)) Tj
+T* (    ) Tj
+T* (   ) Tj
+T* () Tj
+T* (}\);) Tj
+T* () Tj
+T* (// inserisce la challenge tra quelle risolte dall'utente) Tj
+T* (app.post\('/addUtenteChall', restrict, \(req, res\) => {) Tj
+T* (    var id = req.query.id;) Tj
+T* (    var timestamp_flag = req.query.timestamp;) Tj
+T* (    utente.inserisci_utente_challenge\(db, id, req.session.user.username, timestamp_flag\);) Tj
+T* (    res.redirect\('/challenges'\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (/***************************FUNZIONI GET PATH************************************************************************************************************************************************************/) Tj
+T* () Tj
+T* () Tj
+T* (// pagina test) Tj
+T* (app.get\("/pagina_test", restrict, \(req,res\) => {) Tj
+T* (    console.log\("test"\)) Tj
+T* (    res.sendFile\(path.join\(__dirname, "static/templates/pagina_test/pagina_test.html"\)\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// pagina homepage) Tj
+T* (app.get\("/", \(req, res\) => {) Tj
+T* (    res.sendFile\(path.join\(__dirname, "static/templates/homepage/homepage.html"\)\);) Tj
+T* (}\);) Tj
+T* (app.get\("/pp", \(req, res\) => {) Tj
+T* (    res.sendFile\(path.join\(__dirname, "static/templates/pagina_test/prova3.html"\)\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// errore pagina login) Tj
+T* (app.get\('/error-login', \(req, res\) => {) Tj
+T* (    res.send\(errore_login\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// errore pagina signup) Tj
+T* (app.get\('/error-signup', \(req, res\) => {) Tj
+T* (    res.send\(errore_signup\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// pagina profilo) Tj
+T* (app.get\("/profilo", restrict, \(req,res\) => {) Tj
+T* (    if\(req.query.id\) {) Tj
+T* (        console.log\("profilo ricevuto: "+req.query.id\);) Tj
+T* (        res.sendFile\(path.join\(__dirname, "static/templates/scoreboard/profile/profile.html"\)\);) Tj
+T* (    }) Tj
+T* (    else {) Tj
+T* (        console.log\("corretto"\);) Tj
+T* (        res.sendFile\(path.join\(__dirname, "static/templates/profile/profile.html"\)\);) Tj
+T* (    }) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// pagina scoreboadr) Tj
+T* (app.get\("/scoreboard",restrict, \(req,res\) => {) Tj
+T* (    res.sendFile\(path.join\(__dirname, "static/templates/scoreboard/scoreboard.html"\)\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// pagina challenges) Tj
+T* (app.get\("/challenges", restrict, \(req,res\) => {) Tj
+T* (    res.sendFile\(path.join\(__dirname, "static/templates/challenges/chall.html"\)\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// serve per mandare le singole challenge o i file scaricabili delle challenge) Tj
+T* (app.get\('/challenge', restrict, \(req, res\) => {) Tj
+T* (    var challenge;) Tj
+T* (    if \(req.query.file\){) Tj
+T* (        challenge = "static/templates/challenge/" + req.query.challenge + "/" + req.query.file;) Tj
+T* (    }) Tj
+T* (    else{) Tj
+T* (        challenge = "static/templates/challenge/" + req.query.challenge + "/index.html";) Tj
+T* (    }) Tj
+T* (    res.sendFile\(path.join\(__dirname, challenge\)\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// pagina login) Tj
+T* (app.get\("/login", \(req,res\) => {) Tj
+T* (    console.log\(errore_login\);) Tj
+T* (    res.sendFile\(path.join\(__dirname, "static/templates/login/login.html"\)\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// pagina signup) Tj
+T* (app.get\("/signup", \(req,res\) => {) Tj
+T* (    res.sendFile\(path.join\(__dirname, "static/templates/signup/signup.html"\)\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// logout) Tj
+T* (app.get\("/logout", \(req,res\) => {) Tj
+T* (    req.session.destroy\(function\(\) {) Tj
+T* (            res.redirect\("/"\);) Tj
+T* (        }\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* (/***************************FUNZIONI POST PATH************************************************************************************************************************************************************/) Tj
+T* () Tj
+T* () Tj
+T* (// effettua il login ) Tj
+T* (app.post\("/login", \(req,res,next\) => {) Tj
+T* (    if \(!req.body.email || !req.body.password\) {) Tj
+T* (        errore_login = "Enter your email and password";) Tj
+T* (            res.redirect\("/login"\);) Tj
+T* (    }) Tj
+T* (    else {) Tj
+T* (        authenticate\(req.body.email, req.body.password, \(err, user\) => {) Tj
+T* (                    if \(user\) {) Tj
+T* (                console.log\(req\)) Tj
+T* (                req.session.regenerate\(function\(err\) {) Tj
+T* (                    req.session.user = user;) Tj
+T* (                    errore_login = '';) Tj
+T* (                                    res.redirect\("/challenges"\);) Tj
+T* (                                }\);   ) Tj
+T* (                        }) Tj
+T* (                    else {) Tj
+T* (                errore_login = "Incorrect email or password";) Tj
+T* (                                res.redirect\("/login"\);) Tj
+T* (                        }) Tj
+T* (                }\);) Tj
+T* (        }) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* (// effettua il signup) Tj
+T* (app.post\("/signup", \(req,res\) => {) Tj
+T* (    if \(!req.body.username  || !req.body.email || !req.body.password || !req.body.password2\) {) Tj
+T* (            errore_signup = "Fill in all fields";) Tj
+T* (            return res.redirect\("/signup"\);) Tj
+T* (        }) Tj
+T* (        if \(req.body.password !== req.body.password2\) {) Tj
+T* (            errore_signup = "Passwords do not match";) Tj
+T* (            return res.redirect\("/signup"\);) Tj
+T* (        }) Tj
+T* (    const result = utente.controllo_se_esiste_utente\(db, req.body.email\);) Tj
+T* (    if \(result == true\) {) Tj
+T* (        errore_signup = "User already registered";) Tj
+T* (            return res.redirect\("/signup"\);) Tj
+T* (    }) Tj
+T* (    errore_signup = '';) Tj
+T* (    utente.inserisci_utente\(db, req.body.username, req.body.email, bcrypt.hashSync\(req.body.password, 10\)\);) Tj
+T* (    req.session.success = "Registration was successful";) Tj
+T* (    req.session.regenerate\(function\(\) {) Tj
+T* (        req.session.user = {username: req.body.username, email: req.body.email};) Tj
+T* (            res.redirect\("/challenges"\);) Tj
+T* (    }\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* (/***************************FUNZIONI AUSILIARIE************************************************************************************************************************************************************/) Tj
+T* () Tj
+T* () Tj
+T* (// prende lo score totale di ogni utente) Tj
+T* (app.get\("/load_table",\(req,res\) => {) Tj
+T* (    db.query\("SELECT id_utente,sum\(case when timestamp_flag is not NULL then score else 0 end\)-50*count\(timestamp_hint\) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc"\).then\( \(result\)=> {) Tj
+T* (        res.send\(result.rows\);) Tj
+T* (    }\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* (// prende lo score per categoria di ogni utente) Tj
+T* (app.get\("/order_by_category",\(req,res\) => {) Tj
+T* (    const cat = req.query.category;) Tj
+T* (    if\(cat=="-1"\) {) Tj
+T* (        db.query\("SELECT id_utente,sum\(case when timestamp_flag is not NULL then score else 0 end\)-50*count\(timestamp_hint\) as tot_score FROM utente_challenge uc join challenge c on c.id=uc.id_challenge GROUP BY id_utente ORDER BY tot_score desc"\).then\( \(result\)=> {) Tj
+T* (            res.send\(result.rows\);) Tj
+T* (        }\); ) Tj
+T* (    }) Tj
+T* (    else {) Tj
+T* (        db.query\("SELECT id_utente,sum\(case when category is not null and timestamp_flag is not NULL then score else 0 end\)-50*count\(case when category is not null then timestamp_hint end\) as tot_score FROM utente_challenge uc left join challenge c on c.id=uc.id_challenge and category = $1 GROUP BY id_utente ORDER BY tot_score desc",[cat]\).then \( \(result\) => {) Tj
+T* (            res.send\(result.rows\);) Tj
+T* (        }\);) Tj
+T* (    }) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* (// invia una email per avere dei feedback) Tj
+T* (app.post\('/send-email', function\(req, res\) {) Tj
+T* (    let transporter = nodemailer.createTransport\({) Tj
+T* (        host: 'smtp.outlook.com',) Tj
+T* (        port: 587,) Tj
+T* (        secure: false,) Tj
+T* (        auth: {) Tj
+T* (            user: 'flagify@outlook.it',) Tj
+T* (            pass: process.env.EMAIL_PASS,) Tj
+T* (        },) Tj
+T* (        secureConnection: false,) Tj
+T* (        tls: {) Tj
+T* (            rejectUnauthorized: false,) Tj
+T* (        }) Tj
+T* (    }\);) Tj
+T* (    let mailOptions = {) Tj
+T* (        from: "flagify@outlook.it", // sender address) Tj
+T* (        to: "flagify@outlook.it", // list of receivers) Tj
+T* (        subject: req.body.name, // Subject line) Tj
+T* (        html:  "<b>User email: </b>" + req.body.email + "<br><br>" + req.body.message // html body) Tj
+T* (    };) Tj
+T* (    transporter.sendMail\(mailOptions, \(error, info\) => {) Tj
+T* (        if \(error\) {) Tj
+T* (            return console.log\(error\);) Tj
+T* (        }) Tj
+T* (        console.log\('Message %s sent: %s', info.messageId, info.response\);) Tj
+T* (            //res.render\('index'\);) Tj
+T* (            res.redirect\('/'\);) Tj
+T* (        }\);) Tj
+T* (}\);) Tj
+T* () Tj
+T* () Tj
+T* () Tj
+T* (// connesste il server alla porta 8080) Tj
+T* (app.listen\(8080, \(\) => {) Tj
+T* (    console.log\("Server is running on port 8080"\);) Tj
+T* (    console.log\("http://localhost:8080"\);) Tj
+T* (}\);) Tj
+T* (</center> <h4>) Tj
+T* (    <br><br>) Tj
+T* (    </body>) Tj
+T* (</html>) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R ]
+/Count 1
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 5 0 R
+/F2 6 0 R
+/F3 7 0 R
+/F4 8 0 R
+/F5 9 0 R
+/F6 10 0 R
+/F7 11 0 R
+/F8 12 0 R
+/F9 13 0 R
+/F10 14 0 R
+/F11 15 0 R
+/F12 16 0 R
+/F13 17 0 R
+/F14 18 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+19 0 obj
+<<
+/Producer (jsPDF 2.5.1)
+/CreationDate (D:20230425115312+02'00')
+>>
+endobj
+20 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 21
+0000000000 65535 f 
+0000025254 00000 n 
+0000027071 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000025311 00000 n 
+0000025436 00000 n 
+0000025566 00000 n 
+0000025699 00000 n 
+0000025836 00000 n 
+0000025959 00000 n 
+0000026088 00000 n 
+0000026220 00000 n 
+0000026356 00000 n 
+0000026484 00000 n 
+0000026611 00000 n 
+0000026740 00000 n 
+0000026873 00000 n 
+0000026975 00000 n 
+0000027319 00000 n 
+0000027405 00000 n 
+trailer
+<<
+/Size 21
+/Root 20 0 R
+/Info 19 0 R
+/ID [ <B57F2ED3BA6F3559A4CB675782FB2728> <B57F2ED3BA6F3559A4CB675782FB2728> ]
+>>
+startxref
+27509
+%%EOF

@@ -26,13 +26,13 @@ app.use(vhost('pp', require('./path/to/m')));
 
 // connessione col databse
 const db = database.db;
-db.connect( (err) => {
+/*db.connect( (err) => {
     if (err) {
 	  console.error("Errore connessione al database");
 	  console.error(err);
 	  //process.exit(1);
 	}
-});
+});*/
 
 // impostazioni per l'utilizzo del backend node
 app.set("view engine", "ejs");
@@ -46,6 +46,10 @@ app.use(session({
     //24 hours
     cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
+});
 
 //funzione per il report pdf 
 
@@ -62,8 +66,8 @@ console.log("calcolo rapport")
      console.log(e)
    }
  console.log(rapporto)
-     const browser await puppeteer.launch({executablePath:'/usr/bin/firefox'});
-     // const browser = await puppeteer.launch({ headless: true });
+     //const browser  =  puppeteer.launch({executablePath:'/usr/bin/firefox'});
+     const browser = await puppeteer.launch({ headless: true });
       const page = await browser.newPage();
       
    
@@ -162,12 +166,10 @@ function authenticate(email, pass, fn) {
                     console.log("beccato")
                     return fn(null, null);
                 }
+                var pass2 = result.rows[0] === undefined ? "" : result.rows[0].password 
+              
                
-               /* if (!bcrypt.compareSync(pass, result.rows[0].password)) {
-                    return fn(null, null);
-                }*/
-                console.log(pass,result.rows[0].password )
-                if (pass !=  result.rows[0].password) {
+                if (pass !=  pass2) {
                     console.log("password errata")
                     return fn(null, null);
                 }
@@ -190,6 +192,7 @@ var errore_signup = '';
 
 // permette l'accesso ad alcune sezioni del sito solo se si è loggati
 function restrict(req, res, next) {
+    console.log(req)
     if (req.session.user) {
         next();
     } else {
@@ -252,7 +255,9 @@ app.get('/challenge_done', restrict,  (req, res) => {
 
 // richiede chi è l'utente di sessione
 app.get('/info-profile', restrict, (req, res) => {
+    console.log(req)
     res.send(req.session.user);
+    
 });
 
 // richiede le statistiche dell'utente di sessione o di un altro utente
@@ -351,7 +356,7 @@ app.get("/pagina_test", restrict, (req,res) => {
 
 // pagina homepage
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "static/templates/homepage/homepage.html"));
+    res.sendFile(path.join(__dirname, "static/templates/homepage2/homepage2.html"));
 });
 app.get("/pp", (req, res) => {
     res.sendFile(path.join(__dirname, "static/templates/pagina_test/prova3.html"));
@@ -411,7 +416,7 @@ app.get('/challenge', restrict, (req, res) => {
 // pagina login
 app.get("/login", (req,res) => {
     console.log(errore_login);
-    res.sendFile(path.join(__dirname, "static/templates/login/login.html"));
+    res.sendFile(path.join(__dirname, "static/templates/login2/login2.html"));
 });
 
 
